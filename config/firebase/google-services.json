@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "902268329274",
+    "project_id": "myduo-1a88c",
+    "storage_bucket": "myduo-1a88c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902268329274:android:b6d8375069c2a4e6e54403",
+        "android_client_info": {
+          "package_name": "host.exp.exponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902268329274-d3dt6ps1lob3galnaii5t15d24d6m8qd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDicyyOUHWOZwhgTEZruPj6Tgn3Rmf8vpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902268329274-d3dt6ps1lob3galnaii5t15d24d6m8qd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "902268329274-6pd1gi5ltuo6kmmrbp3ddddvno8vr5p4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

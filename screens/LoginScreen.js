@@ -1,11 +1,15 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, Image, ImageBackground, SafeAreaView } from 'react-native';
 import  {LinearGradient} from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable'
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import { useNavigation } from '@react-navigation/native'
+import Firebase from '../config/firebase/firebaseConfig';
 
 const LoginScreen = () => {
+  const [email, setEmail] = useState()
+  const [senha, setSenha] = useState()
+
     const { user } = useAuth()
   const navigation = useNavigation()  
 
@@ -14,6 +18,15 @@ const LoginScreen = () => {
             headerShown: false,
         });
     }, []);
+
+    const login = () =>{
+      Firebase.auth().signInWithEmailAndPassword(email, senha)
+      .then((userCredential) =>{
+        const user = userCredential.user
+        console.log(user);
+      })
+      .catch((error) =>{console.log(error.message);})
+    }
 
   return (
     <SafeAreaView>
@@ -40,10 +53,14 @@ const LoginScreen = () => {
                             <Text style={styles.input1}>Email</Text>
                             <TextInput
                                 style={styles.input2}
+                                value = {email}
+                                onChangeText = {setEmail}
                             />
 
                             <Text style={styles.input1}>Senha</Text>
                             <TextInput style={styles.input2}
+                            value = {senha}
+                            onChangeText = {setSenha}
                             />
                         </View>
                     </Animatable.View>
@@ -52,7 +69,8 @@ const LoginScreen = () => {
                     delay={800}>
                         <TouchableOpacity
                             style={styles.botao1}
-                            onPress={() => navigation.navigate('Home', { nome: 'Home'})}
+                            // onPress={() => navigation.navigate('Home', { nome: 'Home'})}
+                            onPress = {login}
                         >
                             <Text style={{ color: '#FFFF', alignSelf: 'center' }}>Entrar</Text>
                         </TouchableOpacity>

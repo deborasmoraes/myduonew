@@ -5,11 +5,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HomeScreen from './screens/HomeScreen'
 import DuoScreen from './screens/DuoScreen'
 import LoginScreen from './screens/LoginScreen'
-import PerfilScreen from './screens/PerfilScreen'
+import PerfilScreen from './screens/ProfileScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import ShowBottomTabs from './Bottomtab'
 
 import useAuth from './hooks/useAuth'
+import SignupScreen from './screens/registerScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -18,7 +19,9 @@ const StackNavigator = () => {
 
     return (
         <Stack.Navigator>
+            
             <Stack.Screen name='Login' component={LoginScreen} />
+            <Stack.Screen name = 'Registrar' component = {SignupScreen}/>
             <Stack.Screen name='Perfil' component={PerfilScreen} />
             <Stack.Screen name='Home' component={ShowBottomTabs} />
             <Stack.Screen name='Duo' component={DuoScreen} />

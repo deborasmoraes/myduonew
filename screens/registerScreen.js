@@ -2,6 +2,7 @@ import { TextInputMask } from 'react-native-masked-text'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import { useEffect, useState } from 'react';
+import Firebase from '../config/firebase/firebaseConfig';
 export default function SignupScreen({ navigation }) {
 
     const [nome, setNome] = useState('')
@@ -10,6 +11,17 @@ export default function SignupScreen({ navigation }) {
     const [idade, setIdade] = useState('')
     const [msg, setMsg] = useState('')
 
+    const Register = () =>{
+        Firebase.auth().createUserWithEmailAndPassword(email, senha)
+        .then((userCredential) =>{
+            const user =userCredential
+            console.log(user);
+        })
+        .catch((error) =>{
+            console.log(error.message);
+        })
+    
+    }
 
 
   
@@ -48,7 +60,7 @@ export default function SignupScreen({ navigation }) {
                 placeholder='Insira sua data de nascimento' />
 
             <TouchableOpacity
-                
+                onPress = {Register}
             ><Text>Registre-se</Text></TouchableOpacity>
             <Text>{msg}</Text>
 

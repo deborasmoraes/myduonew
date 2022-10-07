@@ -7,6 +7,7 @@ import DuoScreen from './screens/DuoScreen'
 import LoginScreen from './screens/LoginScreen'
 import PerfilScreen from './screens/PerfilScreen'
 import SettingsScreen from './screens/SettingsScreen'
+import ShowBottomTabs from './Bottomtab'
 
 import useAuth from './hooks/useAuth'
 
@@ -17,16 +18,12 @@ const StackNavigator = () => {
 
     return (
         <Stack.Navigator>
-            {user ? (
-                <>  
-                    <Stack.Screen name='Perfil' component={PerfilScreen}/>
-                    <Stack.Screen name='Home' component={HomeScreen} />
-                    <Stack.Screen name='Duo' component={DuoScreen} />
-                    <Stack.Screen name='Settings' component={SettingsScreen}/>
-                </>
-            ) : (
-                <Stack.Screen name='Login' component={LoginScreen} />
-            )}
+            <Stack.Screen name='Login' component={LoginScreen} />
+            <Stack.Screen name='Perfil' component={PerfilScreen} />
+            <Stack.Screen name='Home' component={ShowBottomTabs} />
+            <Stack.Screen name='Duo' component={DuoScreen} />
+            <Stack.Screen name='Settings' component={SettingsScreen} />
+
         </Stack.Navigator>
     )
 }

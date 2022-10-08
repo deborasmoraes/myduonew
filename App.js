@@ -7,9 +7,9 @@ import StackNavigator from './StackNavigator';
 export default function App() {
   return (
     <NavigationContainer>
-      <AuthProvider>
+      {/* <AuthProvider> */}
       <StackNavigator/>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </NavigationContainer>
   );
 }

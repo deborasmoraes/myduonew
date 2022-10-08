@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import useAuth from '../hooks/useAuth'
 import { useNavigation } from '@react-navigation/native'
@@ -14,7 +14,9 @@ const LoginScreen = () => {
   }, []);
   return (
     <SafeAreaView>
-      <Text>LoginScreen</Text>
+     <TouchableOpacity
+     onPress={ () => user = true}
+     ><Text>Clica ai</Text></TouchableOpacity>
     </SafeAreaView>
   )
 }

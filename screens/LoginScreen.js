@@ -69,11 +69,13 @@ const LoginScreen = () => {
                     delay={800}>
                         <TouchableOpacity
                             style={styles.botao1}
-                            // onPress={() => navigation.navigate('Home', { nome: 'Home'})}
+                            
                             onPress = {login}
                         >
+                    
                             <Text style={{ color: '#FFFF', alignSelf: 'center' }}>Entrar</Text>
                         </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('CreateProfile', { nome: 'CreateProfile'})} ><Text>Excluir esse botão depois</Text></TouchableOpacity>
                         <TouchableOpacity
                             style={styles.botao2}
                             onPress={() => navigation.navigate('Redefinir', { nome: 'Redefinir' })}

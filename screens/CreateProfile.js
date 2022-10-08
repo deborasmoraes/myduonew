@@ -7,7 +7,9 @@ const CreateProfileScreen = () => {
     const navigation = useNavigation()
     const [username, setUsername] = useState()
     const [descricao, setDescricao] = useState()
-  const user_id = Firebase.auth().currentUser.uid
+    const [console, setConsole] = useState()
+   
+    const user_id = Firebase.auth().currentUser.uid
     
   const Save = () =>{Firebase.firestore().collection('user').add({
       username: username,
@@ -30,6 +32,12 @@ const CreateProfileScreen = () => {
         placeholder = 'Descrição'
         value = {descricao}
         onChangeText = {setDescricao}
+        />
+
+<TextInput
+        placeholder = 'Console'
+        value = {console}
+        onChangeText = {setConsole}
         />
 
         <TouchableOpacity onPress ={Save}><Text>Salvar</Text></TouchableOpacity>

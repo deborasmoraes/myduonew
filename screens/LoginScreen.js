@@ -7,10 +7,11 @@ import { useNavigation } from '@react-navigation/native'
 import Firebase from '../config/firebase/firebaseConfig';
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState()
-  const [senha, setSenha] = useState()
-
-    const { user } = useAuth()
+  const [email, setEmail] = useState('')
+  const [senha, setSenha] = useState('')
+  const [msg, setMSG] = useState('')
+  
+  const { user } = useAuth()
   const navigation = useNavigation()  
 
     useLayoutEffect(() => {
@@ -21,12 +22,40 @@ const LoginScreen = () => {
 
     const login = () =>{
       Firebase.auth().signInWithEmailAndPassword(email, senha)
-      .then((userCredential) =>{
-        const user = userCredential.user
-        console.log(user);
+      .then(() =>{
+        navigation.navigate('Home', { nome: 'Home'})
+       
       })
-      .catch((error) =>{console.log(error.message);})
+      .catch(() =>{setMSG("Email ou senha inválidos."); console.log(msg);})
     }
+
+    const validate = () =>{
+      let emailRegex  = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/ 
+      if (email == '' || emailRegex.test(email)){
+        return( setMSG("insira um email válido"), false)
+        }
+        if (senha == ''){
+          return( setMSG("insira uma senha válida"), false)
+          }
+          true
+    }
+    function logarGoogle() {
+      const provider = new Firebase.auth.GoogleAuthProvider()
+      Firebase.auth().signInWithPopup(provider)
+          .then((result) => {
+              console.log(result.user)
+              console.log(result.user.photoURL)
+              setUrlFoto(result.user.photoURL)
+          })
+          .catch((error) => {
+              console.log(error.message)
+          })
+  }
+function callFunctions(){
+  validate()
+  login()
+}
+
 
   return (
     <SafeAreaView>
@@ -56,12 +85,15 @@ const LoginScreen = () => {
                                 value = {email}
                                 onChangeText = {setEmail}
                             />
+                            
 
                             <Text style={styles.input1}>Senha</Text>
                             <TextInput style={styles.input2}
                             value = {senha}
                             onChangeText = {setSenha}
+                            secureTextEntry = {true}
                             />
+                            <Text>{msg}</Text>
                         </View>
                     </Animatable.View>
                     <Animatable.View
@@ -70,12 +102,12 @@ const LoginScreen = () => {
                         <TouchableOpacity
                             style={styles.botao1}
                             
-                            onPress = {login}
+                            onPress = {callFunctions}
                         >
                     
                             <Text style={{ color: '#FFFF', alignSelf: 'center' }}>Entrar</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('Home', { nome: 'Home'})} ><Text>Excluir esse botão depois</Text></TouchableOpacity>
+                       
                         <TouchableOpacity
                             style={styles.botao2}
                             onPress={() => navigation.navigate('Redefinir', { nome: 'Redefinir' })}
@@ -84,7 +116,10 @@ const LoginScreen = () => {
                         </TouchableOpacity>
                         <View style={styles.container}>
                             <Text style={{ textAlign: 'center', marginTop: '5%' }}>Ou continue com</Text>
-                            <TouchableOpacity style={styles.botao3}><Text style={{ color: '#FFF' }}>Google</Text></TouchableOpacity>
+                            <TouchableOpacity style={styles.botao3}><Text style={{ color: '#FFF' }}
+                            onPress = {logarGoogle}
+                            
+                            >Google</Text></TouchableOpacity>
                             <TouchableOpacity style={styles.botao3}><Text style={{ color: '#FFF' }}>Facebook</Text></TouchableOpacity>
 
                             <Text style={styles.container2}>Não possui conta?</Text>

@@ -32,8 +32,13 @@ const PerfilScreen = () => {
           setUser({
             username:data[0].username,
             descricao:data[0].descricao,
-            Valorant:data[0].Valorant,
+            apexLegends:data[0].apexLegends,
+            csGo:data[0].csGo,
+            dota2:data[0].dota2,
+            fortnite:data[0].fortnite,
+            freeFire:data[0].freeFire,
             LeagueOfLegends:data[0].LeagueOfLegends,
+            Valorant:data[0].Valorant,
             horaFim:data[0].horaFim,
             horaInicio:data[0].horaInicio
         });
@@ -99,7 +104,7 @@ const PerfilScreen = () => {
                 {/* adicionar jogos */}
                 <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-                    {(trueFalse === true) ?<Jogos valorant ={user.Valorant} LeagueOfLegends = {user.LeagueOfLegends} ApexLegnds = {user.ApexLegnds} /> : <TouchableOpacity
+                    {(trueFalse === true) ?<Jogos valorant ={user.Valorant} LeagueOfLegends = {user.LeagueOfLegends} fortnite = {user.fortnite} apexLegends = {user.apexLegends} csGo = {user.csGo} dota2 = {user.dota2} freeFire = {user.freeFire}/> : <TouchableOpacity
                         onPress={() => { navigation.navigate("Jogos") }}><Text>Editar Jogos</Text>
                     </TouchableOpacity>}
                 </LinearGradient>

@@ -33,7 +33,9 @@ const PerfilScreen = () => {
             username:data[0].username,
             descricao:data[0].descricao,
             Valorant:data[0].Valorant,
-            LeagueOfLegends:data[0].LeagueOfLegends
+            LeagueOfLegends:data[0].LeagueOfLegends,
+            horaFim:data[0].horaFim,
+            horaInicio:data[0].horaInicio
         });
         })
         return () => ref()
@@ -109,8 +111,8 @@ const PerfilScreen = () => {
                     <Text style={styles.nome}>Fim</Text>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
-                    <Text>HoraInicio</Text>
-                    <Text>HoraFim</Text>
+                    <Text>{user.horaInicio}</Text>
+                    <Text>{user.horaFim}</Text>
                 </View>
                 <View>
                     {(trueFalse === true) ? <TouchableOpacity

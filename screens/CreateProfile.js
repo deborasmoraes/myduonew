@@ -10,7 +10,11 @@ const CreateProfileScreen = () => {
     const navigation = useNavigation()
     const [username, setUsername] = useState()
     const [descricao, setDescricao] = useState()
-    const [console, setConsole] = useState()
+    const [apexLegends, setApexLegends] = useState(false)
+    const [csGo, setCsGo] = useState(false)
+    const [fortnite, setFortnite] = useState(false)
+    const [dota2, setdota2] = useState(false)
+    const [freeFire, setfreeFire] = useState(false)
     const [valorant, setValorant] = useState(false)
     const [lol, setLol] = useState(false)
     const [horaInicio, setHoraInicio] = useState()
@@ -25,6 +29,11 @@ const CreateProfileScreen = () => {
             descricao: descricao,
             user_id: user_id,
             Valorant: valorant,
+            apexLegends: apexLegends,
+            csGo: csGo,
+            fortnite:fortnite,
+            dota2:dota2,
+            freeFire: freeFire,
             LeagueOfLegends: lol,
             horaInicio: horaInicio,
             horaFim: horaFim,
@@ -52,11 +61,12 @@ const CreateProfileScreen = () => {
 
             <Text onPress={() => { setValorant(true) }}>Valorant</Text>
             <Text onPress={() => { setLol(true) }}>League of Legends</Text>
-            <TextInput
-                placeholder='Hora inicio'
-                value={console}
-                onChangeText={setConsole}
-            />
+            <Text onPress={() => { setApexLegends(true) }}>Apex Legends</Text>
+            <Text onPress={() => { setCsGo(true) }}>Counter Strike: Global Offensive</Text>
+            <Text onPress={() => { setFortnite(true) }}>Fortnite</Text>
+            <Text onPress={() => { setfreeFire(true) }}>Free Fire</Text>
+            <Text onPress={() => { setdota2(true) }}>Dota 2</Text>
+            
             <TextInputMask
                 type={'datetime'}
                 options={{ format: 'HH:mm' }}

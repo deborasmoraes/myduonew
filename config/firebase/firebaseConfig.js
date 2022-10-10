@@ -1,9 +1,11 @@
 
-import { initializeApp } from "firebase/app";
-
 import firebase from "firebase/app";
 import 'firebase/firebase-firestore'
 import 'firebase/firebase-auth'
+import {decode, encode} from 'base-64'
+
+if(!global.btoa){ global.btoa = encode}
+if(!global.atob){ global.atob = decode}
 const firebaseConfig = {
 
     apiKey: "AIzaSyDLWoa0zUJxYZNUqPcWdPGV3ir1s_W4Ym8",

@@ -36,8 +36,8 @@ export default function ShowBottomTabs(){
             }
             return <MaterialCommunityIcons name={iconName} size={22} color='#FFFF' />
         }})}>
+             <Tab.Screen name= "CreateProfile" component={CreateProfileScreen}/>
             <Tab.Screen name ="PerfilTab" component={PerfilScreen}/>
-            <Tab.Screen name= "CreateProfile" component={CreateProfileScreen}/>
             <Tab.Screen name= "DuoTab" component={DuoScreen}/>
             <Tab.Screen name="HomeTab" component={HomeScreen}/>
             <Tab.Screen name="SettingsTab" component={SettingsScreen}/>

@@ -99,7 +99,7 @@ const PerfilScreen = () => {
                 {/* adicionar jogos */}
                 <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-                    {(trueFalse === true) ?<Jogos valorant ={user.Valorant} LeagueOfLegends = {user.LeagueOfLegends} /> : <TouchableOpacity
+                    {(trueFalse === true) ?<Jogos valorant ={user.Valorant} LeagueOfLegends = {user.LeagueOfLegends} ApexLegnds = {user.ApexLegnds} /> : <TouchableOpacity
                         onPress={() => { navigation.navigate("Jogos") }}><Text>Editar Jogos</Text>
                     </TouchableOpacity>}
                 </LinearGradient>

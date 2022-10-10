@@ -15,7 +15,7 @@ const DuoScreen = () => {
       key:doc.id
     })
   })
-  setDataUser(data);
+  console.log(data);
   })
 
  }
@@ -25,7 +25,9 @@ const DuoScreen = () => {
       <FlatList
       data={datauser}
       renderItem/>
+    <Button onPress = {find}>ao</Button>
     </View>
+    
   )
 }
 

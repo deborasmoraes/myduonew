@@ -28,13 +28,13 @@ const CreateProfileScreen = () => {
             username: username,
             descricao: descricao,
             user_id: user_id,
-            Valorant: valorant,
             apexLegends: apexLegends,
             csGo: csGo,
-            fortnite:fortnite,
             dota2:dota2,
+            fortnite:fortnite,
             freeFire: freeFire,
             LeagueOfLegends: lol,
+            Valorant: valorant,
             horaInicio: horaInicio,
             horaFim: horaFim,
             pc: pc,
@@ -59,14 +59,15 @@ const CreateProfileScreen = () => {
                 onChangeText={setDescricao}
             />
 
-            <Text onPress={() => { setValorant(true) }}>Valorant</Text>
-            <Text onPress={() => { setLol(true) }}>League of Legends</Text>
             <Text onPress={() => { setApexLegends(true) }}>Apex Legends</Text>
             <Text onPress={() => { setCsGo(true) }}>Counter Strike: Global Offensive</Text>
+            <Text onPress={() => { setdota2(true) }}>Dota 2</Text>
             <Text onPress={() => { setFortnite(true) }}>Fortnite</Text>
             <Text onPress={() => { setfreeFire(true) }}>Free Fire</Text>
-            <Text onPress={() => { setdota2(true) }}>Dota 2</Text>
-            
+            <Text onPress={() => { setLol(true) }}>League of Legends</Text>
+            <Text onPress={() => { setValorant(true) }}>Valorant</Text>
+
+                       
             <TextInputMask
                 type={'datetime'}
                 options={{ format: 'HH:mm' }}

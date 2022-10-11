@@ -1,13 +1,15 @@
 import React from "react";
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { StyleSheet } from "react-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
+ 
 
 import HomeScreen from "./screens/HomeScreen"
 import DuoScreen from "./screens/DuoScreen"
 import CreateProfileScreen from "./screens/CreateProfile";
 import PerfilScreen from "./screens/ProfileScreen";
 import SettingsScreen from "./screens/SettingsScreen";
+import { LinearGradient } from "expo-linear-gradient";
 const Tab = createBottomTabNavigator()
 
 export default function ShowBottomTabs(){
@@ -38,7 +40,18 @@ export default function ShowBottomTabs(){
         }})}>
              <Tab.Screen name= "CreateProfile" component={CreateProfileScreen}/>
             <Tab.Screen name ="PerfilTab" component={PerfilScreen}/>
-            <Tab.Screen name= "DuoTab" component={DuoScreen}/>
+            <Tab.Screen name= "DuoTab" component={DuoScreen}
+            options={() => ({
+                tabBarIcon: ({tintColor}) => (
+                    <View>
+                        <LinearGradient style={styles.iconTabRound} colors={['#1C3551', '#242547']}> 
+                           <Pressable>
+                            <Image source={require('./assets/myduo.png')} style={{width: 30, height: 30}}></Image>
+                            </Pressable>
+                        </LinearGradient>
+                    </View>
+                )
+            })}/>
             <Tab.Screen name="HomeTab" component={HomeScreen}/>
             <Tab.Screen name="SettingsTab" component={SettingsScreen}/>
 
@@ -52,8 +65,22 @@ const styles = StyleSheet.create({
         position: 'absolute',
         borderTopWidth: 0,
         borderTopLeftRadius: 20,
-        borderTopRightRadius: 20
+        borderTopRightRadius: 20,
+        height: 65
 
-
-    }
+    },
+    iconTabRound:{
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        marginBottom: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 8,
+        shadowColor: '#9C27B0',
+        shadowOffset: {width: 1, height: 2},
+        shadowOpacity: 0.2,
+        shadowRadius: 5
+  }
 })

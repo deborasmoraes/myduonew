@@ -60,7 +60,7 @@ function callFunctions(){
   return (
     <SafeAreaView>
       <LinearGradient
-        colors={['#042960', '#242547']} style={{height:'100%'}}>
+        colors={['#1C3551', '#242547']} style={{height:'100%'}}>
             <View>
                 <ImageBackground
                     source={require('../assets/minicial.png')}

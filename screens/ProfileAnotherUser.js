@@ -9,7 +9,7 @@ import Firebase from '../config/firebase/firebaseConfig';
 
 import Jogos from '../components/jogos';
 
-const PerfilScreen = () => {
+const AnotherUserScreen = ({route}) => {
     const [trueFalse, setTrueFalse] = useState(true)
     const [descricao, setDescricao] = useState("lorem ipsum")
     const navigation = useNavigation()
@@ -20,8 +20,8 @@ const PerfilScreen = () => {
         });
     }, []);
     useEffect(() => {
-        const user  = Firebase.auth().currentUser.uid
-        let ref = Firebase.firestore().collection('user').where("user_id", "==", user).onSnapshot(query =>{
+        const anotheruser  = route.params.idUser
+        let ref = Firebase.firestore().collection('user').where("user_id", "==", anotheruser).onSnapshot(query =>{
             const data   = []
             query.forEach(doc =>{
                 data.push({
@@ -182,4 +182,4 @@ const styles = StyleSheet.create({
         height: '50%'
     }
 })
-export default PerfilScreen
+export default AnotherUserScreen

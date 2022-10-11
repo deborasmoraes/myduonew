@@ -13,6 +13,7 @@ import CreateProfileScreen from './screens/CreateProfile'
 import ShowBottomTabs from './Bottomtab'
 
 import useAuth from './hooks/useAuth'
+import AnotherUserScreen from './screens/ProfileAnotherUser'
 
 
 const Stack = createNativeStackNavigator()
@@ -30,6 +31,7 @@ const StackNavigator = () => {
             <Stack.Screen name='Home' component={ShowBottomTabs} />
             <Stack.Screen name='Duo' component={DuoScreen} />
             <Stack.Screen name='Settings' component={SettingsScreen} />
+            <Stack.Screen name= 'AnotherUser' component ={AnotherUserScreen}/>
 
         </Stack.Navigator>
     )

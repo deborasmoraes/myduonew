@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput,  View, Image, ImageBackground, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput,  View, Image, ImageBackground, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import  {LinearGradient} from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable'
 import React, { useLayoutEffect, useState } from 'react'
@@ -60,7 +60,7 @@ function callFunctions(){
   return (
     <SafeAreaView>
       <LinearGradient
-        colors={['#656565', '#EAAFC8']} style={{height:'100%'}}>
+        colors={['#042960', '#242547']} style={{height:'100%'}}>
             <View>
                 <ImageBackground
                     source={require('../assets/minicial.png')}
@@ -131,7 +131,9 @@ function callFunctions(){
 
 
             </View>
+            
             </LinearGradient>
+            
     </SafeAreaView>
   )
 }
@@ -139,7 +141,6 @@ const styles = StyleSheet.create({
   container: {
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#E7F8FE'
   },
   m: {
       width: '100%',

@@ -1,7 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Image, Pressable, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet, TouchableOpacity, View } from "react-native";
  
 
 import HomeScreen from "./screens/HomeScreen"
@@ -45,9 +45,9 @@ export default function ShowBottomTabs(){
                 tabBarIcon: ({tintColor}) => (
                     <View>
                         <LinearGradient style={styles.iconTabRound} colors={['#1C3551', '#242547']}> 
-                           <Pressable>
-                            <Image source={require('./assets/myduo.png')} style={{width: 30, height: 30}}></Image>
-                            </Pressable>
+                          
+                            <Image source={require('./assets/myduo.png')} style={{width: 29, height: 27}}></Image>
+                            
                         </LinearGradient>
                     </View>
                 )

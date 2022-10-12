@@ -101,8 +101,7 @@ const PerfilScreen = () => {
                 <Text style={styles.nome}>Jogos favoritos</Text>
 
                 {/* adicionar jogos */}
-                <LinearGradient colors={['#242547', '#042960']}
-                    style={styles.jogos}>
+                <LinearGradient colors={['#242547', '#042960']}>
                     {(trueFalse === true) ?<Jogos valorant ={user.Valorant} LeagueOfLegends = {user.LeagueOfLegends} fortnite = {user.fortnite} apexLegends = {user.apexLegends} csGo = {user.csGo} dota2 = {user.dota2} freeFire = {user.freeFire}/> : <TouchableOpacity
                         onPress={() => { navigation.navigate("Jogos") }}><Text>Editar Jogos</Text>
                     </TouchableOpacity>}

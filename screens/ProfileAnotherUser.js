@@ -10,17 +10,18 @@ import Firebase from '../config/firebase/firebaseConfig';
 import Jogos from '../components/jogos';
 
 const AnotherUserScreen = ({route}) => {
-    const [trueFalse, setTrueFalse] = useState(true)
-    const [descricao, setDescricao] = useState("lorem ipsum")
-    const navigation = useNavigation()
+   const navigation = useNavigation()
     const [user, setUser] = useState({})
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
         });
     }, []);
+    const anotheruser  = route.params.user_id
     useEffect(() => {
-        const anotheruser  = route.params.idUser
+        
+       
+       
         let ref = Firebase.firestore().collection('user').where("user_id", "==", anotheruser).onSnapshot(query =>{
             const data   = []
             query.forEach(doc =>{
@@ -41,7 +42,7 @@ const AnotherUserScreen = ({route}) => {
         return () => ref()
     }, [])
 
-
+console.log(`ola ${anotheruser}`);
     return (
         <View style={styles.geral}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -49,11 +50,7 @@ const AnotherUserScreen = ({route}) => {
                 {/* header */}
                 <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
                     <Text style={styles.nome}>Perfil</Text>
-                    {(trueFalse === true) ? <TouchableOpacity
-                        onPress={() => { setTrueFalse(false) }}
-                    ><MaterialCommunityIcons name='account-edit-outline' size={21} color='#FFFF' /></TouchableOpacity> : <TouchableOpacity
-                        onPress={() => { setTrueFalse(true) }}
-                    ><MaterialCommunityIcons name='content-save-edit-outline' size={21} color='#FFFF' /></TouchableOpacity>}
+                    
                 </View>
 
                 {/* dados usuário */}
@@ -80,9 +77,7 @@ const AnotherUserScreen = ({route}) => {
                     colors={['#242547', '#042960']}
                     style={styles.descricao}>
                     <View style={styles.container}>
-                    {(trueFalse === true) ? <Text>{user.descricao}</Text> : <TextInput
-                                onChangeText={setDescricao}
-                                defaultValue={user.descricao}></TextInput>}
+                    <Text>{user.descricao}</Text>
                     </View>
                 </LinearGradient>
 
@@ -98,9 +93,7 @@ const AnotherUserScreen = ({route}) => {
                 {/* adicionar jogos */}
                 <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-                    {(trueFalse === true) ?<Jogos valorant ={user.Valorant} LeagueOfLegends = {user.LeagueOfLegends} ApexLegnds = {user.ApexLegnds} /> : <TouchableOpacity
-                        onPress={() => { navigation.navigate("Jogos") }}><Text>Editar Jogos</Text>
-                    </TouchableOpacity>}
+                    <Jogos valorant ={user.Valorant} LeagueOfLegends = {user.LeagueOfLegends} ApexLegnds = {user.ApexLegnds} /> 
                 </LinearGradient>
 
                 <Text style={styles.nome}>Disponibilidade</Text>
@@ -113,13 +106,7 @@ const AnotherUserScreen = ({route}) => {
                     <Text>{user.horaInicio}</Text>
                     <Text>{user.horaFim}</Text>
                 </View>
-                <View>
-                    {(trueFalse === true) ? <TouchableOpacity
-                        onPress={() => { setTrueFalse(false) }}
-                    ><Text>Editar</Text></TouchableOpacity> : <TouchableOpacity
-                        onPress={() => { setTrueFalse(true) }}
-                    ><Text>Salvar</Text></TouchableOpacity>}
-                </View>
+
 
 
             </ScrollView>

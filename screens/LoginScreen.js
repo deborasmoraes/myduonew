@@ -1,19 +1,18 @@
-import { StyleSheet, Text, TextInput,  View, Image, ImageBackground, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
-import  {LinearGradient} from 'expo-linear-gradient';
+import { StyleSheet, Text, TextInput, View, Image, ImageBackground, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable'
 import React, { useLayoutEffect, useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import { useNavigation } from '@react-navigation/native'
 import Firebase from '../config/firebase/firebaseConfig';
-import SvgComponent from '../assets/mprincipal';
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState('')
-  const [senha, setSenha] = useState('')
-  const [msg, setMSG] = useState('')
-  
-  const { user } = useAuth()
-  const navigation = useNavigation()  
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+    const [msg, setMSG] = useState('')
+
+    const { user } = useAuth()
+    const navigation = useNavigation()
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -21,177 +20,209 @@ const LoginScreen = () => {
         });
     }, []);
 
-    const login = () =>{
-      Firebase.auth().signInWithEmailAndPassword(email, senha)
-      .then(() =>{
-        navigation.navigate('Home', { nome: 'Home'})
-       
-      })
-      .catch(() =>{setMSG("Email ou senha inválidos."); console.log(msg);})
+    const login = () => {
+        Firebase.auth().signInWithEmailAndPassword(email, senha)
+            .then(() => {
+                navigation.navigate('Home', { nome: 'Home' })
+
+            })
+            .catch(() => { setMSG("Email ou senha inválidos."); console.log(msg); })
     }
 
-    const validate = () =>{
-      let emailRegex  = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/ 
-      if (email == '' || emailRegex.test(email)){
-        return( setMSG("insira um email válido"), false)
+    const validate = () => {
+        let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
+        if (email == '' || emailRegex.test(email)) {
+            return (setMSG("insira um email válido"), false)
         }
-        if (senha == ''){
-          return( setMSG("insira uma senha válida"), false)
-          }
-          true
+        if (senha == '') {
+            return (setMSG("insira uma senha válida"), false)
+        }
+        true
     }
     function logarGoogle() {
-      const provider = new Firebase.auth.GoogleAuthProvider()
-      Firebase.auth().signInWithPopup(provider)
-          .then((result) => {
-              console.log(result.user)
-              console.log(result.user.photoURL)
-              setUrlFoto(result.user.photoURL)
-          })
-          .catch((error) => {
-              console.log(error.message)
-          })
-  }
-function callFunctions(){
-  validate()
-  login()
-}
+        const provider = new Firebase.auth.GoogleAuthProvider()
+        Firebase.auth().signInWithPopup(provider)
+            .then((result) => {
+                console.log(result.user)
+                console.log(result.user.photoURL)
+                setUrlFoto(result.user.photoURL)
+            })
+            .catch((error) => {
+                console.log(error.message)
+            })
+    }
+    function callFunctions() {
+        validate()
+        login()
+    }
 
 
-  return (
-  
-      <LinearGradient
-        colors={['#1C3551', '#242547']}
-        end={{x: 0.1, y: 0.4}}>
-             <SvgComponent />
-            <View>
-                        <Text style={styles.login}>Login</Text>
-                        <View style={styles.container}>
-                            <Text style={styles.input1}>Email</Text>
-                            <TextInput
-                                style={styles.input2}
-                                value = {email}
-                                onChangeText = {setEmail}
-                            />
-                            
+    return (
 
-                            <Text style={styles.input1}>Senha</Text>
-                            <TextInput style={styles.input2}
-                            value = {senha}
-                            onChangeText = {setSenha}
-                            secureTextEntry = {true}
-                            />
-                        </View>
-                  
-                    <Animatable.View
-                    animation="fadeInUp"
-                    delay={800}>
-                        <TouchableOpacity
-                            style={styles.botao1}
-                            
-                            onPress = {callFunctions}
-                        >
-                    
-                            <Text style={{ color: '#FFFF', alignSelf: 'center' }}>Entrar</Text>
-                        </TouchableOpacity>
-                       
-                        <TouchableOpacity
-                            style={styles.botao2}
-                            onPress={() => navigation.navigate('Redefinir', { nome: 'Redefinir' })}
-                        >
-                            <Text>Esqueci a senha</Text>
-                        </TouchableOpacity>
-                        <View style={styles.container}>
-                            <Text style={{ textAlign: 'center', marginTop: '5%' }}>Ou continue com</Text>
-                            <TouchableOpacity style={styles.botao3}><Text style={{ color: '#FFF' }}
-                            onPress = {logarGoogle}
-                            
-                            >Google</Text></TouchableOpacity>
-                            <TouchableOpacity style={styles.botao3}><Text style={{ color: '#FFF' }}>Facebook</Text></TouchableOpacity>
+        <LinearGradient
+            colors={['#1C3551', '#242547']}
+            end={{ x: 0.1, y: 0.4 }}>
+            <Image 
+            source={require('../assets/mazul.png')}
+            style={{ width: '100%', height: '30%' }} />
 
-                            <Text style={styles.container2}>Não possui conta?</Text>
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text>Criar agora</Text></TouchableOpacity>
-                        </View>
-                    </Animatable.View>
-        
+            <Animatable.Text 
+            style={styles.login}
+            animation="fadeInUp"
+                delay={550}>Login</Animatable.Text>
+            <Animatable.View 
+            animation="fadeInUp"
+            delay={800}
+            style={styles.container}>
+                <Text style={styles.input1}>Email</Text>
+                <TextInput
+                    style={styles.input2}
+                    value={email}
+                    onChangeText={setEmail}
+                />
 
 
-            </View>
-            
-            </LinearGradient>
-            
-  
-  )
+                <Text
+                 style={styles.input1}>Senha</Text>
+                <TextInput 
+                style={styles.input2}
+                    value={senha}
+                    onChangeText={setSenha}
+                    secureTextEntry={true}
+                />
+            </Animatable.View>
+
+            <Animatable.View
+                animation="fadeInUp"
+                delay={800}>
+                <TouchableOpacity
+                    style={styles.botao1}
+                    onPress={callFunctions}
+                >
+
+                    <Text 
+                    style={{ color: '#FFFF', 
+                    alignSelf: 'center' }}>
+                        Entrar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.botao2}
+                    onPress={() =>
+                        navigation.navigate('Redefinir', { nome: 'Redefinir' })}
+                >
+                    <Text style={{ color: 'grey' }}>Esqueci a senha</Text>
+                </TouchableOpacity>
+                <View style={styles.container}>
+                    <Text
+                        style={{
+                            textAlign: 'center',
+                            marginTop: '1%',
+                            color: '#FFFF'
+                        }}>
+                        Ou continue com</Text>
+                    <TouchableOpacity
+                        style={styles.botao3}>
+                        <Text
+                            style={{ color: '#FFF' }}
+                            onPress={logarGoogle}
+                        >Google</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.botao3}>
+                        <Text
+                            style={{ color: '#FFF' }}>
+                            Facebook</Text>
+                    </TouchableOpacity>
+
+                    <Text style={styles.container2}>Não possui conta?</Text>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text style={{color:'#FFFF'}}>Criar agora</Text></TouchableOpacity>
+                </View>
+            </Animatable.View>
+
+
+
+
+
+        </LinearGradient>
+
+
+    )
 }
 const styles = StyleSheet.create({
-  container: {
-      alignItems: 'center',
-      justifyContent: 'center',
-  },
-  m: {
-      width: '100%',
-      height: '71.1%',
-      shadowOffset: { width: 0.1, height: 0.2 },
-      shadowColor: '#385672'
-  },
-  logo: {
-      alignSelf: 'center',
-      width: '9%',
-      height: '8%',
-      padding: '4%',
-      marginTop: '17%'
-  },
-  login: {
-      fontSize: 35,
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    m: {
+        width: '100%',
+        height: '71.1%',
+        shadowOffset: { width: 0.1, height: 0.2 },
+        shadowColor: '#385672'
+    },
+    logo: {
+        alignSelf: 'center',
+        width: '9%',
+        height: '8%',
+        padding: '4%',
+        marginTop: '17%'
+    },
+    login: {
+        fontSize: 35,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        fontWeight: 'bold',
+        color: '#FFFF'
+    },
+    input1: {
+        width: '75%',
+        marginTop: '3%',
+        color: '#FFFF'
 
-      fontWeight: 'bold'
-  },
-  input1: {
-      width: '80%',
-      marginTop: '3%',
-
-  },
-  input2: {
-      borderBottomColor: '00182F',
-      borderBottomWidth: 1,
-      width: '80%',
-      alignSelf: 'center',
-      padding: '0.5%'
-  },
-  botao1: {
-      backgroundColor: '#00182F',
-      borderRadius: 20,
-      width: '65%',
-      height: '11%',
-      alignSelf: 'center',
-      padding: '3%',
-      justifyContent: 'flex-start',
-      marginTop: '9%'
-  },
-  botao2: {
-      color: 'rgba(0, 24, 47, 0.82)',
-      alignSelf: 'center',
-      marginTop: '4%'
-  },
-  botao3: {
-      backgroundColor: '#00182F',
-      borderRadius: 20,
-      width: '40%',
-      height: '14.5%',
-      marginTop: '3%',
-      alignItems: 'center',
-      justifyContent: 'center'
-  },
-  container2: {
-      textAlign: 'center',
-      marginTop: '14%'
-
-  },
-  gradient: {
-      height: '100%',
-      width: '100%'
-  }
+    },
+    input2: {
+        borderBottomWidth: 1,
+        width: '75%',
+        alignSelf: 'center',
+        borderColor: 'grey',
+        borderStyle:'dashed'
+    },
+    botao1: {
+        backgroundColor: '#00182F',
+        borderRadius: 20,
+        width: '65%',
+        height: '9%',
+        alignSelf: 'center',
+        padding: '0.5%',
+        justifyContent: 'center',
+        marginTop: '8%'
+    },
+    botao2: {
+        color: '#FFFFF',
+        alignSelf: 'center',
+        marginTop: '2%'
+    },
+    botao3: {
+        backgroundColor: '#00182F',
+        borderRadius: 20,
+        width: '40%',
+        height: '15.8%',
+        padding: '0.5%',
+        marginTop: '1%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    container2: {
+        textAlign: 'center',
+        marginTop: '5%',
+        color: '#FFFF',
+        padding: '0.5%'
+    },
+    gradient: {
+        height: '100%',
+        width: '100%'
+    }
 
 
 })

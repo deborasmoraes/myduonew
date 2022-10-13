@@ -31,8 +31,11 @@ const StackNavigator = () => {
             <Stack.Screen name='Home' component={ShowBottomTabs} />
             <Stack.Screen name='Duo' component={DuoScreen} />
             <Stack.Screen name='Settings' component={SettingsScreen} />
+            <Stack.Group screenOptions={{presentation:'card'}}>
             <Stack.Screen name= 'AnotherUser' component ={AnotherUserScreen}/>
-
+            </Stack.Group>
+            
+            
         </Stack.Navigator>
     )
 }

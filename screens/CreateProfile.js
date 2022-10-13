@@ -24,7 +24,7 @@ const CreateProfileScreen = () => {
     const user_id = Firebase.auth().currentUser.uid
 
     const Save = () => {
-        Firebase.firestore().collection('user').add({
+        Firebase.firestore().collection('user').doc(user_id).set({
             username: username,
             descricao: descricao,
             user_id: user_id,

@@ -18,6 +18,7 @@ const AnotherUserScreen = ({route}) => {
         });
     }, []);
     const anotheruser  = route.params.user_id
+    const currentUser = Firebase.auth().currentUser.uid
     useEffect(() => {
         
        
@@ -42,7 +43,11 @@ const AnotherUserScreen = ({route}) => {
         return () => ref()
     }, [])
 
-console.log(`ola ${anotheruser}`);
+    const addFriend = () => {
+        Firebase.firestore().collection('user').doc(currentUser).collection('added').doc(anotheruser).set({}).catch((error) => {
+            console.log(error.message);
+        })
+    }
     return (
         <View style={styles.geral}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -105,6 +110,8 @@ console.log(`ola ${anotheruser}`);
                 <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
                     <Text>{user.horaInicio}</Text>
                     <Text>{user.horaFim}</Text>
+                    <TouchableOpacity onPress={addFriend}><Text>Adicionar</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() =>{navigation.navigate('Duo')}}><Text>Voltar</Text></TouchableOpacity>
                 </View>
 
 

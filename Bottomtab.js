@@ -10,6 +10,7 @@ import CreateProfileScreen from "./screens/CreateProfile";
 import PerfilScreen from "./screens/ProfileScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import { LinearGradient } from "expo-linear-gradient";
+import FriendTab from "./screens/FriendTab";
 const Tab = createBottomTabNavigator()
 
 export default function ShowBottomTabs(){
@@ -33,7 +34,7 @@ export default function ShowBottomTabs(){
             }else if (route.name === "SettingsTab"){
                 iconName = focused ? 'cog' : 'cog-outline'
             }
-            else if (route.name === "HomeTab"){
+            else if (route.name === "FriendTab"){
                 iconName = focused ? 'chat-processing' : 'chat-processing-outline'
             }
             return <MaterialCommunityIcons name={iconName} size={22} color='#FFFF' />
@@ -52,7 +53,7 @@ export default function ShowBottomTabs(){
                     </View>
                 )
             })}/>
-            <Tab.Screen name="HomeTab" component={HomeScreen}/>
+            <Tab.Screen name="FriendTab" component={FriendTab}/>
             <Tab.Screen name="SettingsTab" component={SettingsScreen}/>
 
         </Tab.Navigator>

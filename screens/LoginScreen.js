@@ -5,6 +5,7 @@ import React, { useLayoutEffect, useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import { useNavigation } from '@react-navigation/native'
 import Firebase from '../config/firebase/firebaseConfig';
+import SvgComponent from '../assets/mprincipal';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('')
@@ -58,26 +59,13 @@ function callFunctions(){
 
 
   return (
-    <SafeAreaView>
+  
       <LinearGradient
-        colors={['#1C3551', '#242547']} style={{height:'100%'}}>
+        colors={['#1C3551', '#242547']}
+        end={{x: 0.1, y: 0.4}}>
+             <SvgComponent />
             <View>
-                <ImageBackground
-                    source={require('../assets/minicial.png')}
-                    style={styles.m}>
-                    <Animatable.Image
-                        animation="fadeInUp"
-                        delay={400}
-                        source={require('../assets/myduo.png')}
-                        style={styles.logo}
-                        resizeMode='center'
-                    >
-                    </Animatable.Image>
-                    <Animatable.View
-                        animation="fadeInLeft"
-                        delay={800}>
                         <Text style={styles.login}>Login</Text>
-
                         <View style={styles.container}>
                             <Text style={styles.input1}>Email</Text>
                             <TextInput
@@ -93,9 +81,8 @@ function callFunctions(){
                             onChangeText = {setSenha}
                             secureTextEntry = {true}
                             />
-                            <Text>{msg}</Text>
                         </View>
-                    </Animatable.View>
+                  
                     <Animatable.View
                     animation="fadeInUp"
                     delay={800}>
@@ -127,14 +114,14 @@ function callFunctions(){
                                 onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text>Criar agora</Text></TouchableOpacity>
                         </View>
                     </Animatable.View>
-                </ImageBackground>
+        
 
 
             </View>
             
             </LinearGradient>
             
-    </SafeAreaView>
+  
   )
 }
 const styles = StyleSheet.create({
@@ -157,10 +144,7 @@ const styles = StyleSheet.create({
   },
   login: {
       fontSize: 35,
-      justifyContent: 'flex-end',
-      alignSelf: 'center',
-      marginTop: '36%',
-      marginBottom: '9%',
+
       fontWeight: 'bold'
   },
   input1: {

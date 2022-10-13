@@ -25,8 +25,14 @@ const DuoScreen = () => {
   return (
     <View>
       <Text>Selecione qual jogo você deseja um Duo</Text>
-      <TouchableOpacity onPress = {() =>{setGame('Valorant')}}><Text>Valorant</Text></TouchableOpacity>
-      <TouchableOpacity onPress = {() =>{setGame('LeagueOfLegends')}}><Text>League Of Legends</Text></TouchableOpacity>
+      <TouchableOpacity onPress = {() =>{setGame('apexLegends')}}><Text>Apex Legends</Text></TouchableOpacity>
+      <TouchableOpacity onPress = {() =>{setGame('csGo')}}><Text>Counter-Strike: Global Offensive</Text></TouchableOpacity>
+      <TouchableOpacity onPress = {() =>{setGame('dota2')}}><Text>Dota 2</Text></TouchableOpacity>
+      <TouchableOpacity onPress = {() =>{setGame('fortnite')}}><Text>Fortnite</Text></TouchableOpacity>
+      <TouchableOpacity onPress = {() =>{setGame('freeFire')}}><Text>Free Fire</Text></TouchableOpacity>
+      <TouchableOpacity onPress = {() =>{setGame('LeagueOfLegends')}}><Text>League of Legends</Text></TouchableOpacity>
+      <TouchableOpacity onPress = {() =>{setGame('valorant')}}><Text>Valorant</Text></TouchableOpacity>
+      
 
       
     <TouchableOpacity onPress = {find}><Text>Pesquisar</Text></TouchableOpacity>

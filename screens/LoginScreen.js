@@ -26,35 +26,32 @@ const LoginScreen = () => {
                 navigation.navigate('Home', { nome: 'Home' })
 
             })
-            .catch(() => { setMSG("Email ou senha inválidos."); console.log(msg); })
+            .catch(() => { setMSG("Email ou senha inválidos.");})
     }
 
     const validate = () => {
         let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
-        if (email == '' || emailRegex.test(email)) {
-            return (setMSG("insira um email válido"), false)
+        if (email == '' ) {
+             setMSG("Insira um email."), false
+             return
+        }else if(emailRegex.test(email) == false) {
+            setMSG('Insira um email válido')
+            return
         }
-        if (senha == '') {
-            return (setMSG("insira uma senha válida"), false)
+         else if (senha == '') {
+             setMSG("Insira uma senha."), false
+             return
         }
-        true
-    }
-    function logarGoogle() {
-        const provider = new Firebase.auth.GoogleAuthProvider()
-        Firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                console.log(result.user)
-                console.log(result.user.photoURL)
-                setUrlFoto(result.user.photoURL)
-            })
-            .catch((error) => {
-                console.log(error.message)
-            })
-    }
-    function callFunctions() {
-        validate()
+         else if (senha.length < 6 || senha.length > 10)  {
+            setMSG("a senha deve ser maior que 6 caracteres e menor que 10 caracteres"), false
+            return
+       }else{
         login()
+       }
+      
+       
     }
+    
 
 
     return (
@@ -90,6 +87,7 @@ const LoginScreen = () => {
                     onChangeText={setSenha}
                     secureTextEntry={true}
                 />
+                {(validate)? <Text>{msg}</Text>:''}
             </Animatable.View>
 
             <Animatable.View
@@ -97,7 +95,7 @@ const LoginScreen = () => {
                 delay={800}>
                 <TouchableOpacity
                     style={styles.botao1}
-                    onPress={callFunctions}
+                    onPress={validate}
                 >
 
                     <Text 

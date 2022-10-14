@@ -28,7 +28,7 @@ const StackNavigator = () => {
         }>
             
             <Stack.Screen name='Login' component={LoginScreen} />
-            <Stack.Screen name = 'Registrar' component = {SignupScreen}/>
+            <Stack.Screen name = 'Registrar' component = {SignupScreen} options={{headerShown: false}}/>
             <Stack.Screen  name ='CreateProfile' component  = {CreateProfileScreen}/>
             <Stack.Screen name='Perfil' component={PerfilScreen} />
             <Stack.Screen name='Home' component={ShowBottomTabs} options={{headerShown: false}}/>

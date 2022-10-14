@@ -58,95 +58,95 @@ const LoginScreen = () => {
 
 
     return (
+        <View>
+            <LinearGradient
+                colors={['#1C3551', '#242547']}
+                end={{ x: 0.1, y: 0.4 }}>
+                <Image
+                    source={require('../assets/mazul.png')}
+                    style={{ width: 396, height: 280 }} />
 
-        <LinearGradient
-            colors={['#1C3551', '#242547']}
-            end={{ x: 0.1, y: 0.4 }}>
-            <Image 
-            source={require('../assets/mazul.png')}
-            style={{ width: '40%', height: '30%' }} />
-
-            <Animatable.Text 
-            style={styles.login}
-            animation="fadeInUp"
-                delay={550}>Login</Animatable.Text>
-            <Animatable.View 
-            animation="fadeInUp"
-            delay={800}
-            style={styles.container}>
-                <Text style={styles.input1}>Email</Text>
-                <TextInput
-                    style={styles.input2}
-                    value={email}
-                    onChangeText={setEmail}
-                />
+                <Animatable.Text
+                    style={styles.login}
+                    animation="fadeInUp"
+                    delay={550}>Login</Animatable.Text>
+                <Animatable.View
+                    animation="fadeInUp"
+                    delay={800}
+                    style={styles.container}>
+                    <Text style={styles.input1}>Email</Text>
+                    <TextInput
+                        style={styles.input2}
+                        value={email}
+                        onChangeText={setEmail}
+                    />
 
 
-                <Text
-                 style={styles.input1}>Senha</Text>
-                <TextInput 
-                style={styles.input2}
-                    value={senha}
-                    onChangeText={setSenha}
-                    secureTextEntry={true}
-                />
-            </Animatable.View>
-
-            <Animatable.View
-                animation="fadeInUp"
-                delay={800}>
-                <TouchableOpacity
-                    style={styles.botao1}
-                    onPress={callFunctions}
-                >
-
-                    <Text 
-                    style={{ color: '#FFFF', 
-                    alignSelf: 'center' }}>
-                        Entrar</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.botao2}
-                    onPress={() =>
-                        navigation.navigate('Redefinir', { nome: 'Redefinir' })}
-                >
-                    <Text style={{ color: 'grey' }}>Esqueci a senha</Text>
-                </TouchableOpacity>
-                <View style={styles.container}>
                     <Text
-                        style={{
-                            textAlign: 'center',
-                            marginTop: '1%',
-                            color: '#FFFF'
-                        }}>
-                        Ou continue com</Text>
+                        style={styles.input1}>Senha</Text>
+                    <TextInput
+                        style={styles.input2}
+                        value={senha}
+                        onChangeText={setSenha}
+                        secureTextEntry={true}
+                    />
+                </Animatable.View>
+
+                <Animatable.View
+                    animation="fadeInUp"
+                    delay={800}>
                     <TouchableOpacity
-                        style={styles.botao3}>
+                        style={styles.botao1}
+                        onPress={callFunctions}
+                    >
+
                         <Text
-                            style={{ color: '#FFF' }}
-                            onPress={logarGoogle}
-                        >Google</Text>
+                            style={{
+                                color: '#FFFF',
+                                alignSelf: 'center'
+                            }}>
+                            Entrar</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity
-                        style={styles.botao3}>
+                        style={styles.botao2}
+                        onPress={() =>
+                            navigation.navigate('Redefinir', { nome: 'Redefinir' })}
+                    >
+                        <Text style={{ color: 'grey' }}>Esqueci a senha</Text>
+                    </TouchableOpacity>
+                    <View style={styles.container}>
                         <Text
-                            style={{ color: '#FFF' }}>
-                            Facebook</Text>
-                    </TouchableOpacity>
+                            style={{
+                                textAlign: 'center',
+                                marginTop: '1%',
+                                color: '#FFFF'
+                            }}>
+                            Ou continue com</Text>
+                        <TouchableOpacity
+                            style={styles.botao3}>
+                            <Text
+                                style={{ color: '#FFF' }}
+                                onPress={logarGoogle}
+                            >Google</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.botao3}>
+                            <Text
+                                style={{ color: '#FFF' }}>
+                                Facebook</Text>
+                        </TouchableOpacity>
 
-                    <Text style={styles.container2}>Não possui conta?</Text>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text style={{color:'#FFFF'}}>Criar agora</Text></TouchableOpacity>
-                </View>
-            </Animatable.View>
+                        <Text style={styles.container2}>Não possui conta?</Text>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text style={{ color: '#FFFF' }}>Criar agora</Text></TouchableOpacity>
+                    </View>
+                </Animatable.View>
 
 
-
-
-
-        </LinearGradient>
-
+            </LinearGradient>
+    
+        </View>
 
     )
 }
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
         width: '75%',
         alignSelf: 'center',
         borderColor: 'grey',
-        borderStyle:'dashed'
+        borderStyle: 'dashed'
     },
     botao1: {
         backgroundColor: '#00182F',

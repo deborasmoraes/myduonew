@@ -23,38 +23,41 @@ const LoginScreen = () => {
     const login = () => {
         Firebase.auth().signInWithEmailAndPassword(email, senha)
             .then(() => {
-                navigation.navigate('Home', { nome: 'Home' })
+                let user = Firebase.auth().currentUser.uid
+                Firebase.firestore().collection('user').doc(user).onSnapshot((query) =>{
+                    if(query.exists == true){
+                        navigation.navigate('Home', {nome: 'Home'})
+                    }else{navigation.navigate('CreateProfile', {nome: 'CreateProfile'})
+                }
+                })
 
             })
-            .catch(() => { setMSG("Email ou senha inválidos."); console.log(msg); })
+            .catch(() => { setMSG("Email ou senha inválidos.");})
     }
 
     const validate = () => {
         let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
-        if (email == '' || emailRegex.test(email)) {
-            return (setMSG("insira um email válido"), false)
+        if (email == '' ) {
+             setMSG("Insira um email."), false
+             return
+        }else if(emailRegex.test(email) == false) {
+            setMSG('Insira um email válido')
+            return
         }
-        if (senha == '') {
-            return (setMSG("insira uma senha válida"), false)
+         else if (senha == '') {
+             setMSG("Insira uma senha."), false
+             return
         }
-        true
-    }
-    function logarGoogle() {
-        const provider = new Firebase.auth.GoogleAuthProvider()
-        Firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                console.log(result.user)
-                console.log(result.user.photoURL)
-                setUrlFoto(result.user.photoURL)
-            })
-            .catch((error) => {
-                console.log(error.message)
-            })
-    }
-    function callFunctions() {
-        validate()
+         else if (senha.length < 6 || senha.length > 10)  {
+            setMSG("a senha deve ser maior que 6 caracteres e menor que 10 caracteres"), false
+            return
+       }else{
         login()
+       }
+      
+       
     }
+    
 
 
     return (
@@ -82,6 +85,42 @@ const LoginScreen = () => {
                     />
 
 
+<<<<<<< HEAD
+=======
+                <Text
+                 style={styles.input1}>Senha</Text>
+                <TextInput 
+                style={styles.input2}
+                    value={senha}
+                    onChangeText={setSenha}
+                    secureTextEntry={true}
+                />
+                {(validate)? <Text>{msg}</Text>:''}
+            </Animatable.View>
+
+            <Animatable.View
+                animation="fadeInUp"
+                delay={800}>
+                <TouchableOpacity
+                    style={styles.botao1}
+                    onPress={validate}
+                >
+
+                    <Text 
+                    style={{ color: '#FFFF', 
+                    alignSelf: 'center' }}>
+                        Entrar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.botao2}
+                    onPress={() =>
+                        navigation.navigate('Redefinir', { nome: 'Redefinir' })}
+                >
+                    <Text style={{ color: 'grey' }}>Esqueci a senha</Text>
+                </TouchableOpacity>
+                <View style={styles.container}>
+>>>>>>> 6b54ba2cfe548306429e00d957ea85a7d6be4e50
                     <Text
                         style={styles.input1}>Senha</Text>
                     <TextInput
@@ -101,11 +140,23 @@ const LoginScreen = () => {
                     >
 
                         <Text
+<<<<<<< HEAD
                             style={{
                                 color: '#FFFF',
                                 alignSelf: 'center'
                             }}>
                             Entrar</Text>
+=======
+                            style={{ color: '#FFF' }}
+                            
+                        >Google</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.botao3}>
+                        <Text
+                            style={{ color: '#FFF' }}>
+                            Facebook</Text>
+>>>>>>> 6b54ba2cfe548306429e00d957ea85a7d6be4e50
                     </TouchableOpacity>
 
                     <TouchableOpacity

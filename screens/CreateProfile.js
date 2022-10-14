@@ -6,6 +6,8 @@ import { TextInputMask } from 'react-native-masked-text'
 import Firebase from '../config/firebase/firebaseConfig'
 
 import { useNavigation } from '@react-navigation/native'
+import ModalCreate from '../components/modalCreate'
+
 const CreateProfileScreen = () => {
     const navigation = useNavigation()
     const [username, setUsername] = useState()
@@ -48,6 +50,7 @@ const CreateProfileScreen = () => {
     return (
 
         <View>
+            <ModalCreate/>
             <TextInput
                 placeholder='username'
                 value={username}

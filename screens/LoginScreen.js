@@ -23,7 +23,13 @@ const LoginScreen = () => {
     const login = () => {
         Firebase.auth().signInWithEmailAndPassword(email, senha)
             .then(() => {
-                navigation.navigate('Home', { nome: 'Home' })
+                let user = Firebase.auth().currentUser.uid
+                Firebase.firestore().collection('user').doc(user).onSnapshot((query) =>{
+                    if(query.exists == true){
+                        navigation.navigate('Home', {nome: 'Home'})
+                    }else{navigation.navigate('CreateProfile', {nome: 'CreateProfile'})
+                }
+                })
 
             })
             .catch(() => { setMSG("Email ou senha inválidos.");})
@@ -123,7 +129,7 @@ const LoginScreen = () => {
                         style={styles.botao3}>
                         <Text
                             style={{ color: '#FFF' }}
-                            onPress={logarGoogle}
+                            
                         >Google</Text>
                     </TouchableOpacity>
                     <TouchableOpacity

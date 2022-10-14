@@ -11,6 +11,7 @@ import PerfilScreen from "./screens/ProfileScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import FriendTab from "./screens/FriendTab";
+import Tst from './screens/Tst'
 const Tab = createBottomTabNavigator()
 
 export default function ShowBottomTabs(){
@@ -39,7 +40,7 @@ export default function ShowBottomTabs(){
             }
             return <MaterialCommunityIcons name={iconName} size={22} color='#FFFF' />
         }})}>
-             <Tab.Screen name= "CreateProfile" component={CreateProfileScreen}/>
+             <Tab.Screen name= "CreateProfile" component={Tst}/>
             <Tab.Screen name ="PerfilTab" component={PerfilScreen}/>
             <Tab.Screen name= "DuoTab" component={DuoScreen}
             options={() => ({

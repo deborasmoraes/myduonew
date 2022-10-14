@@ -10,65 +10,82 @@ import Firebase from '../config/firebase/firebaseConfig';
 import Jogos from '../components/jogos';
 import generateId from '../functions/genrateId';
 
-const AnotherUserScreen = ({route}) => {
-   const navigation = useNavigation()
+const AnotherUserScreen = ({ route }) => {
+    const navigation = useNavigation()
     const [user, setUser] = useState({})
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
         });
     }, []);
-    const anotheruser  = route.params.user_id
+    const anotheruser = route.params.user_id
     const currentUser = Firebase.auth().currentUser.uid
     useEffect(() => {
-        
-       
-       
-        let ref = Firebase.firestore().collection('user').where("user_id", "==", anotheruser).onSnapshot(query =>{
-            const data   = []
-            query.forEach(doc =>{
+
+
+
+        let ref = Firebase.firestore().collection('user').where("user_id", "==", anotheruser).onSnapshot(query => {
+            const data = []
+            query.forEach(doc => {
                 data.push({
                     ...doc.data(),
                     key: doc.id
                 })
             })
-          setUser({
-            username:data[0].username,
-            descricao:data[0].descricao,
-            Valorant:data[0].Valorant,
-            LeagueOfLegends:data[0].LeagueOfLegends,
-            horaFim:data[0].horaFim,
-            horaInicio:data[0].horaInicio
-        });
+            setUser({
+                username: data[0].username,
+                descricao: data[0].descricao,
+                Valorant: data[0].Valorant,
+                LeagueOfLegends: data[0].LeagueOfLegends,
+                horaFim: data[0].horaFim,
+                horaInicio: data[0].horaInicio
+            });
         })
         return () => ref()
     }, [])
 
-    const exist = ()=>{Firebase.firestore().collection('user').doc(anotheruser).collection('added').onSnapshot(query =>{
-        const data = []
-        query.forEach((doc) =>{
-          data.push({
-            ...doc.data(),
-            key:doc.id                   })
+    const exist = () => {
+        Firebase.firestore().collection('user').doc(anotheruser).collection('added').onSnapshot(query => {
+            const data = []
+            query.forEach((doc) => {
+                data.push({
+                    ...doc.data(),
+                    key: doc.id
+                })
+                if (doc.id == currentUser) {
+                    return addFriend(),
+                    console.log('amigo adicionado');
+                    
+
+                } else {
+                    return requestFriend(),
+                    console.log('solicitação enviada!');
+                    
+                }
+            }
+
+            )
+
+
         })
-        console.log(data);
-        
-        })
-      
-        }
 
-    const addFriend = () => {
-        
-        
-
-
-        Firebase.firestore().collection('user').doc(currentUser).collection('added').doc(anotheruser).set({user_id: anotheruser}).catch((error) => {
+    }
+    const requestFriend = () => {
+        Firebase.firestore().collection('user').doc(currentUser).collection('added').doc(anotheruser).set({ user_id: anotheruser }).catch((error) => {
             console.log(error.message);
         })
-        
-        Firebase.firestore().collection('friends').doc(generateId(currentUser,anotheruser)).set({
-            FriendsRelation : [currentUser, anotheruser]
-            
+    }
+
+    const addFriend = () => {
+
+
+
+
+
+
+        Firebase.firestore().collection('friends').doc(generateId(currentUser, anotheruser)).set({
+            FriendsRelation: [currentUser, anotheruser]
+
         })
     }
     return (
@@ -78,7 +95,7 @@ const AnotherUserScreen = ({route}) => {
                 {/* header */}
                 <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
                     <Text style={styles.nome}>Perfil</Text>
-                    
+
                 </View>
 
                 {/* dados usuário */}
@@ -94,7 +111,7 @@ const AnotherUserScreen = ({route}) => {
                             <TouchableOpacity><Text>Foto</Text></TouchableOpacity>
                             <Text style={styles.nome}>{user.username}</Text>
 
-                          
+
                         </View>
                     </LinearGradient>
                 </View>
@@ -105,7 +122,7 @@ const AnotherUserScreen = ({route}) => {
                     colors={['#242547', '#042960']}
                     style={styles.descricao}>
                     <View style={styles.container}>
-                    <Text>{user.descricao}</Text>
+                        <Text>{user.descricao}</Text>
                     </View>
                 </LinearGradient>
 
@@ -121,7 +138,7 @@ const AnotherUserScreen = ({route}) => {
                 {/* adicionar jogos */}
                 <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-                    <Jogos valorant ={user.Valorant} LeagueOfLegends = {user.LeagueOfLegends} ApexLegnds = {user.ApexLegnds} /> 
+                    <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} ApexLegnds={user.ApexLegnds} />
                 </LinearGradient>
 
                 <Text style={styles.nome}>Disponibilidade</Text>
@@ -134,7 +151,7 @@ const AnotherUserScreen = ({route}) => {
                     <Text>{user.horaInicio}</Text>
                     <Text>{user.horaFim}</Text>
                     <TouchableOpacity onPress={exist}><Text>Adicionar</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={() =>{navigation.goBack()}}><Text>Voltar</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => { navigation.goBack() }}><Text>Voltar</Text></TouchableOpacity>
                 </View>
 
 

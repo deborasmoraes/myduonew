@@ -85,42 +85,6 @@ const LoginScreen = () => {
                     />
 
 
-<<<<<<< HEAD
-=======
-                <Text
-                 style={styles.input1}>Senha</Text>
-                <TextInput 
-                style={styles.input2}
-                    value={senha}
-                    onChangeText={setSenha}
-                    secureTextEntry={true}
-                />
-                {(validate)? <Text>{msg}</Text>:''}
-            </Animatable.View>
-
-            <Animatable.View
-                animation="fadeInUp"
-                delay={800}>
-                <TouchableOpacity
-                    style={styles.botao1}
-                    onPress={validate}
-                >
-
-                    <Text 
-                    style={{ color: '#FFFF', 
-                    alignSelf: 'center' }}>
-                        Entrar</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={styles.botao2}
-                    onPress={() =>
-                        navigation.navigate('Redefinir', { nome: 'Redefinir' })}
-                >
-                    <Text style={{ color: 'grey' }}>Esqueci a senha</Text>
-                </TouchableOpacity>
-                <View style={styles.container}>
->>>>>>> 6b54ba2cfe548306429e00d957ea85a7d6be4e50
                     <Text
                         style={styles.input1}>Senha</Text>
                     <TextInput
@@ -140,23 +104,11 @@ const LoginScreen = () => {
                     >
 
                         <Text
-<<<<<<< HEAD
                             style={{
                                 color: '#FFFF',
                                 alignSelf: 'center'
                             }}>
                             Entrar</Text>
-=======
-                            style={{ color: '#FFF' }}
-                            
-                        >Google</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.botao3}>
-                        <Text
-                            style={{ color: '#FFF' }}>
-                            Facebook</Text>
->>>>>>> 6b54ba2cfe548306429e00d957ea85a7d6be4e50
                     </TouchableOpacity>
 
                     <TouchableOpacity

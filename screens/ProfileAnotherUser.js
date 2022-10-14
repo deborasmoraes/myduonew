@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Firebase from '../config/firebase/firebaseConfig';
 
 import Jogos from '../components/jogos';
+import generateId from '../functions/genrateId';
 
 const AnotherUserScreen = ({route}) => {
    const navigation = useNavigation()
@@ -43,9 +44,31 @@ const AnotherUserScreen = ({route}) => {
         return () => ref()
     }, [])
 
+    const exist = ()=>{Firebase.firestore().collection('user').doc(anotheruser).collection('added').onSnapshot(query =>{
+        const data = []
+        query.forEach((doc) =>{
+          data.push({
+            ...doc.data(),
+            key:doc.id                   })
+        })
+        console.log(data);
+        
+        })
+      
+        }
+
     const addFriend = () => {
-        Firebase.firestore().collection('user').doc(currentUser).collection('added').doc(anotheruser).set({}).catch((error) => {
+        
+        
+
+
+        Firebase.firestore().collection('user').doc(currentUser).collection('added').doc(anotheruser).set({user_id: anotheruser}).catch((error) => {
             console.log(error.message);
+        })
+        
+        Firebase.firestore().collection('friends').doc(generateId(currentUser,anotheruser)).set({
+            FriendsRelation : [currentUser, anotheruser]
+            
         })
     }
     return (
@@ -110,8 +133,8 @@ const AnotherUserScreen = ({route}) => {
                 <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
                     <Text>{user.horaInicio}</Text>
                     <Text>{user.horaFim}</Text>
-                    <TouchableOpacity onPress={addFriend}><Text>Adicionar</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={() =>{navigation.navigate('Duo')}}><Text>Voltar</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={exist}><Text>Adicionar</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() =>{navigation.goBack()}}><Text>Voltar</Text></TouchableOpacity>
                 </View>
 
 

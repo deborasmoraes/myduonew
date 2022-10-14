@@ -1,7 +1,7 @@
 import { TextInputMask } from 'react-native-masked-text'
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Firebase from '../config/firebase/firebaseConfig';
 export default function SignupScreen({ navigation }) {
 

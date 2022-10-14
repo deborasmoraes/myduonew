@@ -1,9 +1,12 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Firebase from '../config/firebase/firebaseConfig';
+
 const Invitations = () =>{
+    const [friends, setFriends] = useState()
     useEffect(() => {
         const user  = Firebase.auth().currentUser.uid
-        let ref = Firebase.firestore().collection('user').where("user_id", "==", user).onSnapshot(query =>{
+        let ref = Firebase.firestore().collection('user').doc(user).collection('added').onSnapshot(query =>{
             const data   = []
             query.forEach(doc =>{
                 data.push({
@@ -11,11 +14,10 @@ const Invitations = () =>{
                     key: doc.id
                 })
             })
-          
+          console.log(data);
         })
         return () => ref()
     }, [])
-  
   
   
     return(

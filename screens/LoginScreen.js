@@ -64,7 +64,7 @@ const LoginScreen = () => {
             end={{ x: 0.1, y: 0.4 }}>
             <Image 
             source={require('../assets/mazul.png')}
-            style={{ width: '100%', height: '30%' }} />
+            style={{ width: '40%', height: '30%' }} />
 
             <Animatable.Text 
             style={styles.login}

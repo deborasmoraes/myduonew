@@ -20,114 +20,111 @@ const PerfilScreen = () => {
         });
     }, []);
     useEffect(() => {
-        const user  = Firebase.auth().currentUser.uid
-        let ref = Firebase.firestore().collection('user').where("user_id", "==", user).onSnapshot(query =>{
-            const data   = []
-            query.forEach(doc =>{
+        const user = Firebase.auth().currentUser.uid
+        let ref = Firebase.firestore().collection('user').where("user_id", "==", user).onSnapshot(query => {
+            const data = []
+            query.forEach(doc => {
                 data.push({
                     ...doc.data(),
                     key: doc.id
                 })
             })
-          setUser({
-            username:data[0].username,
-            descricao:data[0].descricao,
-            apexLegends:data[0].apexLegends,
-            csGo:data[0].csGo,
-            dota2:data[0].dota2,
-            fortnite:data[0].fortnite,
-            freeFire:data[0].freeFire,
-            LeagueOfLegends:data[0].LeagueOfLegends,
-            Valorant:data[0].Valorant,
-            horaFim:data[0].horaFim,
-            horaInicio:data[0].horaInicio
-        });
+            setUser({
+                username: data[0].username,
+                descricao: data[0].descricao,
+                apexLegends: data[0].apexLegends,
+                csGo: data[0].csGo,
+                dota2: data[0].dota2,
+                fortnite: data[0].fortnite,
+                freeFire: data[0].freeFire,
+                LeagueOfLegends: data[0].LeagueOfLegends,
+                Valorant: data[0].Valorant,
+                horaFim: data[0].horaFim,
+                horaInicio: data[0].horaInicio
+            });
         })
         return () => ref()
     }, [])
 
 
     return (
-        <View style={styles.geral}>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 
-                {/* header */}
-                <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
-                    <Text style={styles.nome}>Perfil</Text>
-                    {(trueFalse === true) ? <TouchableOpacity
-                        onPress={() => { setTrueFalse(false) }}
-                    ><MaterialCommunityIcons name='account-edit-outline' size={21} color='#FFFF' /></TouchableOpacity> : <TouchableOpacity
-                        onPress={() => { setTrueFalse(true) }}
-                    ><MaterialCommunityIcons name='content-save-edit-outline' size={21} color='#FFFF' /></TouchableOpacity>}
-                </View>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '7%' }}>
 
-                {/* dados usuário */}
-                <View style={{ width: '100%' }}>
-                    <LinearGradient colors={['#242547', '#042960']} style={styles.usuario}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Image
-                                style={styles.avatar}
-                                source={{
-                                    uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
-                                }}
-                            />
-                            <TouchableOpacity><Text>Foto</Text></TouchableOpacity>
-                            <Text style={styles.nome}>{user.username}</Text>
+            {/* header */}
+            <View style={styles.alinhar}>
+                <Text style={styles.nome}>Perfil</Text>
+                {(trueFalse === true) ? <TouchableOpacity
+                    onPress={() => { setTrueFalse(false) }}
+                ><MaterialCommunityIcons name='account-edit-outline' size={21} color='#FFFF' /></TouchableOpacity> : <TouchableOpacity
+                    onPress={() => { setTrueFalse(true) }}
+                ><MaterialCommunityIcons name='content-save-edit-outline' size={21} color='#FFFF' /></TouchableOpacity>}
+            </View>
 
-                          
-                        </View>
-                    </LinearGradient>
-                </View>
-                {/* descrição usuário */}
-                <Text style={styles.nome}>Sobre mim</Text>
+            {/* dados usuário */}
 
-                <LinearGradient
-                    colors={['#242547', '#042960']}
-                    style={styles.descricao}>
-                    <View style={styles.container}>
-                    {(trueFalse === true) ? <Text>{user.descricao}</Text> : <TextInput
-                                onChangeText={setDescricao}
-                                defaultValue={user.descricao}></TextInput>}
-                    </View>
-                </LinearGradient>
+            <LinearGradient colors={['#242547', '#042960']} style={styles.usuario}>
+                <Image
+                    style={styles.avatar}
+                    source={{
+                        uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
+                    }}
+                />
+                <TouchableOpacity><Text>Foto</Text></TouchableOpacity>
+                <Text style={styles.nome}>{user.username}</Text>
 
-                <Text style={styles.nome}>Plataformas</Text>
+            </LinearGradient>
 
-                <LinearGradient colors={['#242547', '#042960']}
-                    style={styles.plataformas}>
-                    <Text>PC</Text>
-                </LinearGradient>
+            {/* descrição usuário */}
+            <Text style={styles.nome}>Sobre mim</Text>
 
-                <Text style={styles.nome}>Jogos favoritos</Text>
+            <LinearGradient
+                colors={['#242547', '#042960']}
+                style={styles.descricao}>
+                {(trueFalse === true) ?
+                    <Text style=
+                        {{ color: '#FFFF', marginLeft: '3%', padding: '2%' }}>{user.descricao}</Text> : <TextInput
+                            onChangeText={setDescricao}
+                            defaultValue={user.descricao}></TextInput>}
+            </LinearGradient>
 
-                {/* adicionar jogos */}
-                <LinearGradient colors={['#242547', '#042960']}>
-                    {(trueFalse === true) ?<Jogos valorant ={user.Valorant} LeagueOfLegends = {user.LeagueOfLegends} fortnite = {user.fortnite} apexLegends = {user.apexLegends} csGo = {user.csGo} dota2 = {user.dota2} freeFire = {user.freeFire}/> : <TouchableOpacity
-                        onPress={() => { navigation.navigate("Jogos") }}><Text>Editar Jogos</Text>
-                    </TouchableOpacity>}
-                </LinearGradient>
+            <Text style={styles.nome}>Plataformas</Text>
 
-                <Text style={styles.nome}>Disponibilidade</Text>
-                {/* horários */}
-                <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', alignSelf: 'center' }}>
-                    <Text style={{ color: '#FFFF', marginRight: '30%', fontWeight: 'bold', fontSize: 20 }}>Inicio</Text>
-                    <Text style={styles.nome}>Fim</Text>
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
-                    <Text>{user.horaInicio}</Text>
-                    <Text>{user.horaFim}</Text>
-                </View>
-                <View>
-                    {(trueFalse === true) ? <TouchableOpacity
-                        onPress={() => { setTrueFalse(false) }}
-                    ><Text>Editar</Text></TouchableOpacity> : <TouchableOpacity
-                        onPress={() => { setTrueFalse(true) }}
-                    ><Text>Salvar</Text></TouchableOpacity>}
-                </View>
+            <LinearGradient colors={['#242547', '#042960']}
+                style={styles.plataformas}>
+                <Text style={{ color: '#FFFF' }}>PC</Text>
+            </LinearGradient>
+
+            <Text style={styles.nome}>Jogos favoritos</Text>
+
+            {/* adicionar jogos */}
+            <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
+                {(trueFalse === true) ? <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} fortnite={user.fortnite} apexLegends={user.apexLegends} csGo={user.csGo} dota2={user.dota2} freeFire={user.freeFire} /> : <TouchableOpacity
+                    onPress={() => { navigation.navigate("Jogos") }}><Text>Editar Jogos</Text>
+                </TouchableOpacity>}
+            </LinearGradient>
+
+            <Text style={styles.nome}>Disponibilidade</Text>
+            {/* horários */}
+            <View style={styles.horario}>
+                <Text style={styles.horario2}>Inicio</Text>
+                <Text style={styles.nome}>Fim</Text>
+            </View>
+            <View style={styles.horario}>
+                <Text style={styles.horario2}>{user.horaInicio}</Text>
+                <Text style={styles.nome}>{user.horaFim}</Text>
+            </View>
+            <View>
+                {(trueFalse === true) ? <TouchableOpacity
+                    onPress={() => { setTrueFalse(false) }}
+                ><Text>Editar</Text></TouchableOpacity> : <TouchableOpacity
+                    onPress={() => { setTrueFalse(true) }}
+                ><Text>Salvar</Text></TouchableOpacity>}
+            </View>
 
 
-            </ScrollView>
-        </View>
+        </ScrollView>
+
     )
 }
 const styles = StyleSheet.create({
@@ -145,45 +142,77 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#FFFF',
         marginTop: '5%',
+        padding: '0.5%',
         marginLeft: '2%'
     },
+    alinhar: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
+    },
     usuario: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
         borderRadius: 15,
         borderBottomRightRadius: 40,
         padding: '4%',
         marginTop: '2%',
+        height: '7.5%'
     },
     descricao: {
         borderRadius: 15,
         borderBottomRightRadius: 40,
-        marginTop: '2%'
+        marginTop: '2%',
+        height: '7%',
+        color: '#FFFF',
+        padding: '2%',
     },
     plataformas: {
-        padding: '3%',
+        padding: '1%',
         width: '30%',
-        height: '6.5%',
+        height: '2.7%',
         borderRadius: 20,
         borderBottomRightRadius: 20,
-        alignItems: 'center',
+        justifyContent: 'center',
         marginTop: '2%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#FFFF'
     },
     jogos: {
-        padding: '3%',
-        width: '40%',
-        height: '6.2%',
+        padding: '1%',
+        width: '30%',
+        height: '3%',
         borderRadius: 20,
         borderBottomRightRadius: 20,
         alignItems: 'center',
         marginTop: '2%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        borderWidth: 1,
+        borderColor: '#FFFF',
+        justifyContent: 'center'
+
     },
     avatar: {
-        borderWidth: 1,
+        borderWidth: 2,
         borderRadius: 100,
-        borderColor: "#FFFF",
+        borderColor: '#FFFF',
         width: '25%',
-        height: '50%'
+        height: '80%'
+    },
+    horario:{
+        flexDirection: 'row', 
+        alignItems: 'baseline', 
+        justifyContent: 'space-between', 
+        alignSelf: 'center'
+    },
+    horario2:{
+        color: '#FFFF', 
+        marginRight: '30%', 
+        fontWeight: 'bold', 
+        fontSize: 20
     }
 })
 export default PerfilScreen

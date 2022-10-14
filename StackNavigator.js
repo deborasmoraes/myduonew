@@ -22,13 +22,16 @@ const StackNavigator = () => {
     const user = false
 
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{
+            headerShown: 'false'
+        }
+        }>
             
             <Stack.Screen name='Login' component={LoginScreen} />
             <Stack.Screen name = 'Registrar' component = {SignupScreen}/>
             <Stack.Screen  name ='CreateProfile' component  = {CreateProfileScreen}/>
             <Stack.Screen name='Perfil' component={PerfilScreen} />
-            <Stack.Screen name='Home' component={ShowBottomTabs} />
+            <Stack.Screen name='Home' component={ShowBottomTabs} options={{headerShown: false}}/>
             <Stack.Screen name='Duo' component={DuoScreen} />
             <Stack.Screen name='Settings' component={SettingsScreen} />
             <Stack.Group screenOptions={{presentation:'card'}}>

@@ -5,13 +5,13 @@ import { Text, View, StyleSheet } from "react-native"
 const Jogos = (props) => {
     return (
         <View>
-            {(props.ApexLegends == true) ? <Text style ={styles.jogos}>Apex Legends</Text> : ''}
-            {(props.csGo == true) ? <Text style ={styles.jogos}>Counter Strike: Global Offensive</Text> : ''}
-            {(props.dota2 == true) ? <Text style ={styles.jogos}>Dota 2</Text> : ''}
-            {(props.fortnite == true) ? <Text style ={styles.jogos}>Fortnite</Text> : ''}
-            {(props.freeFire == true) ? <Text style ={styles.jogos}>Free Fire</Text> : ''}
-            {(props.LeagueOfLegends == true) ? <Text style ={styles.jogos}>League Of Legends</Text> : ''}
-            {(props.valorant == true) ? <Text style ={styles.jogos}>Valorant</Text> : ''}
+            {(props.ApexLegends == true) ? <Text style={{color: '#FFFF'}}>Apex Legends</Text> : ''}
+            {(props.csGo == true) ? <Text style={{color: '#FFFF'}}>Counter Strike: Global Offensive</Text> : ''}
+            {(props.dota2 == true) ? <Text style={{color: '#FFFF'}}>Dota 2</Text> : ''}
+            {(props.fortnite == true) ? <Text style={{color: '#FFFF'}}>Fortnite</Text> : ''}
+            {(props.freeFire == true) ? <Text style={{color: '#FFFF'}}>Free Fire</Text> : ''}
+            {(props.LeagueOfLegends == true) ? <Text style={{color: '#FFFF'}}>League Of Legends</Text> : ''}
+            {(props.valorant == true) ? <Text style={{color: '#FFFF'}}>Valorant</Text> : ''}
         </View>
 
     )
@@ -20,7 +20,7 @@ const Jogos = (props) => {
 const styles = StyleSheet.create({
     jogos: {
         padding: '3%',
-        width: '40%',
+        width: '20%',
         height: '6.2%',
         borderRadius: 20,
         borderBottomRightRadius: 20,

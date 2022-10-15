@@ -53,7 +53,7 @@ const PerfilScreen = () => {
 
             {/* header */}
             <View style={styles.alinhar}>
-                <Text style={styles.nome}>Perfil</Text>
+                <Text style={{color: '#f5f5f5'}}>Perfil</Text>
                 {(trueFalse === true) ? <TouchableOpacity
                     onPress={() => { setTrueFalse(false) }}
                 ><MaterialCommunityIcons name='account-edit-outline' size={21} color='#FFFF' /></TouchableOpacity> : <TouchableOpacity
@@ -114,13 +114,7 @@ const PerfilScreen = () => {
                 <Text style={styles.horario2}>{user.horaInicio}</Text>
                 <Text style={styles.nome}>{user.horaFim}</Text>
             </View>
-            <View>
-                {(trueFalse === true) ? <TouchableOpacity
-                    onPress={() => { setTrueFalse(false) }}
-                ><Text>Editar</Text></TouchableOpacity> : <TouchableOpacity
-                    onPress={() => { setTrueFalse(true) }}
-                ><Text>Salvar</Text></TouchableOpacity>}
-            </View>
+        
 
 
         </ScrollView>
@@ -156,22 +150,22 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderRadius: 15,
         borderBottomRightRadius: 40,
-        padding: '4%',
+        padding: '3%',
         marginTop: '2%',
-        height: '7.5%'
+        height: 110
     },
     descricao: {
         borderRadius: 15,
         borderBottomRightRadius: 40,
         marginTop: '2%',
-        height: '7%',
+        height: '11%',
         color: '#FFFF',
         padding: '2%',
     },
     plataformas: {
         padding: '1%',
-        width: '30%',
-        height: '2.7%',
+        width: 100,
+        height: 35,
         borderRadius: 20,
         borderBottomRightRadius: 20,
         justifyContent: 'center',
@@ -183,8 +177,8 @@ const styles = StyleSheet.create({
     },
     jogos: {
         padding: '1%',
-        width: '30%',
-        height: '3%',
+        width: 135,
+        height: 40,
         borderRadius: 20,
         borderBottomRightRadius: 20,
         alignItems: 'center',
@@ -199,8 +193,10 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 100,
         borderColor: '#FFFF',
-        width: '25%',
-        height: '80%'
+        width: '22%',
+        height: '75%',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
     },
     horario:{
         flexDirection: 'row', 
@@ -210,7 +206,7 @@ const styles = StyleSheet.create({
     },
     horario2:{
         color: '#FFFF', 
-        marginRight: '30%', 
+        marginRight: '32%', 
         fontWeight: 'bold', 
         fontSize: 20
     }

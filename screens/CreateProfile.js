@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import { useState, useEffect } from 'react'
 import { TextInputMask } from 'react-native-masked-text'
-
+import { LinearGradient } from 'react-native-svg'
 import Firebase from '../config/firebase/firebaseConfig'
 
 import { useNavigation } from '@react-navigation/native'

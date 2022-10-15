@@ -23,38 +23,41 @@ const LoginScreen = () => {
     const login = () => {
         Firebase.auth().signInWithEmailAndPassword(email, senha)
             .then(() => {
-                navigation.navigate('Home', { nome: 'Home' })
+                let user = Firebase.auth().currentUser.uid
+                Firebase.firestore().collection('user').doc(user).onSnapshot((query) =>{
+                    if(query.exists == true){
+                        navigation.navigate('Home', {nome: 'Home'})
+                    }else{navigation.navigate('CreateProfile', {nome: 'Home'})
+                }
+                })
 
             })
-            .catch(() => { setMSG("Email ou senha inválidos."); console.log(msg); })
+            .catch(() => { setMSG("Email ou senha inválidos.");})
     }
 
     const validate = () => {
         let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
-        if (email == '' || emailRegex.test(email)) {
-            return (setMSG("insira um email válido"), false)
+        if (email == '' ) {
+             setMSG("Insira um email."), false
+             return
+        }else if(emailRegex.test(email) == false) {
+            setMSG('Insira um email válido')
+            return
         }
-        if (senha == '') {
-            return (setMSG("insira uma senha válida"), false)
+         else if (senha == '') {
+             setMSG("Insira uma senha."), false
+             return
         }
-        true
-    }
-    function logarGoogle() {
-        const provider = new Firebase.auth.GoogleAuthProvider()
-        Firebase.auth().signInWithPopup(provider)
-            .then((result) => {
-                console.log(result.user)
-                console.log(result.user.photoURL)
-                setUrlFoto(result.user.photoURL)
-            })
-            .catch((error) => {
-                console.log(error.message)
-            })
-    }
-    function callFunctions() {
-        validate()
+         else if (senha.length < 6 || senha.length > 10)  {
+            setMSG("a senha deve ser maior que 6 caracteres e menor que 10 caracteres"), false
+            return
+       }else{
         login()
+       }
+      
+       
     }
+    
 
 
     return (
@@ -90,6 +93,7 @@ const LoginScreen = () => {
                     onChangeText={setSenha}
                     secureTextEntry={true}
                 />
+                {(validate)? <Text>{msg}</Text>:''}
             </Animatable.View>
 
             <Animatable.View
@@ -97,11 +101,11 @@ const LoginScreen = () => {
                 delay={800}>
                 <TouchableOpacity
                     style={styles.botao1}
-                    onPress={callFunctions}
+                    onPress={validate}
                 >
 
                     <Text 
-                    style={{ color: '#f5f5f5', 
+                    style={{ color: '#FFFF', 
                     alignSelf: 'center' }}>
                         Entrar</Text>
                 </TouchableOpacity>
@@ -118,26 +122,26 @@ const LoginScreen = () => {
                         style={{
                             textAlign: 'center',
                             marginTop: '1%',
-                            color: '#f5f5f5'
+                            color: '#FFFF'
                         }}>
                         Ou continue com</Text>
                     <TouchableOpacity
                         style={styles.botao3}>
                         <Text
-                            style={{ color: '#f5f5f5' }}
-                            onPress={logarGoogle}
+                            style={{ color: '#FFF' }}
+                            
                         >Google</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.botao3}>
                         <Text
-                            style={{ color: '#f5f5f5' }}>
+                            style={{ color: '#FFF' }}>
                             Facebook</Text>
                     </TouchableOpacity>
 
                     <Text style={styles.container2}>Não possui conta?</Text>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text style={{color:'#f5f5f5'}}>Registre-se</Text></TouchableOpacity>
+                        onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text style={{color:'#FFFF'}}>Criar agora</Text></TouchableOpacity>
                 </View>
             </Animatable.View>
 
@@ -173,12 +177,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'center',
         fontWeight: 'bold',
-        color: '5'
+        color: '#FFFF'
     },
     input1: {
         width: '75%',
         marginTop: '3%',
-        color: '5'
+        color: '#FFFF'
 
     },
     input2: {
@@ -199,7 +203,7 @@ const styles = StyleSheet.create({
         marginTop: '8%'
     },
     botao2: {
-        color: '#f5f5f5',
+        color: '#FFFFF',
         alignSelf: 'center',
         marginTop: '2%'
     },
@@ -216,7 +220,7 @@ const styles = StyleSheet.create({
     container2: {
         textAlign: 'center',
         marginTop: '5%',
-        color: '#f5f5f5',
+        color: '#FFFF',
         padding: '0.5%'
     },
     gradient: {

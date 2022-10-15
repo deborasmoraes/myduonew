@@ -41,7 +41,10 @@ const CreateProfileScreen = () => {
             horaFim: horaFim,
             pc: pc,
             ps4 :ps4
-        }).catch((error) => {
+        }).then(()=>{
+            navigation.navigate('CreateProfile', {nome: 'Home'})
+        })
+        .catch((error) => {
             console.log(error.message);
         })
     }

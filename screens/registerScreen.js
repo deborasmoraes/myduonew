@@ -7,9 +7,10 @@ import { useState } from 'react';
 import Firebase from '../config/firebase/firebaseConfig';
 export default function SignupScreen({ navigation }) {
 
-    const [nome, setNome] = useState('')
+    
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
+    const [confirm, setConfirm] = useState('')
     const [idade, setIdade] = useState('')
     const [msg, setMsg] = useState('')
 
@@ -25,7 +26,31 @@ export default function SignupScreen({ navigation }) {
 
     }
 
-
+    const validate = () => {
+        let emailRegex = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/
+        if (email == '' ) {
+             setMsg("Insira um email."), false
+             return
+        }else if(emailRegex.test(email) == false) {
+            setMsg('Insira um email válido')
+            return
+        }
+         else if (senha == '') {
+            setMsg("Insira uma senha."), false
+             return
+        }
+         else if (senha.length < 6 || senha.length > 10)  {
+            setMsg("a senha deve ser maior que 6 caracteres e menor que 10 caracteres"), false
+            return
+       } else if (confirm == '') {
+        setMsg("Digite novamente"), false
+        return
+    } else if (confirm != senha) {
+        setMsg("Verifique novamente"), false
+        return
+   }else{console.log(idade);}
+    
+    }
 
     return (
         <LinearGradient
@@ -50,8 +75,8 @@ export default function SignupScreen({ navigation }) {
                     value={email}
                     onChangeText={setEmail}
                 />
-
-
+                {(msg.search('email') > -1)?<Text>{msg}</Text>:''}
+                
                 <Text
                  style={styles.input1}>Senha</Text>
                 <TextInput 
@@ -60,13 +85,18 @@ export default function SignupScreen({ navigation }) {
                     onChangeText={setSenha}
                     secureTextEntry={true}
                 />
+                 {(msg.search('senha') > -1)?<Text>{msg}</Text>:''}
+                
                  <Text style={styles.input1}>Confirme sua senha</Text>
             <TextInput
             style={styles.input2}
-                onChangeText={setSenha}
-                value={senha}
+                onChangeText={setConfirm}
+                value={confirm}
                 secureTextEntry={true}
             />
+             {(msg.search('Verifique') > -1)?<Text>{msg}</Text>:''}
+             {(msg.search('Digite') > -1)?<Text>{msg}</Text>:''}
+            
             <Text style={styles.input1}>Ano de Nascimento</Text>
             <TextInputMask
             style={styles.input2}
@@ -78,7 +108,7 @@ export default function SignupScreen({ navigation }) {
             </Animatable.View>
 
             <TouchableOpacity
-                onPress={Register}
+                onPress={validate}
                 style={styles.botao1}
             ><Text style={{color: '#FFFF'}}>Registre-se</Text>
             </TouchableOpacity>

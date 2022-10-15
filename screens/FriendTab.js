@@ -5,33 +5,22 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import FriendScreen from './FriendScreen';
 import Invitations from './Invitations';
-
+import ChatScreen from './ChatScreen';
 const Tab = createMaterialTopTabNavigator();
 
 
 const FriendTab = ()  =>{
-    return (<View>
-        <Tab.Navigator
-            initialRouteName="Amigos"
-            screenOptions={{
-                tabBarLabelStyle: { fontSize: 12 },
-                tabBarStyle: { backgroundColor: '#add8e6', alignItems: 'center' },
-            }}
-        >
-            <Tab.Screen name="Amigos" component={FriendScreen} />
-          
-            <Tab.Screen name="Invitations" component={Invitations} />
-            
+    return (
+        <Tab.Navigator>
+            <Tab.Screen name="Duo's" component={FriendScreen} />
+            <Tab.Screen name="Solicitações" component={Invitations} />
+            <Tab.Screen name='Chat' component={ChatScreen} />
+
         </Tab.Navigator>
 
-        
-        </View>
+    
     )
 }
-const styles = StyleSheet.create({
-    infos: {
-        backgroundColor: '',
-    },
-});
+
 
 export default FriendTab

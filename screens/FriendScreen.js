@@ -1,21 +1,17 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
 
 const FriendScreen = () =>{
     return(
-        <View style={styles.container}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '7%' }}>
         <Text style={ styles.text}>Ainda não fez nenhum amigo :c</Text>
-        </View>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#ffe4e1',
-      width: '100%',
-      height: '100%',
-    },
+
     text:{
-     marginTop: '4%'
+     color: '#f5f5f5'
     }
   });
   export default FriendScreen

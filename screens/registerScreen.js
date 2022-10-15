@@ -17,8 +17,7 @@ export default function SignupScreen({ navigation }) {
     const Register = () => {
         Firebase.auth().createUserWithEmailAndPassword(email, senha)
             .then((userCredential) => {
-                const user = userCredential
-                console.log(user);
+                navigation.navigate('Login')
             })
             .catch((error) => {
                 console.log(error.message);
@@ -48,9 +47,12 @@ export default function SignupScreen({ navigation }) {
     } else if (confirm != senha) {
         setMsg("Verifique novamente"), false
         return
-   }else{console.log(idade);}
+   }else{
+    Register()
+   }
     
     }
+    
 
     return (
         <LinearGradient

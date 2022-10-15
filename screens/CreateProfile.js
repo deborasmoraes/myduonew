@@ -10,8 +10,8 @@ import ModalCreate from '../components/modalCreate'
 
 const CreateProfileScreen = () => {
     const navigation = useNavigation()
-    const [username, setUsername] = useState()
-    const [descricao, setDescricao] = useState()
+    const [username, setUsername] = useState('')
+    const [descricao, setDescricao] = useState('')
     const [apexLegends, setApexLegends] = useState(false)
     const [csGo, setCsGo] = useState(false)
     const [fortnite, setFortnite] = useState(false)
@@ -19,8 +19,8 @@ const CreateProfileScreen = () => {
     const [freeFire, setfreeFire] = useState(false)
     const [valorant, setValorant] = useState(false)
     const [lol, setLol] = useState(false)
-    const [horaInicio, setHoraInicio] = useState()
-    const [horaFim, setHoraFim] = useState()
+    const [horaInicio, setHoraInicio] = useState('')
+    const [horaFim, setHoraFim] = useState('')
     const [pc, setPc] = useState(false)
     const [ps4, setPs4] = useState(false)
     const user_id = Firebase.auth().currentUser.uid
@@ -51,17 +51,20 @@ const CreateProfileScreen = () => {
 
         <View>
             <ModalCreate/>
+            <Text>Insira seu nome de Usuário</Text>
             <TextInput
                 placeholder='username'
                 value={username}
                 onChangeText={setUsername}
             />
+            <Text>Fale mais sobre você</Text>
             <TextInput
                 placeholder='Descrição'
                 value={descricao}
                 onChangeText={setDescricao}
             />
-
+        <Text>Quais jogos você joga?</Text>
+            
             <Text onPress={() => { setApexLegends(true) }}>Apex Legends</Text>
             <Text onPress={() => { setCsGo(true) }}>Counter Strike: Global Offensive</Text>
             <Text onPress={() => { setdota2(true) }}>Dota 2</Text>
@@ -70,7 +73,7 @@ const CreateProfileScreen = () => {
             <Text onPress={() => { setLol(true) }}>League of Legends</Text>
             <Text onPress={() => { setValorant(true) }}>Valorant</Text>
 
-                       
+            <Text>Que horas você começa a jogar?</Text>
             <TextInputMask
                 type={'datetime'}
                 options={{ format: 'HH:mm' }}
@@ -78,6 +81,7 @@ const CreateProfileScreen = () => {
                 value={horaInicio}
                 onChangeText={setHoraInicio}
             />
+            <Text> Que hora você para de jogar?</Text>
             <TextInputMask
                 type={'datetime'}
                 options={{ format: 'HH:mm' }}
@@ -85,7 +89,7 @@ const CreateProfileScreen = () => {
                 value={horaFim}
                 onChangeText={setHoraFim}
             />
-
+            <Text>Em qual plataforma você joga?</Text>
             <Text onPress={() => { setPc(true) }}>PC</Text>
             <Text onPress={() => { setPs4(true) }}>PlayStation 4</Text>
 

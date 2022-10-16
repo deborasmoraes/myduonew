@@ -25,29 +25,29 @@ const DuoScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.nome}>Selecione qual jogo você deseja um Duo</Text>
+      <Text style={styles.nome}>Para qual jogo você deseja um Duo?</Text>
       <View style={styles.alinhar}>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('apexLegends')}}><Text>Apex Legends</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('apexLegends')}}><Text style={{color: '#F5F5F5'}}>Apex Legends</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('csGo')}}><Text>Counter-Strike</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('csGo')}}><Text style={{color: '#F5F5F5'}}>Counter-Strike</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('dota2')}}><Text>Dota 2</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('dota2')}}><Text style={{color: '#F5F5F5'}}>Dota 2</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('fortnite')}}><Text>Fortnite</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('fortnite')}}><Text style={{color: '#F5F5F5'}}>Fortnite</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('freeFire')}}><Text>Free Fire</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('freeFire')}}><Text style={{color: '#F5F5F5'}}>Free Fire</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('LeagueOfLegends')}}><Text>League of Legends</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('LeagueOfLegends')}}><Text style={{color: '#F5F5F5'}}>League of Legends</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('valorant')}}><Text>Valorant</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('valorant')}}><Text style={{color: '#F5F5F5'}}>Valorant</Text></TouchableOpacity></LinearGradient>
       
       </View>
       
@@ -59,13 +59,17 @@ const DuoScreen = () => {
      
      <FlatList
         data={datauser}
-        renderItem={ ({item}) =>{return(
+        renderItem={ ({item}) =>{
+          return(
+            <LinearGradient colors={['#242547', '#042960']}
+                    style={styles.usuario}>
           <CardDuo  username = {item.username}
                     image = {'inseririmg'}
                     horaInicio = {item.horaInicio}
                     horaFim   = {item.horaFim}
                     user_id = {item.user_id}
           />
+          </LinearGradient>
         )}}
         keyExtractor={item => item.id}
       />
@@ -117,11 +121,22 @@ nome2: {
   fontWeight: 'bold',
   fontSize: 15,
   color: '#F5F5F5',
-  marginTop: '6%',
+  marginTop: '1%',
   padding: '0.5%',
   marginLeft: '2%',
-  textAlign: 'center'
+  textAlign: 'center',
 }, 
+usuario: {
+  justifyContent: 'center',
+  borderRadius: 15,
+  borderBottomRightRadius: 40,
+  padding: '3%',
+  marginTop: '2%',
+  height: 110,
+  width: 350,
+  alignSelf: 'center'
+},
+
 })
 
 export default DuoScreen

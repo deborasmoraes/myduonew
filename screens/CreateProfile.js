@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView 
 import { useState, useEffect, useLayoutEffect } from 'react'
 import { TextInputMask } from 'react-native-masked-text'
 import { LinearGradient } from 'expo-linear-gradient';
-import { launchImageLibrary } from "react-native-image-picker";
+import ImagePicker from "react-native-image-picker";
 
 import Firebase from '../config/firebase/firebaseConfig'
 
@@ -12,15 +12,10 @@ import ModalCreate from '../components/modalCreate'
 
 // export function PhotoComponent() {
 
-//     const [file, setFile] = useState();
+//     const [file, setFile] = useState(null);
   
-//     const handleChoosePhoto = () => {
-//       const options = {
-//         noData: true,
-//         title: "Foto de avaliação",
-//         takePhotoButtonTitle: "Escolha uma foto",
-//         chooseFromLibraryButtonTitle: "Selecione uma foto da galeria",
-//         selectionLimit: 1
+//     const pickImage = () => {
+//         ImagePicker.showImagePicker
 //       };
   
 //       launchImageLibrary(options, async (response) => {
@@ -39,7 +34,7 @@ import ModalCreate from '../components/modalCreate'
 //         }
 //       });
 //     };
-//   }
+  
 
 
 const CreateProfileScreen = () => {
@@ -102,7 +97,7 @@ const CreateProfileScreen = () => {
                         uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
                     }}
                 />
-                <TouchableOpacity onPress={() => {PhotoComponent}}><Text>Alterar foto</Text></TouchableOpacity>
+                <TouchableOpacity><Text>Alterar foto</Text></TouchableOpacity>
                 <Text>Insira seu Nick</Text>
                 <TextInput
                     placeholder='username'

@@ -11,7 +11,7 @@ import PerfilScreen from "./screens/ProfileScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import FriendTab from "./screens/FriendTab";
-import Tst from './screens/Tst'
+import EncontrarScreen from "./screens/EncontrarScreen";
 const Tab = createBottomTabNavigator()
 
 export default function ShowBottomTabs(){
@@ -28,9 +28,9 @@ export default function ShowBottomTabs(){
             if (route.name === "PerfilTab"){
                 iconName = focused ? 'account-settings' : 'account-settings-outline'
             } else if (route.name === "DuoTab"){
-                iconName = focused ? 'account-circle' : 'account-circle-outline'
+                iconName = focused ? 'filter' : 'filter-outline'
             }
-            else if (route.name === "CreateProfile"){
+            else if (route.name === "DuoTab"){
                 iconName = focused ? 'filter' : 'filter-outline'
             }else if (route.name === "SettingsTab"){
                 iconName = focused ? 'cog' : 'cog-outline'
@@ -40,9 +40,10 @@ export default function ShowBottomTabs(){
             }
             return <MaterialCommunityIcons name={iconName} size={22} color='#FFFF' />
         }})}>
-             <Tab.Screen name= "CreateProfile" component={Tst}/>
+   
             <Tab.Screen name ="PerfilTab" component={PerfilScreen}/>
-            <Tab.Screen name= "DuoTab" component={DuoScreen}
+            <Tab.Screen name= "DuoTab" component={DuoScreen}/>
+            <Tab.Screen name= "Encontrar" component={EncontrarScreen}
             options={() => ({
                 tabBarIcon: ({tintColor}) => (
                     <View>

@@ -1,4 +1,4 @@
-import { View, Text, Button, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import Firebase from '../config/firebase/firebaseConfig'
@@ -23,7 +23,7 @@ const DuoScreen = () => {
  }
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Selecione qual jogo você deseja um Duo</Text>
       <TouchableOpacity onPress = {() =>{setGame('apexLegends')}}><Text>Apex Legends</Text></TouchableOpacity>
       <TouchableOpacity onPress = {() =>{setGame('csGo')}}><Text>Counter-Strike: Global Offensive</Text></TouchableOpacity>
@@ -57,5 +57,14 @@ const DuoScreen = () => {
     
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    backgroundColor: '#00182F',
+    padding: '10%',
+    alignItems: 'center'
+  }, 
+})
 
 export default DuoScreen

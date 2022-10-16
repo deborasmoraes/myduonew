@@ -58,18 +58,19 @@ const DuoScreen = () => {
      
      
      <FlatList
+     style={styles.lista}
         data={datauser}
         renderItem={ ({item}) =>{
           return(
-            <LinearGradient colors={['#242547', '#042960']}
-                    style={styles.usuario}>
+           
           <CardDuo  username = {item.username}
                     image = {'inseririmg'}
                     horaInicio = {item.horaInicio}
                     horaFim   = {item.horaFim}
                     user_id = {item.user_id}
+                    
           />
-          </LinearGradient>
+ 
         )}}
         keyExtractor={item => item.id}
       />
@@ -82,16 +83,15 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: '#00182F',
-    margin: 'auto',
-    padding: '3%'
+    padding: '4%'
    
   },
   nome: {
     fontWeight: 'bold',
     fontSize: 25,
     color: '#F5F5F5',
-    marginTop: '6%',
-    padding: '0.5%',
+    marginTop: '10%',
+    padding: '2%',
     marginLeft: '2%',
     textAlign: 'center'
   }, 
@@ -136,6 +136,12 @@ usuario: {
   width: 350,
   alignSelf: 'center'
 },
+card:{
+  flexDirection: 'row'
+},
+lista:{
+  marginBottom:440
+}
 
 })
 

@@ -39,7 +39,7 @@ export default function SignupScreen({ navigation }) {
              return
         }
          else if (senha.length < 6 || senha.length > 10)  {
-            setMsg("a senha deve ser maior que 6 caracteres e menor que 10 caracteres"), false
+            setMsg("A senha deve ser maior que 6 caracteres e menor que 10 caracteres"), false
             return
        } else if (confirm == '') {
         setMsg("Digite novamente"), false

@@ -170,7 +170,7 @@ const CreateProfileScreen = () => {
             <Text onPress={() => { setPs4(true) }}>PlayStation 4</Text></LinearGradient>
             </View>
 
-            <TouchableOpacity onPress={Save} style={styles.botao2}><Text style={styles.nome}>Salvar</Text></TouchableOpacity>
+            <TouchableOpacity onPress={Save} style={styles.botao2}><Text style={styles.nome}>Salvar Informações</Text></TouchableOpacity>
         </ScrollView>
     )
 }

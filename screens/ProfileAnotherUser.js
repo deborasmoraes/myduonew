@@ -89,8 +89,8 @@ const AnotherUserScreen = ({ route }) => {
         })
     }
     return (
-        <View style={styles.geral}>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '7%' }}>
+
 
                 {/* header */}
                 <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
@@ -157,7 +157,6 @@ const AnotherUserScreen = ({ route }) => {
 
 
             </ScrollView>
-        </View>
     )
 }
 const styles = StyleSheet.create({

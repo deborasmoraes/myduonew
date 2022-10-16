@@ -52,8 +52,9 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: '#00182F',
-    padding: '10%',
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 'auto'
   },
   destaque: {
     width: 220,

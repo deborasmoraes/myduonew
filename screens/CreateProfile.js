@@ -1,12 +1,46 @@
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
-import { useState, useEffect } from 'react'
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import { TextInputMask } from 'react-native-masked-text'
-import { LinearGradient } from 'react-native-svg'
+import { LinearGradient } from 'expo-linear-gradient';
+import { launchImageLibrary } from "react-native-image-picker";
+
 import Firebase from '../config/firebase/firebaseConfig'
 
 import { useNavigation } from '@react-navigation/native'
 import ModalCreate from '../components/modalCreate'
+
+// export function PhotoComponent() {
+
+//     const [file, setFile] = useState();
+  
+//     const handleChoosePhoto = () => {
+//       const options = {
+//         noData: true,
+//         title: "Foto de avaliação",
+//         takePhotoButtonTitle: "Escolha uma foto",
+//         chooseFromLibraryButtonTitle: "Selecione uma foto da galeria",
+//         selectionLimit: 1
+//       };
+  
+//       launchImageLibrary(options, async (response) => {
+//         if (response.didCancel) {
+//           console.log("Usuário cancelou a seleção");
+//         } else if (response.error) {
+//           console.log("Ocorreu um erro.");
+//         } else {
+//           const photoFile = {
+//             uri: asset.uri,
+//             name: asset.fileName,
+//             type: "image/jpeg",
+//           };
+  
+//           setFile(photoFile);
+//         }
+//       });
+//     };
+//   }
+
 
 const CreateProfileScreen = () => {
     const navigation = useNavigation()
@@ -41,22 +75,25 @@ const CreateProfileScreen = () => {
             horaFim: horaFim,
             pc: pc,
             ps4: ps4
-        }).then(()=>{
-            navigation.navigate('CreateProfile', {nome: 'Home'})
-        })
-        .catch((error) => {
+        }).catch((error) => {
             console.log(error.message);
         })
     }
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerShown: false,
+        });
+    }, []);
+    
 
 
     return (
 
-        <View>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '6.5%' }}>
             <ModalCreate />
-            <View style={styles.alinhar}>
+           
                 <Text style={styles.nome}>Perfil</Text>
-            </View>
+            
 
             <LinearGradient colors={['#242547', '#042960']} style={styles.usuario}>
                 <Image
@@ -65,7 +102,7 @@ const CreateProfileScreen = () => {
                         uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
                     }}
                 />
-                <TouchableOpacity><Text>Foto</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => {PhotoComponent}}><Text>Alterar foto</Text></TouchableOpacity>
                 <Text>Insira seu Nick</Text>
                 <TextInput
                     placeholder='username'
@@ -82,56 +119,74 @@ const CreateProfileScreen = () => {
                     placeholder='Descrição'
                     value={descricao}
                     onChangeText={setDescricao}
+                    style={{marginLeft: 10, flexWrap: 'wrap', color: '#FFFF'}}
                 />
             </LinearGradient>
 
-            <Text style={styles.nome}>Quais jogos você joga?</Text>
-
-            <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-                <Text onPress={() => { setApexLegends(true) }}>Apex Legends</Text> </LinearGradient>
-            <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-                <Text onPress={() => { setCsGo(true) }}>Counter Strike: Global Offensive</Text> </LinearGradient>
-             <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-                <Text onPress={() => { setdota2(true) }}>Dota 2</Text> </LinearGradient>
+            <Text style={styles.nome}>Escolha seus jogos favoritos</Text>
+                    
+                 <View style={styles.alinhar}>  
+                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}> 
+                <Text onPress={() => { setApexLegends(true) }}>Apex Legends</Text></LinearGradient>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-            <Text onPress={() => { setFortnite(true) }}>Fortnite</Text></LinearGradient>
-            <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-            <Text onPress={() => { setfreeFire(true) }}>Free Fire</Text></LinearGradient>
-            <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-            <Text onPress={() => { setLol(true) }}>League of Legends</Text></LinearGradient>
-            <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-            <Text onPress={() => { setValorant(true) }}>Valorant</Text></LinearGradient>
+                <Text onPress={() => { setCsGo(true) }}>Counter Strike</Text></LinearGradient>
+                <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
+                <Text onPress={() => { setdota2(true) }}>Dota 2</Text></LinearGradient>
+                <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
+                <Text onPress={() => { setFortnite(true) }}>Fortnite</Text></LinearGradient>
+                <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
+                <Text onPress={() => { setfreeFire(true) }}>Free Fire</Text></LinearGradient>
+                <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
+                <Text onPress={() => { setLol(true) }}>League of Legends</Text></LinearGradient>
+                <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
+                <Text onPress={() => { setValorant(true) }}>Valorant</Text></LinearGradient>
+                </View>
 
-            <Text>Que horas você começa a jogar?</Text>
+                    <Text style={styles.nome}>Horário disponível</Text>
+            <View style={styles.alinhar2}>
+            <Text style={styles.horario2}>Inicio</Text>
+            <Text style={styles.nome}>Fim</Text>
+            </View>
+            <View style={styles.alinhar2}>
             <TextInputMask
                 type={'datetime'}
-                options={{ format: 'HH:mm' }}
+                options={{ format: 'HH:mm'  }}
                 placeholder={'horaInicio'}
                 value={horaInicio}
                 onChangeText={setHoraInicio}
+                style={{color: '#FFFF'}}
+
             />
-            <Text> Que hora você para de jogar?</Text>
+            
             <TextInputMask
                 type={'datetime'}
                 options={{ format: 'HH:mm' }}
                 placeholder={'horaFim'}
                 value={horaFim}
                 onChangeText={setHoraFim}
+                style={{color: '#FFFF'}}
             />
-            <Text>Em qual plataforma você joga?</Text>
-            <Text onPress={() => { setPc(true) }}>PC</Text>
-            <Text onPress={() => { setPs4(true) }}>PlayStation 4</Text>
+            </View>
+            <Text style={styles.nome}>Em qual plataforma você joga?</Text>
+            <View style={styles.alinhar}>
+            <LinearGradient colors={['#242547', '#042960']} style={styles.plataformas}>
+            <Text onPress={() => { setPc(true) }}>PC</Text></LinearGradient>
+            <LinearGradient colors={['#242547', '#042960']} style={styles.plataformas}>
+            <Text onPress={() => { setPs4(true) }}>PlayStation 4</Text></LinearGradient>
+            </View>
 
-            <TouchableOpacity onPress={Save}><Text>Salvar</Text></TouchableOpacity>
-        </View>
+            <TouchableOpacity onPress={Save} style={styles.botao2}><Text style={styles.nome}>Salvar</Text></TouchableOpacity>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        height: '10%',
-    },
+        margin: 'auto',
+        backgroundColor: '#00182F',
+        justifyContent: 'center',
+        padding: '9%'
+      },
     geral: {
         backgroundColor: '#00182F',
         padding: '7%',
@@ -145,11 +200,31 @@ const styles = StyleSheet.create({
         padding: '0.5%',
         marginLeft: '2%'
     },
-    alinhar: {
+    alinhar:{
         flexDirection: 'row',
-        alignItems: 'baseline',
-        justifyContent: 'space-between',
-    },
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        padding: '2%',
+        marginTop: '1%',
+        marginBottom:'1%'
+      },
+      alinhar2:{
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2%',
+        marginTop: '1%',
+        marginHorizontal: '4%'
+      },
+      alinhar2:{
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'center',
+    
+      },
     usuario: {
         flexDirection: 'row',
         alignItems: 'baseline',
@@ -157,7 +232,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderBottomRightRadius: 40,
         padding: '3%',
-        marginTop: '2%',
+        marginTop: '1%',
         height: 110
     },
     descricao: {
@@ -215,7 +290,24 @@ const styles = StyleSheet.create({
         marginRight: '32%',
         fontWeight: 'bold',
         fontSize: 20
-    }
+    },
+    plataformas: {
+        padding: '1%',
+        width: 100,
+        height: 35,
+        borderRadius: 20,
+        borderBottomRightRadius: 20,
+        justifyContent: 'center',
+        marginTop: '1%',
+        alignSelf: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#FFFF'
+    },
+    botao2: {
+        color: '#FFFFF',
+        alignSelf: 'center',
+    },
 })
 
 

@@ -1,6 +1,7 @@
 import { View, Text, Button, FlatList, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { LinearGradient } from 'expo-linear-gradient';
 import Firebase from '../config/firebase/firebaseConfig'
 import CardDuo from '../components/cardDuo'
 
@@ -24,18 +25,33 @@ const DuoScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Selecione qual jogo você deseja um Duo</Text>
-      <TouchableOpacity onPress = {() =>{setGame('apexLegends')}}><Text>Apex Legends</Text></TouchableOpacity>
-      <TouchableOpacity onPress = {() =>{setGame('csGo')}}><Text>Counter-Strike: Global Offensive</Text></TouchableOpacity>
-      <TouchableOpacity onPress = {() =>{setGame('dota2')}}><Text>Dota 2</Text></TouchableOpacity>
-      <TouchableOpacity onPress = {() =>{setGame('fortnite')}}><Text>Fortnite</Text></TouchableOpacity>
-      <TouchableOpacity onPress = {() =>{setGame('freeFire')}}><Text>Free Fire</Text></TouchableOpacity>
-      <TouchableOpacity onPress = {() =>{setGame('LeagueOfLegends')}}><Text>League of Legends</Text></TouchableOpacity>
-      <TouchableOpacity onPress = {() =>{setGame('valorant')}}><Text>Valorant</Text></TouchableOpacity>
+      <Text style={styles.nome}>Selecione qual jogo você deseja um Duo</Text>
+      <View style={styles.alinhar}>
+      <LinearGradient colors={['#242547', '#042960']}
+                    style={styles.jogos}>
+      <TouchableOpacity onPress = {() =>{setGame('apexLegends')}}><Text>Apex Legends</Text></TouchableOpacity></LinearGradient>
+      <LinearGradient colors={['#242547', '#042960']}
+                    style={styles.jogos}>
+      <TouchableOpacity onPress = {() =>{setGame('csGo')}}><Text>Counter-Strike</Text></TouchableOpacity></LinearGradient>
+      <LinearGradient colors={['#242547', '#042960']}
+                    style={styles.jogos}>
+      <TouchableOpacity onPress = {() =>{setGame('dota2')}}><Text>Dota 2</Text></TouchableOpacity></LinearGradient>
+      <LinearGradient colors={['#242547', '#042960']}
+                    style={styles.jogos}>
+      <TouchableOpacity onPress = {() =>{setGame('fortnite')}}><Text>Fortnite</Text></TouchableOpacity></LinearGradient>
+      <LinearGradient colors={['#242547', '#042960']}
+                    style={styles.jogos}>
+      <TouchableOpacity onPress = {() =>{setGame('freeFire')}}><Text>Free Fire</Text></TouchableOpacity></LinearGradient>
+      <LinearGradient colors={['#242547', '#042960']}
+                    style={styles.jogos}>
+      <TouchableOpacity onPress = {() =>{setGame('LeagueOfLegends')}}><Text>League of Legends</Text></TouchableOpacity></LinearGradient>
+      <LinearGradient colors={['#242547', '#042960']}
+                    style={styles.jogos}>
+      <TouchableOpacity onPress = {() =>{setGame('valorant')}}><Text>Valorant</Text></TouchableOpacity></LinearGradient>
       
-
+      </View>
       
-    <TouchableOpacity onPress = {find}><Text>Pesquisar</Text></TouchableOpacity>
+    <TouchableOpacity onPress = {find}><Text style={styles.nome2}>Filtrar</Text></TouchableOpacity>
       
     
      
@@ -62,9 +78,50 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: '#00182F',
-    padding: '10%',
-    alignItems: 'center'
+    margin: 'auto',
+    padding: '3%'
+   
+  },
+  nome: {
+    fontWeight: 'bold',
+    fontSize: 25,
+    color: '#F5F5F5',
+    marginTop: '6%',
+    padding: '0.5%',
+    marginLeft: '2%',
+    textAlign: 'center'
   }, 
+  jogos: {
+    padding: '1%',
+    width: 135,
+    height: 40,
+    borderRadius: 20,
+    borderBottomRightRadius: 20,
+    alignItems: 'center',
+    marginTop: '2%',
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: '#FFFF',
+    justifyContent: 'center',
+},
+alinhar:{
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '5%',
+  marginTop: '2.5%'
+  
+},
+nome2: {
+  fontWeight: 'bold',
+  fontSize: 15,
+  color: '#F5F5F5',
+  marginTop: '6%',
+  padding: '0.5%',
+  marginLeft: '2%',
+  textAlign: 'center'
+}, 
 })
 
 export default DuoScreen

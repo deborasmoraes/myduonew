@@ -53,7 +53,7 @@ const PerfilScreen = () => {
 
             {/* header */}
             <View style={styles.alinhar}>
-                <Text style={{color: '#f5f5f5'}}>Perfil</Text>
+                <Text style={styles.nome}>Perfil</Text>
                 {(trueFalse === true) ? <TouchableOpacity
                     onPress={() => { setTrueFalse(false) }}
                 ><MaterialCommunityIcons name='account-edit-outline' size={21} color='#FFFF' /></TouchableOpacity> : <TouchableOpacity

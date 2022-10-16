@@ -13,6 +13,7 @@ import generateId from '../functions/genrateId';
 const AnotherUserScreen = ({ route }) => {
     const navigation = useNavigation()
     const [user, setUser] = useState({})
+    const [user1, setUser1] = useState({})
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
@@ -84,6 +85,10 @@ const AnotherUserScreen = ({ route }) => {
 
 
         Firebase.firestore().collection('friends').doc(generateId(currentUser, anotheruser)).set({
+            users: {
+              
+                [anotheruser]: user
+            },
             FriendsRelation: [currentUser, anotheruser]
 
         })

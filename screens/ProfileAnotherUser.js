@@ -87,9 +87,11 @@ const AnotherUserScreen = ({ route }) => {
         Firebase.firestore().collection('friends').doc(generateId(currentUser, anotheruser)).set({
             users: {
               
-                [anotheruser]: user
+                [anotheruser]: user,
+                [currentUser]: currentUser
             },
-            FriendsRelation: [currentUser, anotheruser]
+            FriendsRelation: [currentUser, anotheruser],
+            friend_id: anotheruser
 
         })
     }

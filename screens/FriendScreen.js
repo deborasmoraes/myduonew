@@ -27,22 +27,20 @@ const user =  Firebase.auth().currentUser.uid
     return(
       <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '7%' }}>
        <View>
-        <TouchableOpacity onPress={() =>{console.log(friends);}}><Text>oi</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() =>{console.log(friends[0].friend_id);}}><Text>oi</Text></TouchableOpacity>
         <Text>Inicio FlatList</Text>
         <FlatList
         data={friends}
-        renderItem ={({item})  =>{
-          return(
-          <CardFriend
-         detalhes = {item}
-          />
-          
-        ) 
+        renderItem ={({item})  =>{console.log(item.friend_id)
+        return(
+          <CardFriend  friend_id = {item.friend_id}/>
+          )  
+         
         }}
         keyExtractor = {item =>{item.id}}
         
         />
-        <Text>Fim FlatList</Text>
+        
        </View>
         </ScrollView>
     )

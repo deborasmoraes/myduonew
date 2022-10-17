@@ -10,7 +10,7 @@ const EncontrarScreen = () => {
   const [game, setGame] = useState()
  const find = () =>{
   
-  Firebase.firestore().collection('user').where(game, "==", true).onSnapshot(query =>{
+  Firebase.firestore().collection('user').onSnapshot(query =>{
   const data = []
   query.forEach((doc) =>{
     data.push({
@@ -18,7 +18,7 @@ const EncontrarScreen = () => {
       key:doc.id
     })
   })
-  setDataUser(data);
+  console.log(data);
   })
 
  }
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   lista:{
     marginTop: 80,
-    backgroundColor: '#242547'
+  
   }
   
   })

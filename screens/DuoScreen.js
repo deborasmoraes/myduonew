@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import Firebase from '../config/firebase/firebaseConfig'
 import CardDuo from '../components/cardDuo'
+import * as Animatable from 'react-native-animatable'
 
 const DuoScreen = () => {
   const [datauser, setDataUser] = useState([])
@@ -25,6 +26,9 @@ const DuoScreen = () => {
 
   return (
     <View style={styles.container}>
+     <Animatable.View
+     animation="fadeInUp"
+     delay={550}>
       <Text style={styles.nome}>Para qual jogo você deseja um Duo?</Text>
       <View style={styles.alinhar}>
       <LinearGradient colors={['#242547', '#042960']}
@@ -50,11 +54,11 @@ const DuoScreen = () => {
       <TouchableOpacity onPress = {() =>{setGame('valorant')}}><Text style={{color: '#F5F5F5'}}>Valorant</Text></TouchableOpacity></LinearGradient>
       
       </View>
-      
+     
     <TouchableOpacity onPress = {find}><Text style={styles.nome2}>Filtrar</Text></TouchableOpacity>
       
     
-     
+    </Animatable.View>
      
      
      <FlatList

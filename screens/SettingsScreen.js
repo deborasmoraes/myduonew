@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#00182F',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 'auto'
+   
   },
   destaque: {
     width: 220,
@@ -69,12 +69,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
     color: '#F5F5F5',
-    marginTop: '6%',
+    marginTop: '1%',
     padding: '0.5%',
     marginLeft: '2%'
   },
   questions:{
-    marginTop: '7%'
+    marginTop: '4%'
   },
   destaque2: {
     width: 220,

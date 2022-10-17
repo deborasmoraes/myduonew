@@ -1,12 +1,15 @@
 import { StyleSheet, Text, TextInput, View, Image, ImageBackground, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable'
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect, useState, useEffect, useCallback } from 'react'
 import useAuth from '../hooks/useAuth'
 import { useNavigation } from '@react-navigation/native'
 import Firebase from '../config/firebase/firebaseConfig';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen'
 
 const LoginScreen = () => {
+    
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [msg, setMSG] = useState('')
@@ -57,12 +60,31 @@ const LoginScreen = () => {
       
        
     }
+
+    const [fontsLoaded] = useFonts({
+        'FredokaOneRegular': require("../assets/fonts/FredokaOne-Regular.ttf")})
     
 
+        useEffect(() => {
+          async function prepare(){
+            await SplashScreen.preventAutoHideAsync();
+          }
+          prepare()
+        }, [])
+    
+        const onLayout = useCallback(async () =>{
+          if (fontsLoaded){
+            await SplashScreen.hideAsync();
+          }
+        }, [fontsLoaded])
+    
+        if(!fontsLoaded) return null
+    
 
     return (
 
         <LinearGradient
+       
             colors={['#1C3551', '#242547']}
             end={{ x: 0.1, y: 0.4 }}>
             <Image 
@@ -70,6 +92,7 @@ const LoginScreen = () => {
             style={{ width: 396, height: 275 }} />
 
             <Animatable.Text 
+            onLayout={onLayout}
             style={styles.login}
             animation="fadeInUp"
                 delay={550}>Login</Animatable.Text>

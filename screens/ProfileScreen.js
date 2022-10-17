@@ -98,11 +98,11 @@ const PerfilScreen = () => {
             <Text style={styles.nome}>Jogos favoritos</Text>
 
             {/* adicionar jogos */}
-            <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
+            <View>
                 {(trueFalse === true) ? <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} fortnite={user.fortnite} apexLegends={user.apexLegends} csGo={user.csGo} dota2={user.dota2} freeFire={user.freeFire} /> : <TouchableOpacity
                     onPress={() => { navigation.navigate("Jogos") }}><Text>Editar Jogos</Text>
                 </TouchableOpacity>}
-            </LinearGradient>
+            </View>
 
             <Text style={styles.nome}>Disponibilidade</Text>
             {/* horários */}
@@ -175,18 +175,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#FFFF'
     },
-    jogos: {
-        padding: '1%',
-        width: 135,
-        height: 40,
-        borderRadius: 20,
-        borderBottomRightRadius: 20,
-        alignItems: 'center',
-        marginTop: '2%',
-        alignSelf: 'center',
-        borderWidth: 1,
-        borderColor: '#FFFF',
-        justifyContent: 'center'
+    alinharJogos: {
+        flex:1,
+        flexWrap: 'wrap',
+        flexDirection:'row',
+        height:100,
+        width:100,
+        padding: '3%'
 
     },
     avatar: {

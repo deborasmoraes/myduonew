@@ -53,34 +53,34 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: '#00182F',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
    
   },
   destaque: {
-    width: 220,
-    height: 40,
+    height: 45,
     justifyContent: 'center',
-    padding: '1%',
+    padding: 3,
     borderRadius: 40,
     marginTop: '7%',
     alignItems: 'center',
+    width: 320
   },
   nome: {
     fontWeight: 'bold',
     fontSize: 30,
     color: '#F5F5F5',
-    marginTop: '1%',
     padding: '0.5%',
-    marginLeft: '2%'
+    marginLeft: '2%',
+    textAlign: 'center'
   },
   questions:{
     marginTop: '4%'
   },
   destaque2: {
-    width: 220,
-    height: 40,
+    width: 320,
+    height: 45,
     justifyContent: 'center',
-    padding: '1%',
+    padding: 3,
     borderRadius: 40,
     marginTop: '4%',
     alignItems: 'center',

@@ -10,14 +10,20 @@ const user =  Firebase.auth().currentUser.uid
   useEffect(() =>{
      Firebase.firestore().collection('friends').where('FriendsRelation', 'array-contains', user).onSnapshot((query) =>{
       const data = []
+     const  data1 = []
         query.forEach(doc =>{
           data.push({
             ...doc.data(),
              key:doc.id
              
           })
+          data1.push({
+            ...doc.id
+             
+          })
          
         })
+        console.log(data1);
         setFriends(data)
     })
    
@@ -31,7 +37,7 @@ const user =  Firebase.auth().currentUser.uid
         <Text>Inicio FlatList</Text>
         <FlatList
         data={friends}
-        renderItem ={({item})  =>{console.log(item.FriendsRelation)
+        renderItem ={({item})  =>{
         return(
           <CardFriend  friend_id = {item.FriendsRelation}/>
           )  

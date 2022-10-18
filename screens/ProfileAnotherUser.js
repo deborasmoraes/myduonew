@@ -51,7 +51,9 @@ const AnotherUserScreen = ({ route }) => {
             query.forEach((doc) => {
                 data.push({
                     ...doc.data(),
+                    
                     key: doc.id
+                    
                 })
            
                 if (doc.id == currentUser) {
@@ -88,7 +90,8 @@ const AnotherUserScreen = ({ route }) => {
                 [currentUser]: currentUser
             },
             FriendsRelation: [currentUser, anotheruser],
-            friend_id: anotheruser
+            friend_id: anotheruser,
+          
 
         })
     }

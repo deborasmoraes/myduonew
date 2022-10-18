@@ -70,8 +70,7 @@ const PerfilScreen = () => {
                         uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
                     }}
                 />
-                <TouchableOpacity><Text>Foto</Text></TouchableOpacity>
-                <Text style={styles.nome}>{user.username}</Text>
+                <Text style={styles.username}>{user.username}</Text>
 
             </LinearGradient>
 
@@ -87,35 +86,35 @@ const PerfilScreen = () => {
                             onChangeText={setDescricao}
                             defaultValue={user.descricao}></TextInput>}
             </LinearGradient>
-                    
+
             <Text style={styles.nome}>Plataformas</Text>
-                    <View style={{marginLeft: 4}}>
-            <LinearGradient colors={['#242547', '#042960']}
-                style={styles.plataformas}>
-                <Text style={{ color: '#FFFF' }}>PC</Text>
-            </LinearGradient>
+            <View style={{ marginLeft: 4 }}>
+                <LinearGradient colors={['#242547', '#042960']}
+                    style={styles.plataformas}>
+                    <Text style={{ color: '#FFFF' }}>PC</Text>
+                </LinearGradient>
             </View>
 
             <Text style={styles.nome}>Jogos favoritos</Text>
 
             {/* adicionar jogos */}
-            <View style={styles.alinharJogos}> 
-                {(trueFalse === true) ? <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} fortnite={user.fortnite} apexLegends={user.apexLegends} csGo={user.csGo} dota2={user.dota2} freeFire={user.freeFire}/> : <TouchableOpacity
-                    onPress={() => { navigation.navigate("Jogos") }}><Text>Editar Jogos</Text>
-                </TouchableOpacity>}
+            <View style={styles.alinharJogos}>
+                {(trueFalse === true) ? <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} fortnite={user.fortnite} apexLegends={user.apexLegends} csGo={user.csGo} dota2={user.dota2} freeFire={user.freeFire} /> : <LinearGradient colors={['#242547', '#042960']} style={{ borderRadius: 20, width: 320, marginTop: '2%' }}><TouchableOpacity
+                    onPress={() => { navigation.navigate("Jogos") }} style={styles.editarJogos}><Text style={{ color: '#FFFF' }}>Editar Jogos</Text>
+                </TouchableOpacity></LinearGradient>}
             </View>
 
             <Text style={styles.nome}>Disponibilidade</Text>
             {/* horários */}
             <View style={styles.horario}>
-                <Text style={styles.horario2}>Inicio</Text>
+                <Text style={styles.horario2}>Início</Text>
                 <Text style={styles.nome}>Fim</Text>
             </View>
             <View style={styles.horario}>
                 <Text style={styles.horario2}>{user.horaInicio}</Text>
                 <Text style={styles.nome}>{user.horaFim}</Text>
             </View>
-        
+
 
 
         </ScrollView>
@@ -137,8 +136,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#FFFF',
         marginTop: '5%',
-        padding: '0.5%',
+        padding: '1%',
         marginLeft: '2%'
+    },
+    username: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#FFFF',
+        marginTop: '2%',
+        padding: '1%',
+        marginLeft: 15
     },
     alinhar: {
         flexDirection: 'row',
@@ -147,13 +154,13 @@ const styles = StyleSheet.create({
     },
     usuario: {
         flexDirection: 'row',
-        alignItems: 'baseline',
-        justifyContent: 'space-between',
+        alignItems: 'center',
         borderRadius: 15,
         borderBottomRightRadius: 40,
         padding: '3%',
         marginTop: '2%',
-        height: 110
+        height: 110,
+
     },
     descricao: {
         borderRadius: 15,
@@ -163,21 +170,21 @@ const styles = StyleSheet.create({
         color: '#FFFF',
         padding: '4%',
         flexWrap: 'wrap',
-        width: 330
+        width: 330,
+        flexShrink: 1
     },
     plataformas: {
         padding: '1%',
         borderRadius: 90,
         justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: '#FFFF',
         height: 35,
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: '2%',
+        marginLeft: 60,
+        marginRight: 60
     },
     alinharJogos: {
-   height: 200,
-   marginTop: '3%'
-
+        margin: 2,
     },
     avatar: {
         borderWidth: 2,
@@ -187,18 +194,31 @@ const styles = StyleSheet.create({
         height: '75%',
         justifyContent: 'center',
         alignItems: 'flex-start',
+        marginTop: 3,
+        marginLeft: 5
     },
-    horario:{
-        flexDirection: 'row', 
-        alignItems: 'baseline', 
-        justifyContent: 'space-between', 
+    horario: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
         alignSelf: 'center'
     },
-    horario2:{
-        color: '#FFFF', 
-        marginRight: '32%', 
-        fontWeight: 'bold', 
+    horario2: {
+        color: '#FFFF',
+        marginRight: '32%',
+        fontWeight: 'bold',
         fontSize: 20
+    },
+    editarJogos: {
+        padding: 5,
+        borderRadius: 20,
+        borderBottomRightRadius: 20,
+        width: 320,
+        height: 40,
+        alignItems: 'center',
+        alignContent: 'center',
+        marginTop: '2%'
     }
-})
+}
+)
 export default PerfilScreen

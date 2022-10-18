@@ -33,25 +33,25 @@ const DuoScreen = () => {
       <View style={styles.alinhar}>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('apexLegends')}}><Text style={{color: '#F5F5F5'}}>Apex Legends</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('apexLegends')}} style={styles.botao}><Text style={{color: '#F5F5F5'}}>Apex Legends</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('csGo')}}><Text style={{color: '#F5F5F5'}}>Counter-Strike</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('csGo')}} style={styles.botao}><Text style={{color: '#F5F5F5'}}>Counter-Strike</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('dota2')}}><Text style={{color: '#F5F5F5'}}>Dota 2</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('dota2')}} style={styles.botao}><Text style={{color: '#F5F5F5'}}>Dota 2</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('fortnite')}}><Text style={{color: '#F5F5F5'}}>Fortnite</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('fortnite')}} style={styles.botao}><Text style={{color: '#F5F5F5'}}>Fortnite</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('freeFire')}}><Text style={{color: '#F5F5F5'}}>Free Fire</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('freeFire')}} style={styles.botao}><Text style={{color: '#F5F5F5'}}>Free Fire</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('LeagueOfLegends')}}><Text style={{color: '#F5F5F5'}}>League of Legends</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('LeagueOfLegends')}} style={styles.botao}><Text style={{color: '#F5F5F5'}}>League of Legends</Text></TouchableOpacity></LinearGradient>
       <LinearGradient colors={['#242547', '#042960']}
                     style={styles.jogos}>
-      <TouchableOpacity onPress = {() =>{setGame('valorant')}}><Text style={{color: '#F5F5F5'}}>Valorant</Text></TouchableOpacity></LinearGradient>
+      <TouchableOpacity onPress = {() =>{setGame('valorant')}} style={styles.botao}><Text style={{color: '#F5F5F5'}}>Valorant</Text></TouchableOpacity></LinearGradient>
       
       </View>
      
@@ -108,8 +108,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: '2%',
     alignSelf: 'center',
-    borderWidth: 1,
-    borderColor: '#FFFF',
     justifyContent: 'center',
 },
 alinhar:{
@@ -145,6 +143,17 @@ card:{
 },
 lista:{
   marginBottom:440
+},
+botao:{
+    padding: '1%',
+    width: 135,
+    height: 40,
+    borderRadius: 20,
+    borderBottomRightRadius: 20,
+    alignItems: 'center',
+    marginTop: '2%',
+    alignSelf: 'center',
+    justifyContent: 'center',
 }
 
 })

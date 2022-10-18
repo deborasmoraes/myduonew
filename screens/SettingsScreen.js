@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
+import { Linking } from 'react-native';
 
 const SettingsScreen = () => {
   return (
@@ -8,40 +9,49 @@ const SettingsScreen = () => {
     <View style={styles.container}>
 
       <Text style={styles.nome}>Configurações</Text>
-
+      <TouchableOpacity>
+        <LinearGradient colors={['#242547', '#042960']}
+          style={styles.destaque}>
+          <Text style={{ color: '#F5F5F5' }}>Alterar Senha</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+      <TouchableOpacity>
       <LinearGradient colors={['#242547', '#042960']}
         style={styles.destaque}>
-        <Text style={{color: '#F5F5F5'}}>Alterar Senha</Text>
-        </LinearGradient>
-
-        <LinearGradient colors={['#242547', '#042960']}
+        <Text style={{ color: '#F5F5F5' }}>Logout</Text>
+      </LinearGradient>
+      </TouchableOpacity>
+      <TouchableOpacity>
+      <LinearGradient colors={['#242547', '#042960']}
         style={styles.destaque}>
-        <Text style={{color: '#F5F5F5'}}>Logout</Text>
-        </LinearGradient>
+        <Text style={{ color: '#F5F5F5' }}>Desativar Conta</Text>
+      </LinearGradient>
+      </TouchableOpacity>
 
-        <LinearGradient colors={['#242547', '#042960']}
-        style={styles.destaque}>
-        <Text style={{color: '#F5F5F5'}}>Desativar Conta</Text>
-        </LinearGradient>
-
-        <View style={styles.questions}>
-        <Text style={{color: '#F5F5F5'}}>Encontrou um problema?</Text></View>
-        <LinearGradient colors={['#242547', '#042960']}
+      <View style={styles.questions}>
+        <Text style={{ color: '#F5F5F5' }}>Encontrou um problema?</Text></View>
+        <TouchableOpacity onPress={() => Linking.openURL('mailto:deboracvd@hotmail.com')}>
+      <LinearGradient colors={['#242547', '#042960']}
         style={styles.destaque2}>
-        <Text style={{color: '#F5F5F5'}}>Fale com o desenvolvedor</Text>
-        </LinearGradient>
-        <View style={styles.questions}>
-        <Text style={{color: '#F5F5F5'}}>Privacidade</Text></View>
-        <LinearGradient colors={['#242547', '#042960']}
+        <Text style={{ color: '#F5F5F5' }}>Fale com o desenvolvedor</Text>
+      </LinearGradient>
+      </TouchableOpacity>
+      <View style={styles.questions}>
+        <Text style={{ color: '#F5F5F5' }}>Privacidade</Text></View>
+        <TouchableOpacity>
+      <LinearGradient colors={['#242547', '#042960']}
         style={styles.destaque2}>
-        <Text style={{color: '#F5F5F5'}}>Termos de Uso</Text>
-        </LinearGradient>
-        <View style={styles.questions}>
-        <Text style={{color: '#F5F5F5'}}>Join Us</Text></View>
-        <LinearGradient colors={['#242547', '#042960']}
+        <Text style={{ color: '#F5F5F5' }}>Termos de Uso</Text>
+      </LinearGradient>
+      </TouchableOpacity>
+      <View style={styles.questions}>
+        <Text style={{ color: '#F5F5F5' }}>Join Us</Text></View>
+        <TouchableOpacity>
+      <LinearGradient colors={['#242547', '#042960']}
         style={styles.destaque2}>
-        <Text style={{color: '#F5F5F5'}}>Redes Sociais</Text>
-        </LinearGradient>
+        <Text style={{ color: '#F5F5F5' }}>Redes Sociais</Text>
+      </LinearGradient>
+      </TouchableOpacity>
     </View>
 
 
@@ -54,7 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#00182F',
     justifyContent: 'center',
     alignItems: 'center'
-   
+
   },
   destaque: {
     height: 45,
@@ -73,7 +83,7 @@ const styles = StyleSheet.create({
     marginLeft: '2%',
     textAlign: 'center'
   },
-  questions:{
+  questions: {
     marginTop: '4%'
   },
   destaque2: {

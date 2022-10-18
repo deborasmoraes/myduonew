@@ -22,10 +22,26 @@ const Invitations = () =>{
   
     return(
 
-        <View>
-        <Text>Sem solicitações de amizade.</Text>
+        <View style={styles.container}>
+        <Text style={styles.nome}>Sem solicitações de amizade.</Text>
         </View>
     )
 }
-
+const styles = StyleSheet.create({
+    container: {
+      flexGrow: 1,
+      backgroundColor: '#00182F',
+      justifyContent: 'center',
+      alignItems: 'center'
+  
+    },
+    nome: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#F5F5F5',
+        padding: '0.5%',
+        marginLeft: '2%',
+        textAlign: 'center'
+      },
+})
 export  default Invitations

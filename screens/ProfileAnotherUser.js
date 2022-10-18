@@ -51,22 +51,22 @@ const AnotherUserScreen = ({ route }) => {
             query.forEach((doc) => {
                 data.push({
                     ...doc.data(),
-                    
+
                     key: doc.id
-                    
+
                 })
-           
+
                 if (doc.id == currentUser) {
-                     addFriend(),
-                    console.log('amigo adicionado')
+                    addFriend(),
+                        console.log('amigo adicionado')
                     return
-                    
+
 
                 } else {
-                     requestFriend(),
-                    console.log('solicitação enviada!')
+                    requestFriend(),
+                        console.log('solicitação enviada!')
                     return
-                    
+
                 }
             }
 
@@ -85,13 +85,13 @@ const AnotherUserScreen = ({ route }) => {
     const addFriend = () => {
         Firebase.firestore().collection('friends').doc(generateId(currentUser, anotheruser)).set({
             users: {
-              
+
                 [anotheruser]: user,
                 [currentUser]: currentUser
             },
             FriendsRelation: [currentUser, anotheruser],
             friend_id: anotheruser,
-          
+
 
         })
     }
@@ -99,71 +99,64 @@ const AnotherUserScreen = ({ route }) => {
         <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '7%' }}>
 
 
-                {/* header */}
-                <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
-                    <Text style={styles.nome}>Perfil</Text>
+            {/* header */}
+            <View style={styles.alinhar}>
+                <Text style={styles.nome}>Perfil</Text>
+            </View>
 
-                </View>
+            {/* dados usuário */}
 
-                {/* dados usuário */}
-                <View style={{ width: '100%' }}>
-                    <LinearGradient colors={['#242547', '#042960']} style={styles.usuario}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Image
-                                style={styles.avatar}
-                                source={{
-                                    uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
-                                }}
-                            />
-                            <TouchableOpacity><Text>Foto</Text></TouchableOpacity>
-                            <Text style={styles.nome}>{user.username}</Text>
+            <LinearGradient colors={['#242547', '#042960']} style={styles.usuario}>
+                <Image
+                    style={styles.avatar}
+                    source={{
+                        uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
+                    }}
+                />
+                <Text style={styles.username}>{user.username}</Text>
+            </LinearGradient>
 
+            {/* descrição usuário */}
+            <Text style={styles.nome}>Sobre mim</Text>
 
-                        </View>
-                    </LinearGradient>
-                </View>
-                {/* descrição usuário */}
-                <Text style={styles.nome}>Sobre mim</Text>
+            <LinearGradient
+                colors={['#242547', '#042960']}
+                style={styles.descricao}>
+                <Text style=
+                    {{ color: '#FFFF', marginLeft: '3%', padding: '2%' }}>{user.descricao}</Text>
+            </LinearGradient>
 
-                <LinearGradient
-                    colors={['#242547', '#042960']}
-                    style={styles.descricao}>
-                    <View style={styles.container}>
-                        <Text>{user.descricao}</Text>
-                    </View>
-                </LinearGradient>
-
-                <Text style={styles.nome}>Plataformas</Text>
-
+            <Text style={styles.nome}>Plataformas</Text>
+            <View style={{ marginLeft: 80, marginRight: 80 }}>
                 <LinearGradient colors={['#242547', '#042960']}
                     style={styles.plataformas}>
-                    <Text>PC</Text>
+                    <Text style={{ color: '#FFFF' }}>PC</Text>
                 </LinearGradient>
+            </View>
+            <Text style={styles.nome}>Jogos favoritos</Text>
 
-                <Text style={styles.nome}>Jogos favoritos</Text>
-
-                {/* adicionar jogos */}
-                <LinearGradient colors={['#242547', '#042960']}
-                    style={styles.jogos}>
-                    <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} ApexLegnds={user.ApexLegnds} />
-                </LinearGradient>
-
-                <Text style={styles.nome}>Disponibilidade</Text>
-                {/* horários */}
-                <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', alignSelf: 'center' }}>
-                    <Text style={{ color: '#FFFF', marginRight: '30%', fontWeight: 'bold', fontSize: 20 }}>Inicio</Text>
-                    <Text style={styles.nome}>Fim</Text>
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
-                    <Text>{user.horaInicio}</Text>
-                    <Text>{user.horaFim}</Text>
-                    <TouchableOpacity onPress={exist}><Text>Adicionar</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={() => { navigation.goBack() }}><Text>Voltar</Text></TouchableOpacity>
+            {/* adicionar jogos */}
+           
+               <View style={styles.alinharJogos}>
+                <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} ApexLegnds={user.ApexLegnds} />
                 </View>
 
+            <Text style={styles.nome}>Disponibilidade</Text>
+            {/* horários */}
+            <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', alignSelf: 'center' }}>
+                <Text style={{ color: '#FFFF', marginRight: '30%', fontWeight: 'bold', fontSize: 20 }}>Início</Text>
+                <Text style={styles.nome}>Fim</Text>
+            </View>
+            <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
+                <Text>{user.horaInicio}</Text>
+                <Text>{user.horaFim}</Text>
+                <TouchableOpacity onPress={exist}><Text>Adicionar</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => { navigation.goBack() }}><Text>Voltar</Text></TouchableOpacity>
+            </View>
 
 
-            </ScrollView>
+
+        </ScrollView>
     )
 }
 const styles = StyleSheet.create({
@@ -181,45 +174,89 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#FFFF',
         marginTop: '5%',
+        padding: '1%',
         marginLeft: '2%'
     },
+    username: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#FFFF',
+        marginTop: '2%',
+        padding: '1%',
+        marginLeft: 15
+    },
+    alinhar: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
+    },
     usuario: {
+        flexDirection: 'row',
+        alignItems: 'center',
         borderRadius: 15,
         borderBottomRightRadius: 40,
-        padding: '4%',
+        padding: '3%',
         marginTop: '2%',
+        height: 110,
+
     },
     descricao: {
         borderRadius: 15,
         borderBottomRightRadius: 40,
-        marginTop: '2%'
+        marginTop: '2%',
+        height: 60,
+        color: '#FFFF',
+        padding: '4%',
+        flexWrap: 'wrap',
+        width: 330,
+        flexShrink: 1
     },
     plataformas: {
-        padding: '3%',
-        width: '30%',
-        height: '6.5%',
-        borderRadius: 20,
-        borderBottomRightRadius: 20,
+        padding: '1%',
+        borderRadius: 90,
+        justifyContent: 'center',
+        height: 35,
         alignItems: 'center',
-        marginTop: '2%',
-        alignSelf: 'center'
+        marginTop: '2%'
     },
-    jogos: {
-        padding: '3%',
-        width: '40%',
-        height: '6.2%',
+    alinharJogos: {
+        margin: 2,
         borderRadius: 20,
-        borderBottomRightRadius: 20,
-        alignItems: 'center',
-        marginTop: '2%',
-        alignSelf: 'center'
+       alignItems: 'center',
     },
     avatar: {
-        borderWidth: 1,
+        borderWidth: 2,
         borderRadius: 100,
-        borderColor: "#FFFF",
-        width: '25%',
-        height: '50%'
+        borderColor: '#FFFF',
+        width: '22%',
+        height: '75%',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        marginTop: 3,
+        marginLeft: 5
+    },
+    horario: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
+        alignSelf: 'center'
+    },
+    horario2: {
+        color: '#FFFF',
+        marginRight: '32%',
+        fontWeight: 'bold',
+        fontSize: 20
+    },
+    editarJogos: {
+        padding: 5,
+        borderRadius: 20,
+        borderBottomRightRadius: 20,
+        width: 320,
+        height: 40,
+        alignItems: 'center',
+        alignContent: 'center',
+        marginTop: '2%'
     }
-})
+}
+)
 export default AnotherUserScreen

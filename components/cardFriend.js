@@ -1,7 +1,8 @@
 import { useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
-import { View, Text, TouchableOpacity } from "react-native"
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native"
 import Firebase from "../config/firebase/firebaseConfig"
+import { LinearGradient } from 'expo-linear-gradient';
 
 import extractDuo from "../functions/pickduo"
 
@@ -45,14 +46,33 @@ const CardFriend = (props) =>{
   
 
     return(
+        <LinearGradient colors={['#242547', '#042960']}
+              style={styles.usuario} >
+        <View><Text style={styles.nome}>{duoInfo.username}</Text>
         <TouchableOpacity
         onPress={() =>{navigation.navigate('Chat', {name:'Chat', duo: duoInfo})}}
             >
-        <View><Text>{duoInfo.username}</Text>
-        
-        </View>
         </TouchableOpacity>
+        </View>
+        </LinearGradient>
     )
 }
 
 export default CardFriend
+const styles = StyleSheet.create({
+    usuario: {
+        justifyContent: 'center',
+        borderRadius: 20,
+        borderBottomRightRadius: 40,
+        padding: '3%',
+        marginTop: '3%',
+        height: 80,
+        width: 350,
+        alignSelf: 'center',
+        marginTop: '2%'
+      },
+      nome:{
+        color: "#F5F5F5",
+        marginLeft: 25
+      }
+})

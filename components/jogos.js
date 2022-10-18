@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from "react-native"
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native"
 import { LinearGradient } from 'expo-linear-gradient';
 
 
@@ -6,7 +6,7 @@ const Jogos = (props) => {
     return (
         <View>
             <View>
-            {(props.ApexLegends == true) ? <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}><Text style={{color: '#FFFF'}}>Apex Legends</Text></LinearGradient>: ''}</View>
+            {(props.ApexLegends == true) ? <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}><TouchableOpacity style={{color: '#FFFF'}}>Apex Legends</TouchableOpacity></LinearGradient>: ''}</View>
             <View>
             {(props.csGo == true) ? <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}><Text style={{color: '#FFFF'}}>Counter Strike</Text></LinearGradient>: ''}</View>
             <View>
@@ -31,11 +31,10 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 20,
         width: 320,
         height:45,
-        borderWidth: 1,
-        borderColor: '#FFFF',
         alignItems: 'center',
         justifyContent: 'center',
-        alignContent: 'center'
+        alignContent: 'center',
+        marginTop: '2%'
         
     }
 })

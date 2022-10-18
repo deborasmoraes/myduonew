@@ -14,26 +14,29 @@ const user =  Firebase.auth().currentUser.uid
         query.forEach(doc =>{
           data.push({
             ...doc.data(),
-             key:doc.id
+             key:doc.id,
+             doc_id: doc.id
              
           })
           data1.push({
             ...doc.id
              
           })
-         
+          const doc_id = doc.id
+          console.log(doc_id)
         })
+       
         console.log(data1);
         setFriends(data)
-    })
+    }
+    )
    
   },[user])
 
   
     return(
-      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '7%' }}>
-       <View>
-        <TouchableOpacity onPress={() =>{console.log(friends[0].friend_id);}}><Text>oi</Text></TouchableOpacity>
+       <View style={{flex: 1, backgroundColor: '#00182F', padding: '5%' }}>
+        
         <Text>Inicio FlatList</Text>
         <FlatList
         data={friends}
@@ -46,9 +49,9 @@ const user =  Firebase.auth().currentUser.uid
         keyExtractor = {item =>{item.id}}
         
         />
-        
+        <TouchableOpacity style={{width: 40, height: 40}} onPress={() =>{console.log(friends[0].friend_id);}}><Text style={{color: '#FFFF'}}>oi</Text></TouchableOpacity>
        </View>
-        </ScrollView>
+       
     )
 }
 

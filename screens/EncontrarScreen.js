@@ -1,6 +1,7 @@
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useState, useEffect } from 'react'
+import * as Animatable from 'react-native-animatable'
 
 import Firebase from '../config/firebase/firebaseConfig'
 import CardDuo from '../components/cardDuo'
@@ -27,6 +28,9 @@ const EncontrarScreen = () => {
 }, [])
  return(
  <View style={styles.container}>
+  <Animatable.Text style={styles.nome}
+  animation="fadeInUp"
+  delay={800}>Encontre seu Duo</Animatable.Text>
    <TouchableOpacity onPress = {() =>{console.log(user);}}><Text>aaa</Text></TouchableOpacity>
     <FlatList
      style={styles.lista}
@@ -52,11 +56,22 @@ const EncontrarScreen = () => {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: '#00182F'
+    backgroundColor: '#00182F',
+    justifyContent: 'center',
+ 
   },
   lista:{
-    marginTop: 80,
-  
+    marginTop: 15,
+    marginBottom: 85
+  },
+  nome:{
+      fontWeight: 'bold',
+      fontSize: 30,
+      color: '#F5F5F5',
+      padding: '0.5%',
+      marginLeft: '2%',
+      textAlign: 'center',
+      marginTop: '20%'
   }
   
   })

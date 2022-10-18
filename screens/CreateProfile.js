@@ -38,6 +38,7 @@ import ModalCreate from '../components/modalCreate'
 
 
 const CreateProfileScreen = () => {
+    const [msg, setMsg] = useState('')
     const navigation = useNavigation()
     const [username, setUsername] = useState('')
     const [descricao, setDescricao] = useState('')
@@ -70,15 +71,47 @@ const CreateProfileScreen = () => {
             horaFim: horaFim,
             pc: pc,
             ps4: ps4
-        }).catch((error) => {
+        }).then(() =>{
+            Firebase.firestore().collection('user').doc(user_id).collection('added').doc().set({
+                baseUser: ''
+            })
+        })
+        .catch((error) => {
             console.log(error.message);
         })
     }
+            
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
         });
     }, []);
+
+    const validate = () => {
+        if (username == '') {
+            setMsg("insira um nome de usuário."), false 
+            return
+        }
+
+        if (descricao == '') {
+            setMsg("insira uma descrição."), false 
+            return
+        }
+
+       
+        if (horaInicio >= 0 || horaInicio <= 24)  {
+            setMsg("Insira um horário de início"), false
+            return
+        }
+
+        if (horaFim >= 0 || horaFim <= 24)  {
+            setMsg("Insira um horário Final"), false
+            return
+        }
+
+        console.log(msg);
+    }
+    
     
 
 
@@ -117,8 +150,10 @@ const CreateProfileScreen = () => {
                     style={{marginLeft: 10, flexWrap: 'wrap', color: '#FFFF'}}
                 />
             </LinearGradient>
+            
 
             <Text style={styles.nome}>Escolha seus jogos favoritos</Text>
+            <Text>{msg}</Text>
                     
                  <View style={styles.alinhar}>  
                  <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}> 
@@ -170,10 +205,11 @@ const CreateProfileScreen = () => {
             <Text onPress={() => { setPs4(true) }}>PlayStation 4</Text></LinearGradient>
             </View>
 
-            <TouchableOpacity onPress={Save} style={styles.botao2}><Text style={styles.nome}>Salvar Informações</Text></TouchableOpacity>
+            <TouchableOpacity onPress={validate} style={styles.botao2}><Text style={styles.nome}>Salvar Informações</Text></TouchableOpacity>
         </ScrollView>
     )
 }
+
 
 const styles = StyleSheet.create({
     container: {

@@ -1,10 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native'
+import React, { useState } from 'react'
 
-const ChatScreen = () => {
+
+const ChatScreen = ({route}) => {
+  const [message, setMessage] = useState()
+  const duo = route.params.duo
   return (
     <View>
-      <Text>ChatScreen</Text>
+      
+      <Text>{duo.username}</Text>
+
+      <TextInput
+                    placeholder='Mensagem'
+                    value={message}
+                    onChangeText={setMessage}
+                />
+                <TouchableOpacity><Text>Enviar</Text></TouchableOpacity>
     </View>
   )
 }

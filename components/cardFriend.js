@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react"
 import { View, Text, TouchableOpacity } from "react-native"
 import Firebase from "../config/firebase/firebaseConfig"
@@ -5,7 +6,7 @@ import DuoInfo from "../functions/DuoInfo"
 
 const CardFriend = (props) =>{
     const [duoInfo, setDuoInfo] = useState([])
-
+    const navigation  = useNavigation()
     useEffect(() => {
         const anotheruser = props.friend_id
       
@@ -18,9 +19,18 @@ const CardFriend = (props) =>{
                 })
             })
             setDuoInfo({
+                user_id:data[0].user_id,
                 username: data[0].username,
                 descricao: data[0].descricao,
-                user_id:data[0].user_id
+                apexLegends: data[0].apexLegends,
+                csGo: data[0].csGo,
+                dota2: data[0].dota2,
+                fortnite: data[0].fortnite,
+                freeFire: data[0].freeFire,
+                LeagueOfLegends: data[0].LeagueOfLegends,
+                Valorant: data[0].Valorant,
+                horaFim: data[0].horaFim,
+                horaInicio: data[0].horaInicio
              
             });
         })
@@ -29,7 +39,9 @@ const CardFriend = (props) =>{
   
 
     return(
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={() =>{navigation.navigate('Chat', {name:'Chat', duo: duoInfo})}}
+            >
         <View><Text>{duoInfo.username}</Text>
         
         </View>

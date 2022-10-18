@@ -21,7 +21,7 @@ const FriendTab = ()  =>{
         }>
             <Tab.Screen name="Duo's" component={FriendScreen} />
             <Tab.Screen name="Solicitações" component={Invitations} />
-            <Tab.Screen name='Chat' component={ChatScreen} />
+            
 
         </Tab.Navigator>
      

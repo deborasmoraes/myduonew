@@ -9,7 +9,7 @@ import PerfilScreen from './screens/ProfileScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import SignupScreen from './screens/registerScreen'
 import CreateProfileScreen from './screens/CreateProfile'
-
+import ChatScreen from './screens/ChatScreen'
 import ShowBottomTabs from './Bottomtab'
 
 import useAuth from './hooks/useAuth'
@@ -33,6 +33,7 @@ const StackNavigator = () => {
             <Stack.Screen name='Perfil' component={PerfilScreen} />
             <Stack.Screen name='Home' component={ShowBottomTabs} options={{headerShown: false}}/>
             <Stack.Screen name='Duo' component={DuoScreen} />
+            <Stack.Screen name='Chat' component={ChatScreen} />
             <Stack.Screen name='Settings' component={SettingsScreen}/>
             <Stack.Group screenOptions={{presentation:'card'}}>
             <Stack.Screen name= 'AnotherUser' component ={AnotherUserScreen}/>

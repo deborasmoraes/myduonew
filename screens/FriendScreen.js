@@ -31,9 +31,9 @@ const user =  Firebase.auth().currentUser.uid
         <Text>Inicio FlatList</Text>
         <FlatList
         data={friends}
-        renderItem ={({item})  =>{console.log(item.friend_id)
+        renderItem ={({item})  =>{console.log(item.FriendsRelation)
         return(
-          <CardFriend  friend_id = {item.friend_id}/>
+          <CardFriend  friend_id = {item.FriendsRelation}/>
           )  
          
         }}

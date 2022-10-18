@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
 import { View, Text, TouchableOpacity } from "react-native"
 import Firebase from "../config/firebase/firebaseConfig"
-import DuoInfo from "../functions/DuoInfo"
+
+import extractDuo from "../functions/pickduo"
 
 const CardFriend = (props) =>{
     const [duoInfo, setDuoInfo] = useState([])
 
     useEffect(() => {
         const anotheruser = props.friend_id
+        const currentUser  = Firebase.auth().currentUser.uid
       
-        let ref =  Firebase.firestore().collection('user').where("user_id", "==", anotheruser).onSnapshot(query => {
+        let ref =  Firebase.firestore().collection('user').where("user_id", "==", extractDuo(anotheruser,currentUser)).onSnapshot(query => {
             const data = []
             query.forEach(doc => {
                 data.push({

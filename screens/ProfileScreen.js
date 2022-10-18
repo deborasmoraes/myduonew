@@ -87,19 +87,20 @@ const PerfilScreen = () => {
                             onChangeText={setDescricao}
                             defaultValue={user.descricao}></TextInput>}
             </LinearGradient>
-
+                    
             <Text style={styles.nome}>Plataformas</Text>
-
+                    <View style={{marginLeft: 4}}>
             <LinearGradient colors={['#242547', '#042960']}
                 style={styles.plataformas}>
                 <Text style={{ color: '#FFFF' }}>PC</Text>
             </LinearGradient>
+            </View>
 
             <Text style={styles.nome}>Jogos favoritos</Text>
 
             {/* adicionar jogos */}
-            <View>
-                {(trueFalse === true) ? <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} fortnite={user.fortnite} apexLegends={user.apexLegends} csGo={user.csGo} dota2={user.dota2} freeFire={user.freeFire} /> : <TouchableOpacity
+            <View style={styles.alinharJogos}> 
+                {(trueFalse === true) ? <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} fortnite={user.fortnite} apexLegends={user.apexLegends} csGo={user.csGo} dota2={user.dota2} freeFire={user.freeFire}/> : <TouchableOpacity
                     onPress={() => { navigation.navigate("Jogos") }}><Text>Editar Jogos</Text>
                 </TouchableOpacity>}
             </View>
@@ -158,30 +159,24 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderBottomRightRadius: 40,
         marginTop: '2%',
-        height: '11%',
+        height: 60,
         color: '#FFFF',
-        padding: '2%',
+        padding: '4%',
+        flexWrap: 'wrap',
+        width: 330
     },
     plataformas: {
         padding: '1%',
-        width: 100,
-        height: 35,
-        borderRadius: 20,
-        borderBottomRightRadius: 20,
+        borderRadius: 90,
         justifyContent: 'center',
-        marginTop: '2%',
-        alignSelf: 'center',
-        alignItems: 'center',
         borderWidth: 1,
-        borderColor: '#FFFF'
+        borderColor: '#FFFF',
+        height: 35,
+        alignItems: 'center'
     },
     alinharJogos: {
-        flex:1,
-        flexWrap: 'wrap',
-        flexDirection:'row',
-        height:100,
-        width:100,
-        padding: '3%'
+   height: 200,
+   marginTop: '3%'
 
     },
     avatar: {

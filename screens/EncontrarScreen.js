@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useState, useEffect } from 'react'
 
@@ -6,28 +6,32 @@ import Firebase from '../config/firebase/firebaseConfig'
 import CardDuo from '../components/cardDuo'
 
 const EncontrarScreen = () => {
-  const [datauser, setDataUser] = useState([])
-  const [game, setGame] = useState()
- const find = () =>{
-  
-  Firebase.firestore().collection('user').onSnapshot(query =>{
-  const data = []
-  query.forEach((doc) =>{
-    data.push({
-      ...doc.data(),
-      key:doc.id
-    })
-  })
-  console.log(data);
-  })
+  const [user, setUser] = useState([])
 
- }
+ 
+  useEffect(() => {
+    const user = Firebase.auth().currentUser.uid
+    let ref = Firebase.firestore().collection('user').onSnapshot(query => {
+        const data = []
+        query.forEach(doc => {
+            data.push({
+                ...doc.data(),
+                key: doc.id
+            })
+            
+        })
+        
+        setUser(data)
+    })
+    return () => ref()
+}, [])
  return(
  <View style={styles.container}>
+   <TouchableOpacity onPress = {() =>{console.log(user);}}><Text>aaa</Text></TouchableOpacity>
     <FlatList
      style={styles.lista}
-        data={datauser}
-        renderItem={ ({item}) =>{
+        data={user}
+        renderItem={ ({item}) =>{ console.log(user)
           return(
            
           <CardDuo  username = {item.username}

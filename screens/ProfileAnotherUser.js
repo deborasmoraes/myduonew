@@ -53,14 +53,17 @@ const AnotherUserScreen = ({ route }) => {
                     ...doc.data(),
                     key: doc.id
                 })
+           
                 if (doc.id == currentUser) {
-                    return addFriend(),
-                    console.log('amigo adicionado');
+                     addFriend(),
+                    console.log('amigo adicionado')
+                    return
                     
 
                 } else {
-                    return requestFriend(),
-                    console.log('solicitação enviada!');
+                     requestFriend(),
+                    console.log('solicitação enviada!')
+                    return
                     
                 }
             }
@@ -78,12 +81,6 @@ const AnotherUserScreen = ({ route }) => {
     }
 
     const addFriend = () => {
-
-
-
-
-
-
         Firebase.firestore().collection('friends').doc(generateId(currentUser, anotheruser)).set({
             users: {
               

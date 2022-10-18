@@ -70,7 +70,12 @@ const CreateProfileScreen = () => {
             horaFim: horaFim,
             pc: pc,
             ps4: ps4
-        }).catch((error) => {
+        }).then(() =>{
+            Firebase.firestore().collection('user').doc(user_id).collection('added').doc().set({
+                baseUser: ''
+            })
+        })
+        .catch((error) => {
             console.log(error.message);
         })
     }

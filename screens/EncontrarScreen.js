@@ -27,11 +27,14 @@ const EncontrarScreen = () => {
     return () => ref()
 }, [])
  return(
- <View style={styles.container}>
-  <Animatable.Text style={styles.nome}
-  animation="fadeInUp"
-  delay={800}>Encontre seu Duo</Animatable.Text>
-   <TouchableOpacity onPress = {() =>{console.log(user);}}><Text>aaa</Text></TouchableOpacity>
+ <Animatable.View style={styles.container}
+ animation="fadeInUp"
+  delay={800}>
+  <Animatable.Text 
+style={styles.nome}
+animation="fadeInUp"
+delay={650}
+  >Encontre seu Duo</Animatable.Text>
     <FlatList
      style={styles.lista}
         data={user}
@@ -49,7 +52,7 @@ const EncontrarScreen = () => {
         )}}
         keyExtractor={item => item.id}
       />
-   </View>
+   </Animatable.View>
  )
 }
 

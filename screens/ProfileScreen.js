@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
         height: 35,
         alignItems: 'center',
         marginTop: '2%',
-        marginLeft: 60,
-        marginRight: 60
+        marginLeft: 2,
+        marginRight: 12
     },
     alinharJogos: {
         margin: 2,

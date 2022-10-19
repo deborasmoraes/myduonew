@@ -1,6 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {Ionicons } from "@expo/vector-icons";
 import { Image, ImageBackground, Pressable, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import HomeScreen from "./screens/HomeScreen"
@@ -54,7 +55,7 @@ export default function ShowBottomTabs(){
                     </View>
                 )
             })}/>
-            <Tab.Screen name="FriendTab" component={FriendTab} options={{headerShown: true, title: 'Discover' , headerStyle: { backgroundColor: '#242547', height: 85} , headerTitleAlign: 'center', headerTitleStyle: {color: '#F5F5F5'}}} />
+            <Tab.Screen name="FriendTab" component={FriendTab} options={{headerShown: true, title: <Ionicons name={'md-earth-outline'} size={30} color='#FFFF' /> , headerStyle: { backgroundColor: '#242547', height: 85} , headerTitleAlign: 'center', headerTitleStyle: {color: '#F5F5F5'}}} />
             <Tab.Screen name="SettingsTab" component={SettingsScreen}/>
 
         </Tab.Navigator>

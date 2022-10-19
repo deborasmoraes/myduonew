@@ -48,10 +48,10 @@ const CardFriend = (props) =>{
     return(
         <LinearGradient colors={['#242547', '#042960']}
               style={styles.usuario} >
-        <View><Text style={styles.nome}>{duoInfo.username}</Text>
+        <View>
         <TouchableOpacity
         onPress={() =>{navigation.navigate('Chat', {name:'Chat', duo: duoInfo})}}
-            >
+            ><Text style={styles.nome}>{duoInfo.username}</Text>
         </TouchableOpacity>
         </View>
         </LinearGradient>

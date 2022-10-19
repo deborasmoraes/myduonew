@@ -12,7 +12,7 @@ const CardFriend = (props) =>{
     useEffect(() => {
         const anotheruser = props.friend_id
         const currentUser  = Firebase.auth().currentUser.uid
-      
+        const doc_id = props.doc_id
         let ref =  Firebase.firestore().collection('user').where("user_id", "==", extractDuo(anotheruser,currentUser)).onSnapshot(query => {
             const data = []
             query.forEach(doc => {
@@ -23,7 +23,7 @@ const CardFriend = (props) =>{
                 
                 
             })
-            console.log(data);
+           console.log(doc_id);
             setDuoInfo({
                 doc_id: data[0].u ,
                 user_id:data[0].user_id,

@@ -5,32 +5,32 @@ import Firebase from '../config/firebase/firebaseConfig';
 
 const FriendScreen = () =>{
 const [friends, setFriends] = useState([])
+const [doc, setDoc] = useState()
 const user =  Firebase.auth().currentUser.uid
 
   useEffect(() =>{
      Firebase.firestore().collection('friends').where('FriendsRelation', 'array-contains', user).onSnapshot((query) =>{
       const data = []
-     const  data1 = []
-        query.forEach(doc =>{
+      
+       query.forEach(doc =>{
+         doc.ref
           data.push({
             ...doc.data(),
              key:doc.id,
-             doc_id: doc.id
+             
+            
+             
+             
              
           })
-          data1.push({
-            ...doc.id
-             
-          })
-          const doc_id = doc.id
-          console.log(doc_id)
         })
        
-        console.log(data1);
         setFriends(data)
+        
+       
     }
     )
-   
+    
   },[user])
 
   
@@ -42,14 +42,16 @@ const user =  Firebase.auth().currentUser.uid
         data={friends}
         renderItem ={({item})  =>{
         return(
-          <CardFriend  friend_id = {item.FriendsRelation}/>
+          <CardFriend  friend_id = {item.FriendsRelation}
+          doc_id = {item.key}
+          />
           )  
          
         }}
         keyExtractor = {item =>{item.id}}
         
         />
-        <TouchableOpacity style={{width: 40, height: 40}} onPress={() =>{console.log(friends[0].friend_id);}}><Text style={{color: '#FFFF'}}>oi</Text></TouchableOpacity>
+        <TouchableOpacity style={{width: 40, height: 40}} onPress={() =>{console.log(friends[0].key);}}><Text style={{color: '#FFFF'}}>oi</Text></TouchableOpacity>
        </View>
        
     )

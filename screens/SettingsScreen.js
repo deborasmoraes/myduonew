@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { Linking } from 'react-native';
+import Firebase from '../config/firebase/firebaseConfig';
 
 const SettingsScreen = () => {
   return (
@@ -15,7 +16,7 @@ const SettingsScreen = () => {
           <Text style={{ color: '#F5F5F5' }}>Alterar Senha</Text>
         </LinearGradient>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress = {LogOut}>
       <LinearGradient colors={['#242547', '#042960']}
         style={styles.destaque}>
         <Text style={{ color: '#F5F5F5' }}>Logout</Text>
@@ -56,6 +57,11 @@ const SettingsScreen = () => {
 
 
   )
+}
+
+const LogOut = () => {
+  Firebase.auth().signOut()
+  window.location.reload()
 }
 
 const styles = StyleSheet.create({

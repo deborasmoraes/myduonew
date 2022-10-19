@@ -68,9 +68,7 @@ const DuoScreen = () => {
           return (
            
               <CardDuo username={item.username}
-                image={<Image style={styles.avatar} source={{
-                  uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
-                }} />}
+                image={item.image}
                 horaInicio={item.horaInicio}
                 horaFim={item.horaFim}
                 user_id={item.user_id}
@@ -169,9 +167,12 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   avatar: {
-    width: 5,
-    height: 5,
-    alignContent:'center'
+    width: 30,
+    height:40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 30,
+    marginBottom: 10
   },
 
 })

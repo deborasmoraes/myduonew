@@ -1,7 +1,9 @@
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import * as Animatable from 'react-native-animatable'
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import Firebase from '../config/firebase/firebaseConfig'
 import CardDuo from '../components/cardDuo'
@@ -30,6 +32,10 @@ const EncontrarScreen = () => {
  <Animatable.View style={styles.container}
  animation="fadeInUp"
   delay={800}>
+    <View style={styles.alinhar}>
+    <MaterialCommunityIcons name={'bell-ring-outline'} size={22} color='#FFFF' style={{marginLeft: 5}}/>
+      <Ionicons name={'warning-outline'} size={22} color='#FFFF' style={{marginRight: 5}}/>
+    </View>
   <Animatable.Text 
 style={styles.nome}
 animation="fadeInUp"
@@ -42,7 +48,7 @@ delay={650}
           return(
            
           <CardDuo  username = {item.username}
-                    image = {'inseririmg'}
+                    image = {item.image}
                     horaInicio = {item.horaInicio}
                     horaFim   = {item.horaFim}
                     user_id = {item.user_id}
@@ -61,11 +67,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#00182F',
     justifyContent: 'center',
- 
+    padding: '5%'
   },
   lista:{
     marginTop: 15,
-    marginBottom: 85
+    marginBottom: 70,
+    paddingBottom: 4,
+    borderRadius: 20
   },
   nome:{
       fontWeight: 'bold',
@@ -74,8 +82,14 @@ const styles = StyleSheet.create({
       padding: '0.5%',
       marginLeft: '2%',
       textAlign: 'center',
-      marginTop: '20%'
-  }
+      marginTop: '8%'
+  },
+  alinhar: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'space-between',
+    marginTop: '7%'
+},
   
   })
 

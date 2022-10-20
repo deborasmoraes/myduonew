@@ -20,7 +20,7 @@ const ModalCreate = () => {
 const styles = StyleSheet.create({
     container: {
       flexGrow: 1,
-      backgroundColor: '#00182F',
+      backgroundColor: '#000',
       justifyContent: 'center',
       alignItems: 'center'
   

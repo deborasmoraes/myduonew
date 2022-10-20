@@ -3,14 +3,18 @@ import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { Linking } from 'react-native';
 import Firebase from '../config/firebase/firebaseConfig';
+import { useNavigation } from '@react-navigation/native';
 
 const SettingsScreen = () => {
+  const navigate = useNavigation()
   return (
 
     <View style={styles.container}>
 
       <Text style={styles.nome}>Configurações</Text>
-      <TouchableOpacity>
+      <TouchableOpacity
+      onPress ={() =>{navigate.navigate('Reset', {name: 'Reset'})}}
+      >
         <LinearGradient colors={['#242547', '#042960']}
           style={styles.destaque}>
           <Text style={{ color: '#F5F5F5' }}>Alterar Senha</Text>

@@ -14,6 +14,7 @@ import ShowBottomTabs from './Bottomtab'
 
 import useAuth from './hooks/useAuth'
 import AnotherUserScreen from './screens/ProfileAnotherUser'
+import redefinir from './screens/redefinirsenha'
 
 
 const Stack = createNativeStackNavigator()
@@ -28,6 +29,7 @@ const StackNavigator = () => {
         }>
             
             <Stack.Screen name='Login' component={LoginScreen} />
+            <Stack.Screen name='Reset' component={redefinir} />
             <Stack.Screen name = 'Registrar' component = {SignupScreen} options={{headerShown: false}}/>
             <Stack.Screen  name ='CreateProfile' component  = {CreateProfileScreen}/>
             <Stack.Screen name='Perfil' component={PerfilScreen} />

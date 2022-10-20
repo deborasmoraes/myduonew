@@ -1,10 +1,13 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native'
-import React, { useState } from 'react'
+import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Firebase from '../config/firebase/firebaseConfig'
 import { serverTimestamp } from '@firebase/firestore'
+import SenderMessage from '../components/SenderMessage'
+import ReceiverMessage from '../components/Receivermessage'
 
 const ChatScreen = ({route}) => {
   const [message, setMessage] = useState()
+  const [chat, setChat] = useState([])
   const duo = route.params.duo
   const loggedUser = Firebase.auth().currentUser.uid
 
@@ -16,6 +19,18 @@ const ChatScreen = ({route}) => {
     })
     .catch(error =>{console.log(error.message);})
   }
+  useEffect(() =>{
+    Firebase.firestore().collection('friends').doc(duo.doc_id).collection('messages').orderBy('timestamp', 'desc').onSnapshot(query =>{
+      const data  = []
+      query.forEach(doc => {
+        data.push({
+          ...doc.data(),
+          key: doc.id
+        })
+      })
+    setChat(data)
+    })
+  }, [])
   
   
   return (
@@ -23,6 +38,17 @@ const ChatScreen = ({route}) => {
       
       <Text>{duo.username}</Text>
 
+    <FlatList
+      data={chat}
+      renderItem = {({item}) =>{ 
+        return(
+          (item.user_id === loggedUser)?<SenderMessage message ={item.message} />:<ReceiverMessage message  ={item.message}/>
+        )
+        
+      }}
+      keyExtractor ={item =>item.id}
+    
+    />
       <TextInput
                     placeholder='Mensagem'
                     value={message}

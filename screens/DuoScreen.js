@@ -68,7 +68,7 @@ const DuoScreen = () => {
           return (
            
               <CardDuo username={item.username}
-                image={item.image}
+                
                 horaInicio={item.horaInicio}
                 horaFim={item.horaFim}
                 user_id={item.user_id}

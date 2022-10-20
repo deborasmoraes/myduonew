@@ -6,7 +6,7 @@ import SenderMessage from '../components/SenderMessage'
 import ReceiverMessage from '../components/Receivermessage'
 
 const ChatScreen = ({route}) => {
-  const [message, setMessage] = useState()
+  const [message, setMessage] = useState('')
   const [chat, setChat] = useState([])
   const duo = route.params.duo
   const loggedUser = Firebase.auth().currentUser.uid
@@ -17,7 +17,7 @@ const ChatScreen = ({route}) => {
       user_id: loggedUser,
       message: message
     })
-    .catch(error =>{console.log(error.message);})
+    setMessage('')
   }
   useEffect(() =>{
     Firebase.firestore().collection('friends').doc(duo.doc_id).collection('messages').orderBy('timestamp', 'desc').onSnapshot(query =>{
@@ -49,12 +49,14 @@ const ChatScreen = ({route}) => {
       keyExtractor ={item =>item.id}
     
     />
+    <View>
       <TextInput
                     placeholder='Mensagem'
                     value={message}
                     onChangeText={setMessage}
                 />
-                <TouchableOpacity onPress = {sendMessage}><Text>Enviar</Text></TouchableOpacity>
+                {(message != '')?<TouchableOpacity onPress = {sendMessage}><Text>Enviar</Text></TouchableOpacity>:''}
+                </View>
     </View>
   )
 }

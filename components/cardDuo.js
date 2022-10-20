@@ -10,10 +10,10 @@ const CardDuo = (props, { route }) => {
 
     <LinearGradient colors={['#242547', '#042960']}
     style={styles.usuario}>
-         <Image style={styles.avatar} source={{
+         {/* <Image style={styles.avatar} source={{
                       uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
                   }}
-                   />
+                   /> */}
                    <Text>{props.image}</Text>
                    <View>
       <Text style={styles.username}>{props.username}</Text>

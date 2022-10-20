@@ -7,6 +7,7 @@ const ModalCreate = () => {
         <View style={styles.container}>
             <Modal visible = {modal}
             animationType ={'fade'}
+            style={{ backgroundColor: '#0000'}}
             >
             <Text style={styles.nome}>Olá! Seja bem-vindo(a) ao <Text style={styles.nome2}> MyDuo!</Text></Text>
 
@@ -20,9 +21,9 @@ const ModalCreate = () => {
 const styles = StyleSheet.create({
     container: {
       flexGrow: 1,
-      backgroundColor: '#000',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      backgroundColor:'#0000'
   
     },
     nome: {

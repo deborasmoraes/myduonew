@@ -24,7 +24,7 @@ const user =  Firebase.auth().currentUser.uid
              
           })
         })
-       
+       console.log(data[0].key);
         setFriends(data)
         
        

@@ -23,9 +23,9 @@ const CardFriend = (props) =>{
                 
                 
             })
-           console.log(doc_id);
+           
             setDuoInfo({
-                doc_id: data[0].u ,
+                doc_id: doc_id,
                 user_id:data[0].user_id,
                 username: data[0].username,
                 descricao: data[0].descricao,

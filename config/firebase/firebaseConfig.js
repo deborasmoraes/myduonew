@@ -1,7 +1,7 @@
 
-import firebase from "firebase/app";
-import 'firebase/firebase-firestore'
-import 'firebase/firebase-auth'
+import firebase from "firebase/compat/app";
+import 'firebase/compat/firestore'
+import 'firebase/compat/auth'
 import {decode, encode} from 'base-64'
 
 if(!global.btoa){ global.btoa = encode}

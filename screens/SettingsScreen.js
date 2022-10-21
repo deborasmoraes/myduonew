@@ -13,7 +13,7 @@ const SettingsScreen = () => {
 
       <Text style={styles.nome}>Configurações</Text>
       <TouchableOpacity
-      onPress ={() =>{navigate.navigate('Reset', {name: 'Reset'})}}
+      
       >
         <LinearGradient colors={['#242547', '#042960']}
           style={styles.destaque}>

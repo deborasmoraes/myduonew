@@ -12,6 +12,7 @@
     "@expo-google-fonts/fredoka-one": "^0.2.2",
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^0.17.0",
+    "@firebase/auth": "^0.20.10",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/material-top-tabs": "^6.3.0",
@@ -39,6 +40,7 @@
     "react-native-screens": "~3.15.0",
     "react-native-svg": "12.3.0",
     "react-native-tab-view": "^3.3.0",
+    "react-native-toast-message": "^2.1.5",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "~0.18.7",
     "react-navigation": "^4.4.4"

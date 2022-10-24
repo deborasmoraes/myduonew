@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
+import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import HomeScreen from './screens/HomeScreen'
 import DuoScreen from './screens/DuoScreen'
 import LoginScreen from './screens/LoginScreen'
@@ -43,6 +43,8 @@ const StackNavigator = () => {
             
             
         </Stack.Navigator>
+         
+        
     )
 }
 

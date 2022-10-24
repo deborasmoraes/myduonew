@@ -3,7 +3,7 @@ import React, { useEffect, useLayoutEffect } from 'react'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { LinearGradient } from 'expo-linear-gradient';
-
+import { Toast } from 'react-native-toast-message/lib/src/Toast';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Firebase from '../config/firebase/firebaseConfig';
 
@@ -13,8 +13,8 @@ import generateId from '../functions/genrateId';
 const AnotherUserScreen = ({ route }) => {
     const navigation = useNavigation()
     const [user, setUser] = useState({})
-    const [user1, setUser1] = useState({})
-    useLayoutEffect(() => {
+   
+     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
         });
@@ -46,7 +46,7 @@ const AnotherUserScreen = ({ route }) => {
     }, [])
 
     const exist = () => {
-        Firebase.firestore().collection('user').doc(anotheruser).collection('added').onSnapshot(query => {
+          Firebase.firestore().collection('user').doc(anotheruser).collection('added').onSnapshot(query => {
             const data = []
             query.forEach((doc) => {
                 data.push({
@@ -58,14 +58,22 @@ const AnotherUserScreen = ({ route }) => {
 
                 if (doc.id == currentUser) {
                     addFriend(),
-                        console.log('amigo adicionado')
-                    return
+                       Toast.show({
+                        type: 'success',
+                        text1: 'Duo adicionado!'
+                       })
+                        
+                    
 
 
                 } else {
                     requestFriend(),
-                        console.log('solicitação enviada!')
-                    return
+                    Toast.show({
+                        type: 'success',
+                        text1: 'Solicitação enviada!'
+                       })
+                        
+                    
 
                 }
             }
@@ -74,8 +82,10 @@ const AnotherUserScreen = ({ route }) => {
 
 
         })
-
+       
+      
     }
+ 
     const requestFriend = () => {
         Firebase.firestore().collection('user').doc(currentUser).collection('added').doc(anotheruser).set({ user_id: anotheruser }).catch((error) => {
             console.log(error.message);

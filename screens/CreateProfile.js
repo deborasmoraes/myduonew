@@ -10,34 +10,11 @@ import Firebase from '../config/firebase/firebaseConfig'
 import { useNavigation } from '@react-navigation/native'
 import ModalCreate from '../components/modalCreate'
 
-// export function PhotoComponent() {
 
-//     const [file, setFile] = useState(null);
-  
-//     const pickImage = () => {
-//         ImagePicker.showImagePicker
-//       };
-  
-//       launchImageLibrary(options, async (response) => {
-//         if (response.didCancel) {
-//           console.log("Usuário cancelou a seleção");
-//         } else if (response.error) {
-//           console.log("Ocorreu um erro.");
-//         } else {
-//           const photoFile = {
-//             uri: asset.uri,
-//             name: asset.fileName,
-//             type: "image/jpeg",
-//           };
-  
-//           setFile(photoFile);
-//         }
-//       });
-//     };
-  
 
 
 const CreateProfileScreen = () => {
+    const [file, setFile] = useState(null)
     const [msg, setMsg] = useState('')
     const navigation = useNavigation()
     const [username, setUsername] = useState('')
@@ -55,7 +32,7 @@ const CreateProfileScreen = () => {
     const [ps4, setPs4] = useState(false)
     const user_id = Firebase.auth().currentUser.uid
 
-    const Save = () => {
+    const Save = () => { 
         Firebase.firestore().collection('user').doc(user_id).set({
             username: username,
             descricao: descricao,
@@ -97,22 +74,47 @@ const CreateProfileScreen = () => {
             setMsg("insira uma descrição."), false 
             return
         }
-
-       
+if(apexLegends == false && fortnite == false && valorant == false && lol == false  && freeFire  == false&&dota2 == false && csGo == false){
+    setMsg("Selecione ao menos um jogo!")
+    return
+}
+        
         if (horaInicio >= 0 || horaInicio <= 24)  {
             setMsg("Insira um horário de início"), false
             return
         }
 
         if (horaFim >= 0 || horaFim <= 24)  {
-            setMsg("Insira um horário Final"), false
+            setMsg("Insira um horário final"), false
             return
         }
 
-        console.log(msg);
+     else{
+        setMsg('')
+        Save()
+     }
     }
     
-    
+    const pickImage = () => {
+        ImagePicker.showImagePicker
+        
+      launchImageLibrary(options, async (response) => {
+        if (response.didCancel) {
+          console.log("Usuário cancelou a seleção");
+        } else if (response.error) {
+          console.log("Ocorreu um erro.");
+        } else {
+          const photoFile = {
+            uri: asset.uri,
+            name: asset.fileName,
+            type: "image/jpeg",
+          };
+  
+          setFile(photoFile);
+        }
+      });
+      };
+  
 
 
     return (
@@ -130,13 +132,15 @@ const CreateProfileScreen = () => {
                         uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
                     }}
                 />
-                <TouchableOpacity><Text>Alterar foto</Text></TouchableOpacity>
+                <TouchableOpacity  onPress={pickImage}><Text>Alterar foto</Text></TouchableOpacity>
                 <Text>Insira seu Nick</Text>
                 <TextInput
                     placeholder='username'
                     value={username}
                     onChangeText={setUsername}
                 />
+                {(msg.search('usuário') > -1)?<Text>{msg}</Text>:''}
+
             </LinearGradient>
 
             <Text style={styles.nome}>Fale mais sobre você</Text>
@@ -150,10 +154,11 @@ const CreateProfileScreen = () => {
                     style={{marginLeft: 10, flexWrap: 'wrap', color: '#FFFF'}}
                 />
             </LinearGradient>
+            {(msg.search('descrição') > -1)?<Text>{msg}</Text>:''}
+
             
 
             <Text style={styles.nome}>Escolha seus jogos favoritos</Text>
-            <Text>{msg}</Text>
                     
                  <View style={styles.alinhar}>  
                  <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}> 
@@ -171,6 +176,8 @@ const CreateProfileScreen = () => {
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
                 <Text onPress={() => { setValorant(true) }}>Valorant</Text></LinearGradient>
                 </View>
+                {(msg.search('jogo') > -1)?<Text>{msg}</Text>:''}
+
 
                     <Text style={styles.nome}>Horário disponível</Text>
             <View style={styles.alinhar2}>
@@ -187,6 +194,8 @@ const CreateProfileScreen = () => {
                 style={{color: '#FFFF'}}
 
             />
+                            {(msg.search('início') > -1)?<Text>{msg}</Text>:''}
+
             
             <TextInputMask
                 type={'datetime'}
@@ -196,6 +205,7 @@ const CreateProfileScreen = () => {
                 onChangeText={setHoraFim}
                 style={{color: '#FFFF'}}
             />
+            {(msg.search('final') > -1)?<Text>{msg}</Text>:''}
             </View>
             <Text style={styles.nome}>Em qual plataforma você joga?</Text>
             <View style={styles.alinhar}>
@@ -205,7 +215,7 @@ const CreateProfileScreen = () => {
             <Text onPress={() => { setPs4(true) }}>PlayStation 4</Text></LinearGradient>
             </View>
 
-            <TouchableOpacity onPress={Save} style={styles.botao2}><Text style={styles.nome}>Salvar Informações</Text></TouchableOpacity>
+            <TouchableOpacity onPress={validate} style={styles.botao2}><Text style={styles.nome}>Salvar Informações</Text></TouchableOpacity>
         </ScrollView>
     )
 }

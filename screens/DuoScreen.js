@@ -8,7 +8,8 @@ import * as Animatable from 'react-native-animatable'
 
 const DuoScreen = () => {
   const [datauser, setDataUser] = useState([])
-  const [game, setGame] = useState()
+  const [game, setGame] = useState(undefined)
+  const [message, setMessage] = useState('')
   const find = () => {
 
     Firebase.firestore().collection('user').where(game, "==", true).onSnapshot(query => {
@@ -23,6 +24,16 @@ const DuoScreen = () => {
     })
 
   }
+const validate  = () =>{
+  if(game == undefined ){
+    setMessage('Selecione um jogo!')
+    return
+  }else{
+    find()
+    setMessage('')
+  }
+}
+
 
   return (
     <View style={styles.container}>
@@ -54,13 +65,13 @@ const DuoScreen = () => {
             <TouchableOpacity onPress={() => { setGame('valorant') }} style={styles.botao}><Text style={{ color: '#F5F5F5' }}>Valorant</Text></TouchableOpacity></LinearGradient>
 
         </View>
-
-        <TouchableOpacity onPress={find}><Text style={styles.nome2}>Filtrar</Text></TouchableOpacity>
+        {(message != '')?<Text style = {styles.nome2}>{message}</Text>:''}
+        <TouchableOpacity onPress={validate}><Text style={styles.nome2}>Filtrar</Text></TouchableOpacity>
 
 
       </Animatable.View>
 
-
+     
       <FlatList
         style={styles.lista}
         data={datauser}
@@ -80,6 +91,7 @@ const DuoScreen = () => {
         }}
         keyExtractor={item => item.id}
       />
+     
 
     </View>
 

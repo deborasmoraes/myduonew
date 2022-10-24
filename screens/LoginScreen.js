@@ -2,11 +2,12 @@ import { StyleSheet, Text, TextInput, View, Image, ImageBackground, SafeAreaView
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable'
 import React, { useLayoutEffect, useState, useEffect, useCallback } from 'react'
-import useAuth from '../hooks/useAuth'
 import { useNavigation } from '@react-navigation/native'
 import Firebase from '../config/firebase/firebaseConfig';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen'
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+
 
 const LoginScreen = () => {
     
@@ -14,7 +15,7 @@ const LoginScreen = () => {
     const [senha, setSenha] = useState('')
     const [msg, setMSG] = useState('')
 
-    const { user } = useAuth()
+    
     const navigation = useNavigation()
 
     useLayoutEffect(() => {
@@ -61,6 +62,7 @@ const LoginScreen = () => {
        
     }
 
+
     const [fontsLoaded] = useFonts({
         'FredokaOneRegular': require("../assets/fonts/FredokaOne-Regular.ttf")})
     
@@ -79,7 +81,22 @@ const LoginScreen = () => {
         }, [fontsLoaded])
     
         if(!fontsLoaded) return null
-    
+    const loginGoogle = () =>{
+        const auth = getAuth()
+        const provider = new GoogleAuthProvider()
+        signInWithPopup(auth, provider)
+        .then(() => {
+            let user = Firebase.auth().currentUser.uid
+            Firebase.firestore().collection('user').doc(user).onSnapshot((query) =>{
+                if(query.exists == true){
+                    navigation.navigate('Home', {nome: 'Home'})
+                }else{navigation.navigate('CreateProfile', {nome: 'Home'})
+            }
+            })
+
+        })
+        .catch(error =>{console.log(error);})
+    }
 
     return (
 
@@ -143,6 +160,32 @@ const LoginScreen = () => {
                     <Text style={{ color: 'grey' }}>Esqueci a senha</Text>
                 </TouchableOpacity>
                 <View style={styles.container}>
+<<<<<<< HEAD
+=======
+                    <Text
+                        style={{
+                            textAlign: 'center',
+                            marginTop: '1%',
+                            color: '#FFFF'
+                        }}>
+                        Ou continue com</Text>
+                    <TouchableOpacity
+                        onPress={loginGoogle}
+                        style={styles.botao3}>
+                        
+                        <Text
+                            style={{ color: '#FFF' }}
+                            
+                        >Google</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.botao3}>
+                        <Text
+                            style={{ color: '#FFF' }}>
+                            Facebook</Text>
+                    </TouchableOpacity>
+
+>>>>>>> f17d066c380b73f9f3d47d6f26bfa8ddf7152d49
                     <Text style={styles.container2}>Não possui conta?</Text>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text style={{color:'#FFFF'}}>Criar agora</Text></TouchableOpacity>

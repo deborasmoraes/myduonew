@@ -3,9 +3,12 @@ import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet } from 'reac
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable'
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Firebase from '../config/firebase/firebaseConfig';
 export default function SignupScreen({ navigation }) {
+    const passwordOne = useRef()
+    const passwordTwo = useRef()
+    const idadeRef = useRef()
 
     
     const [email, setEmail] = useState('')
@@ -76,36 +79,46 @@ export default function SignupScreen({ navigation }) {
                     style={styles.input2}
                     value={email}
                     onChangeText={setEmail}
-                />
+                    returnKeyType='next'
+                    onSubmitEditing={() => passwordOne.current.focus()}
+                    autoCapitalize="none"                />
                 {(msg.search('email') > -1)?<Text>{msg}</Text>:''}
                 
                 <Text
                  style={styles.input1}>Senha</Text>
                 <TextInput 
+                ref={passwordOne}
                 style={styles.input2}
                     value={senha}
                     onChangeText={setSenha}
                     secureTextEntry={true}
+                    returnKeyType='next'
+                    onSubmitEditing={() => passwordTwo.current.focus()}
                 />
                  {(msg.search('senha') > -1)?<Text>{msg}</Text>:''}
                 
                  <Text style={styles.input1}>Confirme sua senha</Text>
             <TextInput
+            ref={passwordTwo}
             style={styles.input2}
                 onChangeText={setConfirm}
                 value={confirm}
                 secureTextEntry={true}
+                returnKeyType='next'
+                    onSubmitEditing={() => idadeRef.current.focus()}
             />
              {(msg.search('Verifique') > -1)?<Text>{msg}</Text>:''}
              {(msg.search('Digite') > -1)?<Text>{msg}</Text>:''}
             
             <Text style={styles.input1}>Ano de Nascimento</Text>
             <TextInputMask
+            ref={idadeRef}
             style={styles.input2}
                 type='datetime'
                 options={{ format: 'DD/MM/YYYY' }}
                 onChangeText={setIdade}
                 value={idade}
+                returnKeyType='done'
                  />
             </Animatable.View>
 

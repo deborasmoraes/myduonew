@@ -4,10 +4,10 @@ import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 const ModalCreate = () => {
     const [modal, setModal] = useState(true)
     return (
-        <View style={styles.container}>
+        
             <Modal visible = {modal}
             animationType ={'fade'}
-            style={{ backgroundColor: '#0000'}}
+            style={{ backgroundColor: '#00182F', flex: 1}}
             >
             <Text style={styles.nome}>Olá! Seja bem-vindo(a) ao <Text style={styles.nome2}> MyDuo!</Text></Text>
 
@@ -15,15 +15,12 @@ const ModalCreate = () => {
             <TouchableOpacity onPress = {() =>{setModal(false)}}><Text style={styles.nome2}>Vamos nessa!</Text></TouchableOpacity>
 
             </Modal>
-        </View>
+        
     )
 }
 const styles = StyleSheet.create({
     container: {
-      flexGrow: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor:'#0000'
+      backgroundColor:'#00182F'
   
     },
     nome: {

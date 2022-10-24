@@ -1,12 +1,20 @@
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useLayoutEffect } from 'react'
 import Firebase from '../config/firebase/firebaseConfig'
 import { serverTimestamp } from '@firebase/firestore'
 import SenderMessage from '../components/SenderMessage'
 import ReceiverMessage from '../components/Receivermessage'
 import { LinearGradient } from 'expo-linear-gradient';
-
+import { useNavigation } from '@react-navigation/native'
 const ChatScreen = ({ route }) => {
+  const navigation = useNavigation()
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerStyle: {backgroundColor:'#00182F'},
+      headerTitleStyle:{color: '#FFFF'},
+      headerTintColor: '#FFFF'
+    });
+  }, []);
   const [message, setMessage] = useState('')
   const [chat, setChat] = useState([])
   const duo = route.params.duo
@@ -37,14 +45,14 @@ const ChatScreen = ({ route }) => {
   return (
     <View style={{ flex: 1, backgroundColor: '#00182F' }}>
 
-      <Text style={{ backgroundColor: '#FFFF', height: 30, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, textAlign: 'center' }}>{duo.username}</Text>
+      <Text style={{ backgroundColor: '#242547', height: 30, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, textAlign: 'center', color: '#FFFF' }}>{duo.username}</Text>
 
       <FlatList
         style={styles.lista}
         data={chat}
         renderItem={({ item }) => {
           return (
-            (item.user_id === loggedUser) ? <SenderMessage message={item.message} /> : <ReceiverMessage message={item.message} />
+            (item.user_id === loggedUser) ?  <SenderMessage message={item.message} /> : <ReceiverMessage message={item.message}/>
           )
 
         }}
@@ -58,7 +66,9 @@ const ChatScreen = ({ route }) => {
           placeholder='Mensagem'
           value={message}
           onChangeText={setMessage}
-        /></LinearGradient>
+          multiline={true}
+          numberOfLines={4}
+          /></LinearGradient>
     <TouchableOpacity onPress={sendMessage} style={{alignSelf: 'flex-end', bottom: 30, marginLeft: 20}}><Image 
             source={require('../assets/myduo.png')}
             style={{ width: 40, height: 40, alignContent: 'flex-end'}} /></TouchableOpacity> 

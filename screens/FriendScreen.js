@@ -37,7 +37,7 @@ const user =  Firebase.auth().currentUser.uid
     return(
        <View style={{flex: 1, backgroundColor: '#00182F', padding: '5%' }}>
         
-        <Text>Inicio FlatList</Text>
+       
         <FlatList
         data={friends}
         renderItem ={({item})  =>{

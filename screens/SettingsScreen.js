@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Linking } from 'react-native';
 import Firebase from '../config/firebase/firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
+import modaltermo from '../components/modaltermo';
 
 const SettingsScreen = () => {
   const navigate = useNavigation()
@@ -43,7 +44,7 @@ const SettingsScreen = () => {
       </TouchableOpacity>
       <View style={styles.questions}>
         <Text style={{ color: '#F5F5F5' }}>Privacidade</Text></View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {modaltermo(true)}}>
       <LinearGradient colors={['#242547', '#042960']}
         style={styles.destaque2}>
         <Text style={{ color: '#F5F5F5' }}>Termos de Uso</Text>

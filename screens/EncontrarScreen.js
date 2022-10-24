@@ -29,18 +29,20 @@ const EncontrarScreen = () => {
     return () => ref()
 }, [])
  return(
- <Animatable.View style={styles.container}
- animation="fadeInUp"
-  delay={800}>
-    <View style={styles.alinhar}>
+ <View style={styles.container}
+>
+    <Animatable.View style={styles.alinhar}
+     animation="fadeInUp"
+     delay={800}>
     <MaterialCommunityIcons name={'bell-ring-outline'} size={22} color='#FFFF' style={{marginLeft: 5}}/>
       <Ionicons name={'warning-outline'} size={22} color='#FFFF' style={{marginRight: 5}}/>
-    </View>
+    </Animatable.View>
   <Animatable.Text 
 style={styles.nome}
 animation="fadeInUp"
 delay={650}
   >Encontre seu Duo</Animatable.Text>
+  
     <FlatList
      style={styles.lista}
         data={user}
@@ -58,7 +60,8 @@ delay={650}
         )}}
         keyExtractor={item => item.id}
       />
-   </Animatable.View>
+    
+   </View>
  )
 }
 

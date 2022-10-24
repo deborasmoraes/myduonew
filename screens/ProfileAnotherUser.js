@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import Firebase from '../config/firebase/firebaseConfig';
 
 import Jogos from '../components/jogos';
@@ -97,7 +97,7 @@ const AnotherUserScreen = ({ route }) => {
     }
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '7%' }}>
-
+            <TouchableOpacity onPress={() => { navigation.goBack() }}><Ionicons name={'chevron-back-circle-outline'} size={30} color='#FFFF' /></TouchableOpacity>
 
             {/* header */}
             <View style={styles.alinhar}>
@@ -136,23 +136,25 @@ const AnotherUserScreen = ({ route }) => {
             <Text style={styles.nome}>Jogos favoritos</Text>
 
             {/* adicionar jogos */}
-           
-               <View style={styles.alinharJogos}>
+
+            <View style={styles.alinharJogos}>
                 <Jogos valorant={user.Valorant} LeagueOfLegends={user.LeagueOfLegends} ApexLegnds={user.ApexLegnds} />
-                </View>
+            </View>
 
             <Text style={styles.nome}>Disponibilidade</Text>
             {/* horários */}
-            <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', alignSelf: 'center' }}>
-                <Text style={{ color: '#FFFF', marginRight: '30%', fontWeight: 'bold', fontSize: 20 }}>Início</Text>
+            <View style={styles.horario}>
+                <Text style={styles.horario2}>Início</Text>
                 <Text style={styles.nome}>Fim</Text>
             </View>
-            <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
-                <Text>{user.horaInicio}</Text>
-                <Text>{user.horaFim}</Text>
-                <TouchableOpacity onPress={exist}><Text>Adicionar</Text></TouchableOpacity>
-                <TouchableOpacity onPress={() => { navigation.goBack() }}><Text>Voltar</Text></TouchableOpacity>
+            <View style={styles.horario}>
+                <Text style={styles.horario2}>{user.horaInicio}</Text>
+                <Text style={styles.nome}>{user.horaFim}</Text>
             </View>
+
+            <TouchableOpacity onPress={exist} style={styles.botao1}><Ionicons name={'ios-person-add'} size={23} color='#FFFF' style={{alignSelf: 'center', marginTop: 5}} /></TouchableOpacity>
+
+
 
 
 
@@ -175,7 +177,7 @@ const styles = StyleSheet.create({
         color: '#FFFF',
         marginTop: '5%',
         padding: '1%',
-        marginLeft: '2%'
+
     },
     username: {
         fontWeight: 'bold',
@@ -222,7 +224,7 @@ const styles = StyleSheet.create({
     alinharJogos: {
         margin: 2,
         borderRadius: 20,
-       alignItems: 'center',
+        alignItems: 'center',
     },
     avatar: {
         borderWidth: 2,
@@ -243,9 +245,10 @@ const styles = StyleSheet.create({
     },
     horario2: {
         color: '#FFFF',
-        marginRight: '32%',
+        marginRight: '27%',
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+
     },
     editarJogos: {
         padding: 5,
@@ -256,7 +259,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignContent: 'center',
         marginTop: '2%'
-    }
+    },
+    botao1: {
+        backgroundColor: '#042960',
+        borderRadius: 20,
+        width: 100,
+        height: 40,
+        alignSelf: 'center',
+        padding: 2,
+        marginTop: '7%'
+    },
 }
 )
 export default AnotherUserScreen

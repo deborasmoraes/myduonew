@@ -3,10 +3,22 @@ import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'r
 
 const SenderMessage = (props) =>{
     return(
-        <Text style ={styles.text}>{props.message}</Text>
+        <View style={styles.container}>
+        <Text style ={{color: '#FFFF'}}>{props.message}</Text>
+        </View>
     )
 }
+
+
 const styles = StyleSheet.create({
-    text:{color: 'blue'}
+    container:{
+        backgroundColor: '#042690',
+        borderRadius: 20,
+        margin: 10,
+        alignSelf: 'flex-end',
+        padding: 15,
+        flexDirection: 'column',
+        right: 5
+    }
 });
 export default SenderMessage

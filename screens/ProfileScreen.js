@@ -83,9 +83,13 @@ const PerfilScreen = () => {
                 {(trueFalse === true) ?
                     <Text style=
                         {{ color: '#FFFF', marginLeft: '3%', padding: '2%' }}>{user.descricao}</Text> : <TextInput
+                            style=
+                            {{ color: '#FFFF', marginLeft: '3%', padding: '2%', flexWrap: 'wrap' }}
                             onChangeText={setDescricao}
                             defaultValue={user.descricao}
-                            ></TextInput>}
+                            multiline={true}
+                            numberOfLines={3}
+                        ></TextInput>}
             </LinearGradient>
 
             <Text style={styles.nome}>Plataformas</Text>

@@ -105,6 +105,7 @@ const LoginScreen = () => {
                     style={styles.input2}
                     value={email}
                     onChangeText={setEmail}
+                    autoCapitalize="none"
                 />
 
 
@@ -115,6 +116,7 @@ const LoginScreen = () => {
                     value={senha}
                     onChangeText={setSenha}
                     secureTextEntry={true}
+                    autoCapitalize="none"
                 />
                 {(validate)? <Text>{msg}</Text>:''}
             </Animatable.View>
@@ -129,7 +131,7 @@ const LoginScreen = () => {
 
                     <Text 
                     style={{ color: '#FFFF', 
-                    alignSelf: 'center' }}>
+                    textAlign: 'center',  }}>
                         Entrar</Text>
                 </TouchableOpacity>
 
@@ -141,27 +143,6 @@ const LoginScreen = () => {
                     <Text style={{ color: 'grey' }}>Esqueci a senha</Text>
                 </TouchableOpacity>
                 <View style={styles.container}>
-                    <Text
-                        style={{
-                            textAlign: 'center',
-                            marginTop: '1%',
-                            color: '#FFFF'
-                        }}>
-                        Ou continue com</Text>
-                    <TouchableOpacity
-                        style={styles.botao3}>
-                        <Text
-                            style={{ color: '#FFF' }}
-                            
-                        >Google</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.botao3}>
-                        <Text
-                            style={{ color: '#FFF' }}>
-                            Facebook</Text>
-                    </TouchableOpacity>
-
                     <Text style={styles.container2}>Não possui conta?</Text>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text style={{color:'#FFFF'}}>Criar agora</Text></TouchableOpacity>
@@ -204,7 +185,7 @@ const styles = StyleSheet.create({
     },
     input1: {
         width: '75%',
-        marginTop: '3%',
+        marginTop: '8%',
         color: '#FFFF'
 
     },
@@ -219,16 +200,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#00182F',
         borderRadius: 20,
         width: '65%',
-        height: '9%',
+        height: '15%',
         alignSelf: 'center',
-        padding: '0.5%',
+        padding: 2,
         justifyContent: 'center',
-        marginTop: '8%'
+        marginTop: '7%'
     },
     botao2: {
         color: '#FFFFF',
         alignSelf: 'center',
-        marginTop: '2%'
+        marginTop: '4%'
     },
     botao3: {
         backgroundColor: '#00182F',
@@ -236,13 +217,13 @@ const styles = StyleSheet.create({
         width: '40%',
         height: '15.8%',
         padding: '0.5%',
-        marginTop: '1%',
+        marginTop: '3%',
         alignItems: 'center',
         justifyContent: 'center'
     },
     container2: {
         textAlign: 'center',
-        marginTop: '5%',
+        marginTop: '20%',
         color: '#FFFF',
         padding: '0.5%'
     },

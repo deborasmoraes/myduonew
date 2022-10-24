@@ -120,8 +120,9 @@ if(apexLegends == false && fortnite == false && valorant == false && lol == fals
     return (
 
         <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '6.5%' }}>
-            <ModalCreate />
            
+            <ModalCreate />
+         
                 <Text style={styles.nome}>Perfil</Text>
             
 

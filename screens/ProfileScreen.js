@@ -84,7 +84,8 @@ const PerfilScreen = () => {
                     <Text style=
                         {{ color: '#FFFF', marginLeft: '3%', padding: '2%' }}>{user.descricao}</Text> : <TextInput
                             onChangeText={setDescricao}
-                            defaultValue={user.descricao}></TextInput>}
+                            defaultValue={user.descricao}
+                            ></TextInput>}
             </LinearGradient>
 
             <Text style={styles.nome}>Plataformas</Text>

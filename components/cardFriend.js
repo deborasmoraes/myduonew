@@ -64,12 +64,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 20,
         borderBottomRightRadius: 40,
-        padding: '3%',
+        padding: '1%',
         marginTop: '3%',
         height: 80,
         width: 350,
         alignSelf: 'center',
-        marginTop: '2%'
+    
       },
       nome:{
         color: "#F5F5F5",

@@ -9,20 +9,28 @@ const CardDuo = (props, { route }) => {
   return (
 
     <LinearGradient colors={['#242547', '#042960']}
-    style={styles.usuario}>
-         {/* <Image style={styles.avatar} source={{
-                      uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
-                  }}
-                   /> */}
-                   <Text>{props.image}</Text>
-                   <View>
-      <Text style={styles.username}>{props.username}</Text>
+      style={styles.usuario}>
+        <View style={styles.alinhar}>
+          <Image style={styles.avatar} source={{
+            uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
+          }}
+          />
+          <Text>{props.image}</Text>
+
+          <Text style={styles.username}>{props.username}</Text>
+        </View>
+        
+        <View style={styles.alinhar}>
+     
+        <Text style={styles.horas}>{props.horaInicio}</Text>
+        <Text style={styles.horas2}>{props.horaFim}</Text>
+        <View style={{ alignItems: 'flex-end' }}>
+          <TouchableOpacity
+            style={{ alignItems: 'center', backgroundColor: '#FFFF', width: 50, borderRadius: 40, padding: 3, marginLeft: 70, bottom: 18  }}
+            onPress={() => { navigation.navigate('AnotherUser', { user_id: props.user_id }) }}><Text style={{ textAlign: 'center' }}>GO</Text></TouchableOpacity>
+        </View>
+      
       </View>
-      <Text style={styles.horas}>{props.horaInicio}</Text>
-      <Text style={styles.horas}>{props.horaFim}</Text>
-
-      <TouchableOpacity onPress={() => { navigation.navigate('AnotherUser', { user_id: props.user_id }) }}><Text>Ver Perfil</Text></TouchableOpacity>
-
     </LinearGradient>
 
   )
@@ -48,24 +56,35 @@ const styles = StyleSheet.create({
     color: '#FFFF',
     padding: '1%',
     marginLeft: 15,
-    alignSelf: 'flex-start',
     marginTop: '2%'
   },
   horas: {
-    padding: '1%',
-    marginLeft: 15,
-    alignSelf: 'center',
-    marginRight: '10%'
-
+    marginLeft: 80,
+    alignSelf: 'stretch',
+    fontSize: 15,
+    color: '#FFFF',
+    padding: 1
   },
-avatar: {
-  borderWidth: 2,
-  borderRadius: 100,
-  borderColor: '#FFFF',
-  width: '15%',
-  height: '60%',
-  justifyContent: 'center',
-  alignItems: 'flex-start',
-  marginLeft: 5
-    },
+  horas2: {
+    marginLeft: 30,
+    alignSelf: 'stretch',
+    fontSize: 15,
+    color: '#FFFF',
+  },
+  avatar: {
+    borderWidth: 2,
+    borderRadius: 100,
+    borderColor: '#FFFF',
+    width: '16%',
+    height: '130%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    marginLeft: 5,
+    marginTop: 15,
+    color: '#FFFF',
+    backgroundColor: '#FFFF'
+  },
+  alinhar: {
+    flexDirection: 'row',
+  },
 })

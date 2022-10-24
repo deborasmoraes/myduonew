@@ -45,7 +45,7 @@ const ChatScreen = ({ route }) => {
   return (
     <View style={{ flex: 1, backgroundColor: '#00182F' }}>
 
-      <Text style={{ backgroundColor: '#242547', height: 30, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, textAlign: 'center', color: '#FFFF' }}>{duo.username}</Text>
+      <Text style={{ backgroundColor: '#242547', height: 30, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, justifyContent: 'center', textAlign: 'center', color: '#FFFF'}}>{duo.username}</Text>
 
       <FlatList
         style={styles.lista}
@@ -56,6 +56,7 @@ const ChatScreen = ({ route }) => {
           )
 
         }}
+        inverted ={-1}
         keyExtractor={item => item.id}
 
       />
@@ -71,7 +72,7 @@ const ChatScreen = ({ route }) => {
           /></LinearGradient>
     <TouchableOpacity onPress={sendMessage} style={{alignSelf: 'flex-end', bottom: 30, marginLeft: 20}}><Image 
             source={require('../assets/myduo.png')}
-            style={{ width: 40, height: 40, alignContent: 'flex-end'}} /></TouchableOpacity> 
+            style={{ width: 30, height: 30, alignContent: 'flex-end', right: 10, bottom: 5}} /></TouchableOpacity> 
     </View>
     </View >
   )
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: '3%',
     height: 60,
-    width: 300,
+    width: 320,
     marginBottom: 20,
     marginLeft: 15
   },

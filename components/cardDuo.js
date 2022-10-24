@@ -10,26 +10,26 @@ const CardDuo = (props, { route }) => {
 
     <LinearGradient colors={['#242547', '#042960']}
       style={styles.usuario}>
-        <View style={styles.alinhar}>
-          <Image style={styles.avatar} source={{
-            uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
-          }}
-          />
-          <Text>{props.image}</Text>
+      <View style={styles.alinhar}>
+        <Image style={styles.avatar} source={{
+          uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
+        }}
+        />
+        <Text>{props.image}</Text>
 
-          <Text style={styles.username}>{props.username}</Text>
-        </View>
-        
-        <View style={styles.alinhar}>
-     
+        <Text style={styles.username}>{props.username}</Text>
+      </View>
+
+      <View style={styles.alinhar}>
+
         <Text style={styles.horas}>{props.horaInicio}</Text>
         <Text style={styles.horas2}>{props.horaFim}</Text>
-        <View style={{ alignItems: 'flex-end' }}>
+        <View style={{ alignItems: 'flex-end'}}>
           <TouchableOpacity
-            style={{ alignItems: 'center', backgroundColor: '#FFFF', width: 50, borderRadius: 40, padding: 3, marginLeft: 70, bottom: 18  }}
-            onPress={() => { navigation.navigate('AnotherUser', { user_id: props.user_id }) }}><Text style={{ textAlign: 'center' }}>GO</Text></TouchableOpacity>
+            style={{ textAlign: 'center', alignItems: 'center', backgroundColor: '#FFFF', width: 50, height: 30, borderRadius: 40, padding: 3, bottom: 18, marginLeft: 70, marginTop: 1 }}
+            onPress={() => { navigation.navigate('AnotherUser', { user_id: props.user_id }) }}><Text>GO</Text></TouchableOpacity>
         </View>
-      
+
       </View>
     </LinearGradient>
 
@@ -74,15 +74,13 @@ const styles = StyleSheet.create({
   avatar: {
     borderWidth: 2,
     borderRadius: 100,
-    borderColor: '#FFFF',
     width: '16%',
     height: '130%',
     justifyContent: 'center',
     alignItems: 'flex-start',
     marginLeft: 5,
     marginTop: 15,
-    color: '#FFFF',
-    backgroundColor: '#FFFF'
+
   },
   alinhar: {
     flexDirection: 'row',

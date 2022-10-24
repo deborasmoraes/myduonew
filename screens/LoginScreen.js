@@ -160,32 +160,6 @@ const LoginScreen = () => {
                     <Text style={{ color: 'grey' }}>Esqueci a senha</Text>
                 </TouchableOpacity>
                 <View style={styles.container}>
-<<<<<<< HEAD
-=======
-                    <Text
-                        style={{
-                            textAlign: 'center',
-                            marginTop: '1%',
-                            color: '#FFFF'
-                        }}>
-                        Ou continue com</Text>
-                    <TouchableOpacity
-                        onPress={loginGoogle}
-                        style={styles.botao3}>
-                        
-                        <Text
-                            style={{ color: '#FFF' }}
-                            
-                        >Google</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.botao3}>
-                        <Text
-                            style={{ color: '#FFF' }}>
-                            Facebook</Text>
-                    </TouchableOpacity>
-
->>>>>>> f17d066c380b73f9f3d47d6f26bfa8ddf7152d49
                     <Text style={styles.container2}>Não possui conta?</Text>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Registrar', { nome: 'Registrar' })}><Text style={{color:'#FFFF'}}>Criar agora</Text></TouchableOpacity>
@@ -224,11 +198,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'center',
         fontWeight: 'bold',
-        color: '#FFFF'
+        color: '#FFFF',
+        marginTop: '10%'
     },
     input1: {
         width: '75%',
-        marginTop: '8%',
+        marginTop: '10%',
         color: '#FFFF'
 
     },
@@ -237,7 +212,8 @@ const styles = StyleSheet.create({
         width: '75%',
         alignSelf: 'center',
         borderColor: 'grey',
-        borderStyle:'dashed'
+        borderStyle:'dashed',
+        marginTop: 2
     },
     botao1: {
         backgroundColor: '#00182F',
@@ -252,7 +228,7 @@ const styles = StyleSheet.create({
     botao2: {
         color: '#FFFFF',
         alignSelf: 'center',
-        marginTop: '4%'
+        marginTop: '6%'
     },
     botao3: {
         backgroundColor: '#00182F',
@@ -260,15 +236,15 @@ const styles = StyleSheet.create({
         width: '40%',
         height: '15.8%',
         padding: '0.5%',
-        marginTop: '3%',
+        marginTop: '6%',
         alignItems: 'center',
         justifyContent: 'center'
     },
     container2: {
         textAlign: 'center',
-        marginTop: '20%',
+        marginTop: 48,
         color: '#FFFF',
-        padding: '0.5%'
+        padding: '4%',
     },
     gradient: {
         height: '100%',

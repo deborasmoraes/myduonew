@@ -3,15 +3,8 @@ import React, { useEffect, useLayoutEffect } from 'react'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { LinearGradient } from 'expo-linear-gradient';
-<<<<<<< HEAD
-
 import { Ionicons } from '@expo/vector-icons'
-=======
-import { Toast } from 'react-native-toast-message/lib/src/Toast';
-import { MaterialCommunityIcons } from '@expo/vector-icons'
->>>>>>> f17d066c380b73f9f3d47d6f26bfa8ddf7152d49
 import Firebase from '../config/firebase/firebaseConfig';
-
 import Jogos from '../components/jogos';
 import generateId from '../functions/genrateId';
 
@@ -62,32 +55,16 @@ const AnotherUserScreen = ({ route }) => {
                 })
 
                 if (doc.id == currentUser) {
-                    addFriend(),
-                       Toast.show({
-                        type: 'success',
-                        text1: 'Duo adicionado!'
-                       })
-                        
-                    
-
+                    addFriend()
 
                 } else {
-                    requestFriend(),
-                    Toast.show({
-                        type: 'success',
-                        text1: 'Solicitação enviada!'
-                       })
-                        
-                    
-
+                    requestFriend()
+                
                 }
             }
-
             )
 
-
         })
-       
       
     }
  
@@ -112,7 +89,7 @@ const AnotherUserScreen = ({ route }) => {
     }
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '7%' }}>
-            <TouchableOpacity onPress={() => { navigation.goBack() }}><Ionicons name={'chevron-back-circle-outline'} size={30} color='#FFFF' /></TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.goBack()}}><Ionicons name={'chevron-back-circle-outline'} size={30} color='#FFFF' style={{marginTop: '4%'}}/></TouchableOpacity>
 
             {/* header */}
             <View style={styles.alinhar}>
@@ -142,7 +119,7 @@ const AnotherUserScreen = ({ route }) => {
             </LinearGradient>
 
             <Text style={styles.nome}>Plataformas</Text>
-            <View style={{ marginLeft: 80, marginRight: 80 }}>
+            <View style={{ marginLeft: 4 }}>
                 <LinearGradient colors={['#242547', '#042960']}
                     style={styles.plataformas}>
                     <Text style={{ color: '#FFFF' }}>PC</Text>
@@ -167,11 +144,7 @@ const AnotherUserScreen = ({ route }) => {
                 <Text style={styles.nome}>{user.horaFim}</Text>
             </View>
 
-            <TouchableOpacity onPress={exist} style={styles.botao1}><Ionicons name={'ios-person-add'} size={23} color='#FFFF' style={{alignSelf: 'center', marginTop: 5}} /></TouchableOpacity>
-
-
-
-
+            <TouchableOpacity onPress={exist} style={styles.botao1}><Ionicons name={'ios-person-add'} size={20} color='#FFFF' style={{alignSelf: 'center', marginTop: 5}} /></TouchableOpacity>
 
         </ScrollView>
     )
@@ -234,7 +207,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 35,
         alignItems: 'center',
-        marginTop: '2%'
+        marginTop: '2%',
+        marginLeft: 2,
+        marginRight: 12
     },
     alinharJogos: {
         margin: 2,

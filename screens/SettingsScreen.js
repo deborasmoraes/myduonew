@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import Modaltermo from '../components/modaltermo';
 
 const SettingsScreen = () => {
-  const navigate = useNavigation()
+  const navigation = useNavigation()
   const [modal, setModal] = useState(false)
   return (
 
@@ -23,7 +23,7 @@ const SettingsScreen = () => {
 
       <Text style={styles.nome}>Configurações</Text>
       <TouchableOpacity
-      
+      onPress={() =>{navigation.navigate('Redefinir')}}
       >
         <LinearGradient colors={['#242547', '#042960']}
           style={styles.destaque}>

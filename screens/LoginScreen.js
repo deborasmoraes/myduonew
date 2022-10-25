@@ -81,22 +81,7 @@ const LoginScreen = () => {
         }, [fontsLoaded])
     
         if(!fontsLoaded) return null
-    const loginGoogle = () =>{
-        const auth = getAuth()
-        const provider = new GoogleAuthProvider()
-        signInWithPopup(auth, provider)
-        .then(() => {
-            let user = Firebase.auth().currentUser.uid
-            Firebase.firestore().collection('user').doc(user).onSnapshot((query) =>{
-                if(query.exists == true){
-                    navigation.navigate('Home', {nome: 'Home'})
-                }else{navigation.navigate('CreateProfile', {nome: 'Home'})
-            }
-            })
-
-        })
-      
-    }
+ 
 
     return (
 

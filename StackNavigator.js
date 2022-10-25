@@ -11,7 +11,7 @@ import SignupScreen from './screens/registerScreen'
 import CreateProfileScreen from './screens/CreateProfile'
 import ChatScreen from './screens/ChatScreen'
 import ShowBottomTabs from './Bottomtab'
-
+import Redefinirscreen from './screens/redefinirsenha'
 import useAuth from './hooks/useAuth'
 import AnotherUserScreen from './screens/ProfileAnotherUser'
 
@@ -25,11 +25,11 @@ const StackNavigator = () => {
     return (
         <Stack.Navigator screenOptions={{
             headerShown: 'false'
-        }
-        }>
+        }}
+        >
             
             <Stack.Screen name='Login' component={LoginScreen} />
-            
+            <Stack.Screen name  = 'Redefinir' component={Redefinirscreen}/>
             <Stack.Screen name = 'Registrar' component = {SignupScreen} options={{headerShown: false}}/>
             <Stack.Screen  name ='CreateProfile' component  = {CreateProfileScreen}/>
             <Stack.Screen name='Perfil' component={PerfilScreen} />

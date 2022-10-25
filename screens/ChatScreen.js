@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, Image } from 'react-native'
+import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, ToastAndroid } from 'react-native'
 import React, { useEffect, useState, useLayoutEffect } from 'react'
 import Firebase from '../config/firebase/firebaseConfig'
 import { serverTimestamp } from '@firebase/firestore'
@@ -20,6 +20,7 @@ const ChatScreen = ({ route }) => {
   const duo = route.params.duo
   const loggedUser = Firebase.auth().currentUser.uid
 
+  
   const sendMessage = () => {
     Firebase.firestore().collection('friends').doc(duo.doc_id).collection('messages').doc().set({
       timestamp: serverTimestamp(),

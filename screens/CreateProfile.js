@@ -10,9 +10,6 @@ import Firebase from '../config/firebase/firebaseConfig'
 import { useNavigation } from '@react-navigation/native'
 import ModalCreate from '../components/modalCreate'
 
-
-
-
 const CreateProfileScreen = () => {
     const [file, setFile] = useState(null)
     const [msg, setMsg] = useState('')
@@ -53,9 +50,7 @@ const CreateProfileScreen = () => {
                 baseUser: ''
             })
         })
-        .catch((error) => {
-            console.log(error.message);
-        })
+     
     }
             
     useLayoutEffect(() => {
@@ -133,7 +128,7 @@ if(apexLegends == false && fortnite == false && valorant == false && lol == fals
                         uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
                     }}
                 />
-                <TouchableOpacity  onPress={pickImage}><Text>Alterar foto</Text></TouchableOpacity>
+                <TouchableOpacity><Text>Alterar foto</Text></TouchableOpacity>
                 <Text>Insira seu Nick</Text>
                 <TextInput
                     placeholder='username'

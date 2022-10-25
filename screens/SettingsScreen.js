@@ -1,16 +1,25 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native'
+import React, { useState } from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import { Linking } from 'react-native';
 import Firebase from '../config/firebase/firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
-import modaltermo from '../components/modaltermo';
+import Modaltermo from '../components/modaltermo';
 
 const SettingsScreen = () => {
   const navigate = useNavigation()
+  const [modal, setModal] = useState(false)
   return (
 
     <View style={styles.container}>
+      <Modal 
+      visible = {modal}
+      animationType ='fade'>
+        <View>
+        <Modaltermo/>
+        <TouchableOpacity onPress={ () =>{setModal(false)}} ><Text>Fechar</Text></TouchableOpacity>
+        </View>
+      </Modal>
 
       <Text style={styles.nome}>Configurações</Text>
       <TouchableOpacity
@@ -44,7 +53,7 @@ const SettingsScreen = () => {
       </TouchableOpacity>
       <View style={styles.questions}>
         <Text style={{ color: '#F5F5F5' }}>Privacidade</Text></View>
-        <TouchableOpacity onPress={() => {modaltermo(true)}}>
+        <TouchableOpacity  onPress={ () =>{setModal(true)}}>
       <LinearGradient colors={['#242547', '#042960']}
         style={styles.destaque2}>
         <Text style={{ color: '#F5F5F5' }}>Termos de Uso</Text>

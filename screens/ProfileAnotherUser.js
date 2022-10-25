@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity, Image, TextInput, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Image, TextInput, StyleSheet, ToastAndroid } from 'react-native'
 import React, { useEffect, useLayoutEffect } from 'react'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
@@ -11,6 +11,7 @@ import generateId from '../functions/genrateId';
 const AnotherUserScreen = ({ route }) => {
     const navigation = useNavigation()
     const [user, setUser] = useState({})
+    const [truefalse, setTruefalse] = useState(false)
    
      useLayoutEffect(() => {
         navigation.setOptions({
@@ -19,6 +20,8 @@ const AnotherUserScreen = ({ route }) => {
     }, []);
     const anotheruser = route.params.user_id
     const currentUser = Firebase.auth().currentUser.uid
+   
+    
     useEffect(() => {
 
 
@@ -43,8 +46,8 @@ const AnotherUserScreen = ({ route }) => {
         return () => ref()
     }, [])
 
-    const exist = () => {
-          Firebase.firestore().collection('user').doc(anotheruser).collection('added').onSnapshot(query => {
+    const exist =  () => {
+         Firebase.firestore().collection('user').doc(anotheruser).collection('added').onSnapshot(query => {
             const data = []
             query.forEach((doc) => {
                 data.push({
@@ -56,22 +59,25 @@ const AnotherUserScreen = ({ route }) => {
 
                 if (doc.id == currentUser) {
                     addFriend()
+                 
 
                 } else {
                     requestFriend()
                 
+                
                 }
+
             }
             )
 
         })
+        setTruefalse(true)
+        
       
     }
- 
+
     const requestFriend = () => {
-        Firebase.firestore().collection('user').doc(currentUser).collection('added').doc(anotheruser).set({ user_id: anotheruser }).catch((error) => {
-            console.log(error.message);
-        })
+        Firebase.firestore().collection('user').doc(currentUser).collection('added').doc(anotheruser).set({ user_id: anotheruser })
     }
 
     const addFriend = () => {
@@ -144,8 +150,8 @@ const AnotherUserScreen = ({ route }) => {
                 <Text style={styles.nome}>{user.horaFim}</Text>
             </View>
 
-            <TouchableOpacity onPress={exist} style={styles.botao1}><Ionicons name={'ios-person-add'} size={20} color='#FFFF' style={{alignSelf: 'center', marginTop: 5}} /></TouchableOpacity>
-
+           {(truefalse == false)?  <TouchableOpacity onPress={exist} style={styles.botao1}><Ionicons name={'ios-person-add'} size={20} color='#FFFF' style={{alignSelf: 'center', marginTop: 5}} /></TouchableOpacity>
+:<Ionicons name="checkmark" size={24} color="black" style ={styles.icon} />}
         </ScrollView>
     )
 }
@@ -165,6 +171,12 @@ const styles = StyleSheet.create({
         color: '#FFFF',
         marginTop: '5%',
         padding: '1%',
+
+    },
+    icon:{
+        alignSelf: 'center',
+        padding: 2,
+        marginTop: '7%'
 
     },
     username: {

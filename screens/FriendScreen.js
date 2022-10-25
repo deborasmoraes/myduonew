@@ -24,7 +24,7 @@ const user =  Firebase.auth().currentUser.uid
              
           })
         })
-       console.log(data[0].key);
+       
         setFriends(data)
         
        
@@ -51,7 +51,6 @@ const user =  Firebase.auth().currentUser.uid
         keyExtractor = {item =>{item.id}}
         
         />
-        <TouchableOpacity style={{width: 40, height: 40}} onPress={() =>{console.log(friends[0].key);}}><Text style={{color: '#FFFF'}}>oi</Text></TouchableOpacity>
        </View>
        
     )

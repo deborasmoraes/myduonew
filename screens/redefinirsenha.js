@@ -16,9 +16,7 @@ const redefinir = () => {
         .then((userCredential) => {
             navigation.navigate('Login')
         })
-        .catch((error) => {
-            console.log(error.message);
-        })
+      
 
 }
 

@@ -14,7 +14,7 @@ const Invitations = () =>{
                     key: doc.id
                 })
             })
-          console.log(data);
+       
         })
         return () => ref()
     }, [])

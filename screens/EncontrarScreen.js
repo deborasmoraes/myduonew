@@ -46,7 +46,7 @@ delay={650}
     <FlatList
      style={styles.lista}
         data={user}
-        renderItem={ ({item}) =>{ console.log(user)
+        renderItem={ ({item}) =>{ 
           return(
            
           <CardDuo  username = {item.username}

@@ -22,9 +22,7 @@ export default function SignupScreen({ navigation }) {
             .then((userCredential) => {
                 navigation.navigate('Login')
             })
-            .catch((error) => {
-                console.log(error.message);
-            })
+        
 
     }
 

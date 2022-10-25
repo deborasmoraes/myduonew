@@ -95,7 +95,7 @@ const LoginScreen = () => {
             })
 
         })
-        .catch(error =>{console.log(error);})
+      
     }
 
     return (

@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native'
 
-const modaltermo = () => {
-    const [modal, setModal] = useState(true)
+const Modaltermo = () => {
+    
     return (
-            <Modal visible = {modal}
-            animationType ={'fade'}
-            style={styles.container}
-            >
+           
             <Text style={styles.nome}>
                 <Text style={styles.nome2}>
             SEÇÃO 1 - O QUE FAREMOS COM SUAS INFORMAÇÕES?</Text>
@@ -65,9 +62,7 @@ Reservamos o direito de modificar essa política de privacidade a qualquer momen
 Se nossa loja for adquirida ou fundida com outra empresa, suas informações podem ser transferidas para os novos proprietários para que possamos continuar a vender produtos para você. 
 
  </Text>
-            <TouchableOpacity onPress = {() =>{setModal(false)}}><Text style={styles.nome2}>Vamos nessa!</Text></TouchableOpacity>
-
-            </Modal>   
+            
     )
 }
 const styles = StyleSheet.create({
@@ -78,7 +73,7 @@ const styles = StyleSheet.create({
     },
     nome: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 10,
         color: '#F5F5F5',
         padding: '0.5%',
         marginLeft: '2%',
@@ -86,11 +81,11 @@ const styles = StyleSheet.create({
       },
       nome2: {
         fontWeight: 'bold',
-        fontSize: 35,
+        fontSize: 15,
         color: '#F5F5F5',
         padding: '0.5%',
         marginLeft: '2%',
         textAlign: 'center'
       }
 })
-export default modaltermo
+export default Modaltermo

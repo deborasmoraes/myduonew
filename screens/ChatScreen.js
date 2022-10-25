@@ -10,8 +10,8 @@ const ChatScreen = ({ route }) => {
   const navigation = useNavigation()
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerStyle: {backgroundColor:'#00182F'},
-      headerTitleStyle:{color: '#FFFF'},
+      headerStyle: { backgroundColor: '#00182F' },
+      headerTitleStyle: { color: '#FFFF' },
       headerTintColor: '#FFFF'
     });
   }, []);
@@ -46,35 +46,39 @@ const ChatScreen = ({ route }) => {
   return (
     <View style={{ flex: 1, backgroundColor: '#00182F' }}>
 
-      <Text style={{ backgroundColor: '#242547', height: 30, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, justifyContent: 'center', textAlign: 'center', color: '#FFFF'}}>{duo.username}</Text>
+      <Text style={{ backgroundColor: '#242547', height: 30, borderBottomRightRadius: 20, borderBottomLeftRadius: 20, justifyContent: 'center', textAlign: 'center', color: '#FFFF' }}>{duo.username}</Text>
 
       <FlatList
-        style={styles.lista}
         data={chat}
         renderItem={({ item }) => {
           return (
-            (item.user_id === loggedUser) ?  <SenderMessage message={item.message} /> : <ReceiverMessage message={item.message}/>
+            (item.user_id === loggedUser) ? 
+           
+              <SenderMessage message={item.message}  />
+            : 
+               <ReceiverMessage message={item.message} />
+             
           )
 
         }}
-        inverted ={-1}
+        inverted={-1}
         keyExtractor={item => item.id}
 
       />
       <View style={styles.alinhar}>
-      <LinearGradient colors={['#242547', '#042960']}
-        style={styles.usuario}>
-        <TextInput
-          placeholder='Mensagem'
-          value={message}
-          onChangeText={setMessage}
-          multiline={true}
-          numberOfLines={4}
+        <LinearGradient colors={['#242547', '#042960']}
+          style={styles.usuario}>
+          <TextInput
+            placeholder='Mensagem'
+            value={message}
+            onChangeText={setMessage}
+            multiline={true}
+            numberOfLines={4}
           /></LinearGradient>
-    <TouchableOpacity onPress={sendMessage} style={{alignSelf: 'flex-end', bottom: 30, marginLeft: 20}}><Image 
-            source={require('../assets/myduo.png')}
-            style={{ width: 30, height: 30, alignContent: 'flex-end', right: 10, bottom: 5}} /></TouchableOpacity> 
-    </View>
+        <TouchableOpacity onPress={sendMessage} style={{ alignSelf: 'flex-end', bottom: 30, marginLeft: 20 }}><Image
+          source={require('../assets/myduo.png')}
+          style={{ width: 30, height: 30, alignContent: 'flex-end', right: 10, bottom: 5 }} /></TouchableOpacity>
+      </View>
     </View >
   )
 }
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
   lista: {
     alignSelf: 'flex-start'
   },
-  usuario:{
+  usuario: {
     borderRadius: 20,
     padding: '3%',
     height: 60,
@@ -96,4 +100,20 @@ const styles = StyleSheet.create({
   alinhar: {
     flexDirection: 'row',
   },
+  sender: {
+    backgroundColor: '#042690',
+    borderRadius: 20,
+    margin: 4,
+    alignSelf: 'flex-end',
+    right: 5,
+    justifyContent: 'flex-end',
+  },
+  receive:{
+    backgroundColor: '#242547',
+    borderRadius: 20,
+    margin: 10,
+    alignSelf: 'flex-start',
+    padding: 18,
+    marginLeft: 15
+}
 })

@@ -82,9 +82,9 @@ const PerfilScreen = () => {
                 style={styles.descricao}>
                 {(trueFalse === true) ?
                     <Text style=
-                        {{ color: '#FFFF', marginLeft: '3%', padding: '2%' }}>{user.descricao}</Text> : <TextInput
+                        {{ color: '#FFFF', padding: '2%' }}>{user.descricao}</Text> : <TextInput
                             style=
-                            {{ color: '#FFFF', marginLeft: '3%', padding: '2%', flexWrap: 'wrap' }}
+                            {{ color: '#FFFF', padding: '1%', flexWrap: 'wrap' }}
                             onChangeText={setDescricao}
                             defaultValue={user.descricao}
                             multiline={true}
@@ -171,11 +171,11 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderBottomRightRadius: 40,
         marginTop: '2%',
-        height: 60,
+        height: 80,
         color: '#FFFF',
         padding: '4%',
         flexWrap: 'wrap',
-        width: 330,
+        width: 342,
         flexShrink: 1
     },
     plataformas: {

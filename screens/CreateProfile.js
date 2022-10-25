@@ -32,7 +32,7 @@ const CreateProfileScreen = () => {
     const [ps4, setPs4] = useState(false)
     const user_id = Firebase.auth().currentUser.uid
 
-    const Save = () => { 
+    const Save = () => {
         Firebase.firestore().collection('user').doc(user_id).set({
             username: username,
             descricao: descricao,
@@ -48,16 +48,16 @@ const CreateProfileScreen = () => {
             horaFim: horaFim,
             pc: pc,
             ps4: ps4
-        }).then(() =>{
+        }).then(() => {
             Firebase.firestore().collection('user').doc(user_id).collection('added').doc().set({
                 baseUser: ''
             })
         })
-        .catch((error) => {
-            console.log(error.message);
-        })
+            .catch((error) => {
+                console.log(error.message);
+            })
     }
-            
+
     useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
@@ -66,65 +66,65 @@ const CreateProfileScreen = () => {
 
     const validate = () => {
         if (username == '') {
-            setMsg("insira um nome de usuário."), false 
+            setMsg("insira um nome de usuário."), false
             return
         }
 
         if (descricao == '') {
-            setMsg("insira uma descrição."), false 
+            setMsg("insira uma descrição."), false
             return
         }
-if(apexLegends == false && fortnite == false && valorant == false && lol == false  && freeFire  == false&&dota2 == false && csGo == false){
-    setMsg("Selecione ao menos um jogo!")
-    return
-}
-        
-        if (horaInicio >= 0 || horaInicio <= 24)  {
+        if (apexLegends == false && fortnite == false && valorant == false && lol == false && freeFire == false && dota2 == false && csGo == false) {
+            setMsg("Selecione ao menos um jogo!")
+            return
+        }
+
+        if (horaInicio >= 0 || horaInicio <= 24) {
             setMsg("Insira um horário de início"), false
             return
         }
 
-        if (horaFim >= 0 || horaFim <= 24)  {
+        if (horaFim >= 0 || horaFim <= 24) {
             setMsg("Insira um horário final"), false
             return
         }
 
-     else{
-        setMsg('')
-        Save()
-     }
+        else {
+            setMsg('')
+            Save()
+        }
     }
-    
+
     const pickImage = () => {
         ImagePicker.showImagePicker
-        
-      launchImageLibrary(options, async (response) => {
-        if (response.didCancel) {
-          console.log("Usuário cancelou a seleção");
-        } else if (response.error) {
-          console.log("Ocorreu um erro.");
-        } else {
-          const photoFile = {
-            uri: asset.uri,
-            name: asset.fileName,
-            type: "image/jpeg",
-          };
-  
-          setFile(photoFile);
-        }
-      });
-      };
-  
+
+        launchImageLibrary(options, async (response) => {
+            if (response.didCancel) {
+                console.log("Usuário cancelou a seleção");
+            } else if (response.error) {
+                console.log("Ocorreu um erro.");
+            } else {
+                const photoFile = {
+                    uri: asset.uri,
+                    name: asset.fileName,
+                    type: "image/jpeg",
+                };
+
+                setFile(photoFile);
+            }
+        });
+    };
+
 
 
     return (
 
         <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '6.5%' }}>
-           
+
             <ModalCreate />
-         
-                <Text style={styles.nome}>Perfil</Text>
-            
+
+            <Text style={styles.nome}>Perfil</Text>
+
 
             <LinearGradient colors={['#242547', '#042960']} style={styles.usuario}>
                 <Image
@@ -133,90 +133,102 @@ if(apexLegends == false && fortnite == false && valorant == false && lol == fals
                         uri: 'https://pngimg.com/uploads/ninja/ninja_PNG26.png'
                     }}
                 />
-                <TouchableOpacity  onPress={pickImage}><Text>Alterar foto</Text></TouchableOpacity>
-                <Text>Insira seu Nick</Text>
+                {/* <TouchableOpacity  onPress={pickImage}><Text>Alterar foto</Text></TouchableOpacity> */}
+
                 <TextInput
-                    placeholder='username'
+                    placeholder='Insira seu nick'
                     value={username}
                     onChangeText={setUsername}
+                    style={styles.username}
+
                 />
-                {(msg.search('usuário') > -1)?<Text>{msg}</Text>:''}
+                {(msg.search('usuário') > -1) ? <Text>{msg}</Text> : ''}
 
             </LinearGradient>
 
             <Text style={styles.nome}>Fale mais sobre você</Text>
-            <LinearGradient
-                colors={['#242547', '#042960']}
-                style={styles.descricao}>
-                <TextInput
-                    placeholder='Descrição'
-                    value={descricao}
-                    onChangeText={setDescricao}
-                    style={{marginLeft: 10, flexWrap: 'wrap', color: '#FFFF'}}
-                />
-            </LinearGradient>
-            {(msg.search('descrição') > -1)?<Text>{msg}</Text>:''}
-
-            
+            <View style={{ flexDirection: 'row' }}>
+                <LinearGradient
+                    colors={['#242547', '#042960']}
+                    style={styles.descricao}>
+                    <TextInput
+                        placeholder='Descrição'
+                        value={descricao}
+                        onChangeText={setDescricao}
+                        multiline={true}
+                        numberOfLines={2}
+                        style={{ color: '#FFFF' }}
+                        returnKeyType='done'
+                    />
+                </LinearGradient>
+            </View>
+            {(msg.search('descrição') > -1) ? <Text>{msg}</Text> : ''}
 
             <Text style={styles.nome}>Escolha seus jogos favoritos</Text>
-                    
-                 <View style={styles.alinhar}>  
-                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}> 
-                <Text onPress={() => { setApexLegends(true) }}>Apex Legends</Text></LinearGradient>
+
+            <View style={styles.alinhar}>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-                <Text onPress={() => { setCsGo(true) }}>Counter Strike</Text></LinearGradient>
+                    <TouchableOpacity onPress={() => { setApexLegends(true) }} style={styles.botao}>
+                        <Text>Apex Legends</Text></TouchableOpacity></LinearGradient>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-                <Text onPress={() => { setdota2(true) }}>Dota 2</Text></LinearGradient>
+                    <TouchableOpacity onPress={() => { setCsGo(true) }} style={styles.botao}>
+                        <Text>Counter Strike</Text></TouchableOpacity></LinearGradient>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-                <Text onPress={() => { setFortnite(true) }}>Fortnite</Text></LinearGradient>
+                    <TouchableOpacity onPress={() => { setdota2(true) }} style={styles.botao}>
+                        <Text>Dota 2</Text></TouchableOpacity></LinearGradient>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-                <Text onPress={() => { setfreeFire(true) }}>Free Fire</Text></LinearGradient>
+                    <TouchableOpacity onPress={() => { setFortnite(true) }} style={styles.botao}>
+                        <Text>Fortnite</Text></TouchableOpacity></LinearGradient>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-                <Text onPress={() => { setLol(true) }}>League of Legends</Text></LinearGradient>
+                    <TouchableOpacity onPress={() => { setfreeFire(true) }} style={styles.botao}>
+                        <Text>Free Fire</Text></TouchableOpacity></LinearGradient>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
-                <Text onPress={() => { setValorant(true) }}>Valorant</Text></LinearGradient>
-                </View>
-                {(msg.search('jogo') > -1)?<Text>{msg}</Text>:''}
+                    <TouchableOpacity onPress={() => { setLol(true) }} style={styles.botao}>
+                        <Text>League of Legends</Text></TouchableOpacity></LinearGradient>
+                <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
+                    <TouchableOpacity onPress={() => { setValorant(true) }} style={styles.botao}>
+                        <Text>Valorant</Text></TouchableOpacity></LinearGradient>
+            </View>
+            {(msg.search('jogo') > -1) ? <Text>{msg}</Text> : ''}
 
 
-                    <Text style={styles.nome}>Horário disponível</Text>
+            <Text style={styles.nome}>Horário disponível</Text>
             <View style={styles.alinhar2}>
-            <Text style={styles.horario2}>Inicio</Text>
-            <Text style={styles.nome}>Fim</Text>
+                <Text style={styles.horario2}>Início</Text>
+                <Text style={styles.nome}>Fim</Text>
             </View>
             <View style={styles.alinhar2}>
-            <TextInputMask
-                type={'datetime'}
-                options={{ format: 'HH:mm'  }}
-                placeholder={'horaInicio'}
-                value={horaInicio}
-                onChangeText={setHoraInicio}
-                style={{color: '#FFFF'}}
+                <TextInputMask
+                    type={'datetime'}
+                    options={{ format: 'HH:mm' }}
+                    placeholder={'Hora Inicio'}
+                    value={horaInicio}
+                    onChangeText={setHoraInicio}
+                    style={{ color: '#FFFF', marginRight: 50, marginLeft:30 }}
 
-            />
-                            {(msg.search('início') > -1)?<Text>{msg}</Text>:''}
+                />
+                {(msg.search('início') > -1) ? <Text>{msg}</Text> : ''}
 
-            
-            <TextInputMask
-                type={'datetime'}
-                options={{ format: 'HH:mm' }}
-                placeholder={'horaFim'}
-                value={horaFim}
-                onChangeText={setHoraFim}
-                style={{color: '#FFFF'}}
-            />
-            {(msg.search('final') > -1)?<Text>{msg}</Text>:''}
+
+                <TextInputMask
+                    type={'datetime'}
+                    options={{ format: 'HH:mm' }}
+                    placeholder={'Hora Fim'}
+                    value={horaFim}
+                    onChangeText={setHoraFim}
+                    style={{ color: '#FFFF', marginLeft:40 }}
+                />
+                {(msg.search('final') > -1) ? <Text>{msg}</Text> : ''}
             </View>
             <Text style={styles.nome}>Em qual plataforma você joga?</Text>
             <View style={styles.alinhar}>
-            <LinearGradient colors={['#242547', '#042960']} style={styles.plataformas}>
-            <Text onPress={() => { setPc(true) }}>PC</Text></LinearGradient>
-            <LinearGradient colors={['#242547', '#042960']} style={styles.plataformas}>
-            <Text onPress={() => { setPs4(true) }}>PlayStation 4</Text></LinearGradient>
+                <LinearGradient colors={['#242547', '#042960']} style={styles.plataformas}>
+                    <Text onPress={() => { setPc(true) }}>PC</Text></LinearGradient>
+                <LinearGradient colors={['#242547', '#042960']} style={styles.plataformas}>
+                    <Text onPress={() => { setPs4(true) }}>PlayStation 4</Text></LinearGradient>
             </View>
 
-            <TouchableOpacity onPress={validate} style={styles.botao2}><Text style={styles.nome}>Salvar Informações</Text></TouchableOpacity>
+            <TouchableOpacity onPress={validate} style={styles.botao2}><Text style={styles.nome}>Salvar</Text></TouchableOpacity>
         </ScrollView>
     )
 }
@@ -228,7 +240,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#00182F',
         justifyContent: 'center',
         padding: '9%'
-      },
+    },
     geral: {
         backgroundColor: '#00182F',
         padding: '7%',
@@ -242,48 +254,50 @@ const styles = StyleSheet.create({
         padding: '0.5%',
         marginLeft: '2%'
     },
-    alinhar:{
+    alinhar: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'space-around',
         padding: '2%',
         marginTop: '1%',
-        marginBottom:'1%'
-      },
-      alinhar2:{
+        marginBottom: '1%'
+    },
+    alinhar2: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent:'space-between',
         padding: '2%',
         marginTop: '1%',
-        marginHorizontal: '4%'
-      },
-      alinhar2:{
+
+    },
+    alinhar2: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
-    
-      },
+
+    },
     usuario: {
         flexDirection: 'row',
-        alignItems: 'baseline',
-        justifyContent: 'space-between',
+        alignItems: 'center',
         borderRadius: 15,
         borderBottomRightRadius: 40,
         padding: '3%',
-        marginTop: '1%',
-        height: 110
+        marginTop: '2%',
+        height: 110,
+
     },
     descricao: {
-        borderRadius: 15,
+        borderRadius: 20,
+        padding: '3%',
+        height: 80,
+        width: 337,
+        marginBottom: 2,
+        marginLeft: 2,
+        marginTop: 4,
+        flexWrap: 'wrap',
         borderBottomRightRadius: 40,
-        marginTop: '2%',
-        height: '11%',
-        color: '#FFFF',
-        padding: '2%',
     },
     plataformas: {
         padding: '1%',
@@ -350,6 +364,26 @@ const styles = StyleSheet.create({
         color: '#FFFFF',
         alignSelf: 'center',
     },
+    username: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#FFFF',
+        marginTop: '2%',
+        padding: '1%',
+        marginLeft: 15
+    },
+    botao: {
+        padding: '1%',
+        width: 135,
+        height: 40,
+        borderRadius: 20,
+        borderBottomRightRadius: 20,
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        borderColor: '#FFFF',
+        borderWidth: 1
+    }
 })
 
 

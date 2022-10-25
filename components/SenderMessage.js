@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         padding: 15,
         flexDirection: 'column',
-        right: 5
+        right: 5,
+        justifyContent: 'flex-end'
     }
 });
 export default SenderMessage

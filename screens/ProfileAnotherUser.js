@@ -7,21 +7,21 @@ import { Ionicons } from '@expo/vector-icons'
 import Firebase from '../config/firebase/firebaseConfig';
 import Jogos from '../components/jogos';
 import generateId from '../functions/genrateId';
-
+import * as Animatable from 'react-native-animatable'
 const AnotherUserScreen = ({ route }) => {
     const navigation = useNavigation()
     const [user, setUser] = useState({})
     const [truefalse, setTruefalse] = useState(false)
-   
-     useLayoutEffect(() => {
+
+    useLayoutEffect(() => {
         navigation.setOptions({
             headerShown: false,
         });
     }, []);
     const anotheruser = route.params.user_id
     const currentUser = Firebase.auth().currentUser.uid
-   
-    
+
+
     useEffect(() => {
 
 
@@ -46,8 +46,8 @@ const AnotherUserScreen = ({ route }) => {
         return () => ref()
     }, [])
 
-    const exist =  () => {
-         Firebase.firestore().collection('user').doc(anotheruser).collection('added').onSnapshot(query => {
+    const exist = () => {
+        Firebase.firestore().collection('user').doc(anotheruser).collection('added').onSnapshot(query => {
             const data = []
             query.forEach((doc) => {
                 data.push({
@@ -59,12 +59,12 @@ const AnotherUserScreen = ({ route }) => {
 
                 if (doc.id == currentUser) {
                     addFriend()
-                 
+
 
                 } else {
                     requestFriend()
-                
-                
+
+
                 }
 
             }
@@ -72,8 +72,8 @@ const AnotherUserScreen = ({ route }) => {
 
         })
         setTruefalse(true)
-        
-      
+
+
     }
 
     const requestFriend = () => {
@@ -95,7 +95,7 @@ const AnotherUserScreen = ({ route }) => {
     }
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '7%' }}>
-            <TouchableOpacity onPress={() => {navigation.goBack()}}><Ionicons name={'chevron-back-circle-outline'} size={30} color='#FFFF' style={{marginTop: '4%'}}/></TouchableOpacity>
+            <TouchableOpacity onPress={() => { navigation.goBack() }}><Ionicons name={'chevron-back-circle-outline'} size={30} color='#FFFF' style={{ marginTop: '4%' }} /></TouchableOpacity>
 
             {/* header */}
             <View style={styles.alinhar}>
@@ -150,8 +150,19 @@ const AnotherUserScreen = ({ route }) => {
                 <Text style={styles.nome}>{user.horaFim}</Text>
             </View>
 
-           {(truefalse == false)?  <TouchableOpacity onPress={exist} style={styles.botao1}><Ionicons name={'ios-person-add'} size={20} color='#FFFF' style={{alignSelf: 'center', marginTop: 5}} /></TouchableOpacity>
-:<Ionicons name="checkmark" size={24} color="black" style ={styles.icon} />}
+            {(truefalse == false) ?
+                <TouchableOpacity 
+                onPress={exist} 
+                style={styles.botao1}
+                >
+                    <Ionicons name={'ios-person-add'} size={20} color='#FFFF' style={{ alignSelf: 'center', marginTop: 5 }} />
+                </TouchableOpacity> :
+                <TouchableOpacity 
+                onPress={exist} 
+                style={styles.botao1}
+                >
+                    <Ionicons name="checkmark" size={24} color="#FFFF" style={styles.icon} />
+                </TouchableOpacity>}
         </ScrollView>
     )
 }
@@ -173,10 +184,10 @@ const styles = StyleSheet.create({
         padding: '1%',
 
     },
-    icon:{
+    icon: {
         alignSelf: 'center',
         padding: 2,
-        marginTop: '7%'
+        marginTop: '4%'
 
     },
     username: {
@@ -206,12 +217,11 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         borderBottomRightRadius: 40,
         marginTop: '2%',
-        height: 60,
+        height: 80,
         color: '#FFFF',
-        padding: '4%',
         flexWrap: 'wrap',
-        width: 330,
-        flexShrink: 1
+        width: 342,
+        flexShrink: 1,
     },
     plataformas: {
         padding: '1%',

@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Modal, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 const Modaltermo = () => {
-    
+  const navigation = useNavigation()
     return (
-           
-            <Text style={styles.nome}>
+      <View>
+            <ScrollView style={{margin: 'auto'}}>
+              <Text style={{padding: 20}}>
                 <Text style={styles.nome2}>
             SEÇÃO 1 - O QUE FAREMOS COM SUAS INFORMAÇÕES?</Text>
 
@@ -59,9 +61,11 @@ SEÇÃO 6 - ALTERAÇÕES PARA ESSA POLÍTICA DE PRIVACIDADE </Text>
 
 Reservamos o direito de modificar essa política de privacidade a qualquer momento, então por favor, revise-a com frequência. Alterações e esclarecimentos vão surtir efeito imediatamente após sua publicação no site. Se fizermos alterações de materiais para essa política, iremos notificá-lo aqui que eles foram atualizados, para que você tenha ciência sobre quais informações coletamos, como as usamos, e sob que circunstâncias, se alguma, usamos e/ou divulgamos elas. 
 
-Se nossa loja for adquirida ou fundida com outra empresa, suas informações podem ser transferidas para os novos proprietários para que possamos continuar a vender produtos para você. 
+Se nossa loja for adquirida ou fundida com outra empresa, suas informações podem ser transferidas para os novos proprietários para que possamos continuar a vender produtos para você.</Text>
+<TouchableOpacity onPress={() => { navigation.goBack()}} style={{backgroundColor: '#00182F', width: 70, height: 50, alignSelf: 'center',}}><Text style={{textAlign: 'center'}}>Fechar</Text></TouchableOpacity> 
 
- </Text>
+ </ScrollView>
+ </View>
             
     )
 }

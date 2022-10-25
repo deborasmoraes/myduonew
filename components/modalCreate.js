@@ -7,7 +7,7 @@ const ModalCreate = () => {
         
             <Modal visible = {modal}
             animationType ={'fade'}
-            style={{ backgroundColor: '#00182F', flex: 1}}
+            style={{ backgroundColor: '#FFFF', flex: 1}}
             >
             <Text style={styles.nome}>Olá! Seja bem-vindo(a) ao <Text style={styles.nome2}> MyDuo!</Text></Text>
 

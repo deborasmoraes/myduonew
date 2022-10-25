@@ -25,11 +25,13 @@ const CreateProfileScreen = () => {
     const [dota2, setdota2] = useState(false)
     const [freeFire, setfreeFire] = useState(false)
     const [valorant, setValorant] = useState(false)
+    const [overwatch, setOverwatch] = useState(false)
     const [lol, setLol] = useState(false)
     const [horaInicio, setHoraInicio] = useState('')
     const [horaFim, setHoraFim] = useState('')
     const [pc, setPc] = useState(false)
-    const [ps4, setPs4] = useState(false)
+    const [console, setConsole] = useState(false)
+    const [mobile, setMobile] = useState(false)
     const user_id = Firebase.auth().currentUser.uid
 
     const Save = () => {
@@ -43,11 +45,13 @@ const CreateProfileScreen = () => {
             fortnite: fortnite,
             freeFire: freeFire,
             LeagueOfLegends: lol,
+            overwatch: overwatch,
             Valorant: valorant,
             horaInicio: horaInicio,
             horaFim: horaFim,
             pc: pc,
-            ps4: ps4
+            console: console,
+            mobile: mobile
         }).then(() => {
             Firebase.firestore().collection('user').doc(user_id).collection('added').doc().set({
                 baseUser: ''
@@ -120,9 +124,9 @@ const CreateProfileScreen = () => {
     return (
 
         <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#00182F', padding: '6.5%' }}>
-
+            <View style={{backgroundColor: '#FFFF'}}>
             <ModalCreate />
-
+            </View>
             <Text style={styles.nome}>Perfil</Text>
 
 
@@ -185,6 +189,9 @@ const CreateProfileScreen = () => {
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
                     <TouchableOpacity onPress={() => { setLol(true) }} style={styles.botao}>
                         <Text>League of Legends</Text></TouchableOpacity></LinearGradient>
+                        <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
+                    <TouchableOpacity onPress={() => { setOverwatch(true) }} style={styles.botao}>
+                        <Text>Overwatch 2</Text></TouchableOpacity></LinearGradient>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}>
                     <TouchableOpacity onPress={() => { setValorant(true) }} style={styles.botao}>
                         <Text>Valorant</Text></TouchableOpacity></LinearGradient>
@@ -223,9 +230,14 @@ const CreateProfileScreen = () => {
             <Text style={styles.nome}>Em qual plataforma você joga?</Text>
             <View style={styles.alinhar}>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.plataformas}>
-                    <Text onPress={() => { setPc(true) }}>PC</Text></LinearGradient>
+                    <TouchableOpacity onPress={() => { setPc(true) }} style={styles.botao}>
+                    <Text>PC</Text></TouchableOpacity></LinearGradient>
                 <LinearGradient colors={['#242547', '#042960']} style={styles.plataformas}>
-                    <Text onPress={() => { setPs4(true) }}>PlayStation 4</Text></LinearGradient>
+                    <TouchableOpacity onPress={() => { setConsole(true) }} style={styles.botao}>
+                    <Text>PlayStation ou Xbox</Text></TouchableOpacity></LinearGradient>
+                    <LinearGradient colors={['#242547', '#042960']} style={styles.plataformas}>
+                    <TouchableOpacity onPress={() => { setMobile(true) }} style={styles.botao}>
+                    <Text>Mobile</Text></TouchableOpacity></LinearGradient>
             </View>
 
             <TouchableOpacity onPress={validate} style={styles.botao2}><Text style={styles.nome}>Salvar</Text></TouchableOpacity>
@@ -309,20 +321,16 @@ const styles = StyleSheet.create({
         marginTop: '2%',
         alignSelf: 'center',
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#FFFF'
     },
     jogos: {
         padding: '1%',
-        width: 135,
+        width: 320,
         height: 40,
         borderRadius: 20,
         borderBottomRightRadius: 20,
         alignItems: 'center',
         marginTop: '2%',
         alignSelf: 'center',
-        borderWidth: 1,
-        borderColor: '#FFFF',
         justifyContent: 'center'
 
     },
@@ -349,7 +357,7 @@ const styles = StyleSheet.create({
     },
     plataformas: {
         padding: '1%',
-        width: 100,
+        width: 320,
         height: 35,
         borderRadius: 20,
         borderBottomRightRadius: 20,
@@ -374,15 +382,13 @@ const styles = StyleSheet.create({
     },
     botao: {
         padding: '1%',
-        width: 135,
+        width: 320,
         height: 40,
         borderRadius: 20,
         borderBottomRightRadius: 20,
         alignItems: 'center',
         alignSelf: 'center',
-        justifyContent: 'center',
-        borderColor: '#FFFF',
-        borderWidth: 1
+        justifyContent: 'center'
     }
 })
 

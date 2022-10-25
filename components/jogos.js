@@ -18,6 +18,8 @@ const Jogos = (props) => {
             <View>
             {(props.LeagueOfLegends == true) ? <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}><Text style={{color: '#FFFF'}}>League Of Legends</Text></LinearGradient> : ''}</View>
             <View>
+            <View>
+            {(props.Overwatch == true) ? <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}><TouchableOpacity style={{color: '#FFFF'}}>Overwatch 2</TouchableOpacity></LinearGradient>: ''}</View>
             {(props.valorant == true) ? <LinearGradient colors={['#242547', '#042960']} style={styles.jogos}><Text style={{color: '#FFFF'}}>Valorant</Text></LinearGradient>: ''}</View>
         </View>
 

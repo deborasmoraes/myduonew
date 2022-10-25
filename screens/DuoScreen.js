@@ -60,6 +60,9 @@ const validate  = () =>{
           <LinearGradient colors={['#242547', '#042960']}
             style={styles.jogos}>
             <TouchableOpacity onPress={() => { setGame('LeagueOfLegends') }} style={styles.botao}><Text style={{ color: '#F5F5F5' }}>League of Legends</Text></TouchableOpacity></LinearGradient>
+            <LinearGradient colors={['#242547', '#042960']}
+            style={styles.jogos}>
+            <TouchableOpacity onPress={() => { setGame('Overwatch') }} style={styles.botao}><Text style={{ color: '#F5F5F5' }}>Overwatch 2</Text></TouchableOpacity></LinearGradient>
           <LinearGradient colors={['#242547', '#042960']}
             style={styles.jogos}>
             <TouchableOpacity onPress={() => { setGame('valorant') }} style={styles.botao}><Text style={{ color: '#F5F5F5' }}>Valorant</Text></TouchableOpacity></LinearGradient>

@@ -26,8 +26,8 @@ const CardDuo = (props, { route }) => {
         <Text style={styles.horas2}>{props.horaFim}</Text>
         <View style={{ alignItems: 'flex-end'}}>
           <TouchableOpacity
-            style={{ textAlign: 'center', alignItems: 'center', backgroundColor: '#FFFF', width: 50, height: 30, borderRadius: 40, padding: 3, bottom: 18, marginLeft: 70, marginTop: 1 }}
-            onPress={() => { navigation.navigate('AnotherUser', { user_id: props.user_id }) }}><Text>GO</Text></TouchableOpacity>
+            style={{ backgroundColor: '#f5f5f5', width: 50, height: 30, borderRadius: 40, padding: 3, bottom: 18, marginLeft: 70, marginTop: 1 }}
+            onPress={() => { navigation.navigate('AnotherUser', { user_id: props.user_id }) }}><Text style={{marginTop: 3, textAlign: 'center'}}>GO</Text></TouchableOpacity>
         </View>
 
       </View>
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginLeft: 5,
     marginTop: 15,
-
   },
   alinhar: {
     flexDirection: 'row',

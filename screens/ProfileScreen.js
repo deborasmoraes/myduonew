@@ -3,7 +3,7 @@ import React, { useEffect, useLayoutEffect } from 'react'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { LinearGradient } from 'expo-linear-gradient';
-
+import * as Animatable from 'react-native-animatable'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import Firebase from '../config/firebase/firebaseConfig';
 
@@ -62,7 +62,7 @@ const PerfilScreen = () => {
             </View>
 
             {/* dados usuário */}
-
+            <View>
             <LinearGradient colors={['#242547', '#042960']} style={styles.usuario}>
                 <Image
                     style={styles.avatar}
@@ -73,10 +73,10 @@ const PerfilScreen = () => {
                 <Text style={styles.username}>{user.username}</Text>
 
             </LinearGradient>
-
+                    </View>
             {/* descrição usuário */}
             <Text style={styles.nome}>Sobre mim</Text>
-
+                    <View>
             <LinearGradient
                 colors={['#242547', '#042960']}
                 style={styles.descricao}>
@@ -91,6 +91,7 @@ const PerfilScreen = () => {
                             numberOfLines={3}
                         ></TextInput>}
             </LinearGradient>
+            </View>
 
             <Text style={styles.nome}>Plataformas</Text>
             <View style={{ marginLeft: 4 }}>
@@ -108,7 +109,7 @@ const PerfilScreen = () => {
                     onPress={() => { navigation.navigate("Jogos") }} style={styles.editarJogos}><Text style={{ color: '#FFFF' }}>Editar Jogos</Text>
                 </TouchableOpacity></LinearGradient>}
             </View>
-
+                    <View>
             <Text style={styles.nome}>Disponibilidade</Text>
             {/* horários */}
             <View style={styles.horario}>
@@ -118,6 +119,7 @@ const PerfilScreen = () => {
             <View style={styles.horario}>
                 <Text style={styles.horario2}>{user.horaInicio}</Text>
                 <Text style={styles.nome}>{user.horaFim}</Text>
+            </View>
             </View>
 
 
@@ -176,7 +178,8 @@ const styles = StyleSheet.create({
         padding: '4%',
         flexWrap: 'wrap',
         width: 342,
-        flexShrink: 1
+        flexShrink: 1,
+        marginRight: 100
     },
     plataformas: {
         padding: '1%',

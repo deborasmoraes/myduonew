@@ -84,7 +84,7 @@ const LoginScreen = () => {
  
 
     return (
-
+<View style={{height: 1100}}>
         <LinearGradient
        
             colors={['#1C3551', '#242547']}
@@ -157,7 +157,7 @@ const LoginScreen = () => {
 
         </LinearGradient>
 
-
+        </View>
     )
 }
 const styles = StyleSheet.create({
@@ -165,30 +165,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    m: {
-        width: '100%',
-        height: '71.1%',
-        shadowOffset: { width: 0.1, height: 0.2 },
-        shadowColor: '#385672'
-    },
-    logo: {
-        alignSelf: 'center',
-        width: '9%',
-        height: '8%',
-        padding: '4%',
-        marginTop: '17%'
-    },
     login: {
         fontSize: 35,
         justifyContent: 'center',
         alignSelf: 'center',
         fontWeight: 'bold',
         color: '#FFFF',
-        marginTop: '10%'
+        marginTop: '7%'
     },
     input1: {
         width: '75%',
-        marginTop: '10%',
+        marginTop: '7%',
         color: '#FFFF'
 
     },
